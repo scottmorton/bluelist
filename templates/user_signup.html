@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>User Signup</title>
+</head>
+<body>
+	
+	
+	
+	<h4> Less than the cost of a burrito per month </h4>
+	<h4> After receiving a single freelance job profinder will have payed for itself for years </h4>	
+	
+	
+	
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+		<form action="" method="post">
+		        <table>
+		            {{ form.as_table }}
+		        </table>
+		        {% csrf_token %}
+		        <input type="submit" value="Submit">
+		</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+[
+  {
+    "model": "user_profile.state",
+    "pk": 1,
+    "fields": {
+      "name": "Wisconsin"
+	}
+  },
+  {
+    "model": "user_profile.state",
+    "pk": 2,
+    "fields": {
+      "name": "Minnesota"
+	}
+  },
+  {
+    "model": "user_profile.city",
+    "pk": 1,
+    "fields": {
+      "name": "Madison",
+		"state": 1
+	}
+  },
+  {
+    "model": "user_profile.city",
+    "pk": 2,
+    "fields": {
+      "name": "Minneapolis",
+		"state": 2
+	}
+  },
+
+  {
+    "model": "user_profile.skillcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Web Development"
+	}
+  },
+
+  {
+    "model": "user_profile.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Developer",
+		"skillcategory":1
+	}
+  }
+]

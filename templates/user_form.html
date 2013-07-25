@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>User Info</title>
+
+
+	{% load staticfiles %}
+	
+	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
+	<script type="text/javascript" src="{% static "userform.js" %}" > </script>
+	
+	
+	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+
+
+	<script type="text/javascript"> 
+		var states = {{statelist|safe}};
+		var cities = {{citylist|safe}};
+		var categories = {{catlist|safe}};
+		var skills = {{skilllist|safe}};
+	</script>
+
+</head>
+<body>
+	
+
+	{% include 'header.html' %}
+<div class= "body-container">
+
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+	<form action="" method="post">
+		{{ form.non_field_errors }}
+			   <div class="fieldWrapper">
+					{{form.name.errors}}
+				<label for="id_name"> Name: </label>
+					{{form.name}}
+			   </div>
+			
+			
+			   <div class="fieldWrapper">
+					{{form.state.errors}}
+				<label for="id_state"> State: </label>
+					{{form.state}}
+			   </div>
+
+			   <div class="fieldWrapper">
+					{{form.city.errors}}
+				<label for="id_city"> City: </label>
+					{{form.city}}
+			   </div>
+			   <div class="fieldWrapper">
+					{{form.skillcategory.errors}}
+				<label for="id_skillcategory"> Category: </label>
+					{{form.skillcategory}}
+			   </div>
+			
+
+			   <div class="fieldWrapper">
+					{{form.skill.errors}}
+				<label for="id_skill"> Skill: </label>
+					{{form.skill}}
+			   </div>
+
+			
+			   <div class="fieldWrapper">
+					{{form.shortdesc.errors}}
+				<label for="id_shortdesc"> Listing Description: </label>
+					{{form.shortdesc}}
+			   </div>
+			   <div class="fieldWrapper">
+					{{form.longdesc.errors}}
+				<label for="id_longdesc"> Profile Information: </label>
+					{{form.longdesc}}
+			   </div>
+			
+			<h3> Links to websites or samples of work (youtube, vimeo, soundcloud etc.)</h3>
+			
+			<h4> link1 </h4>
+			
+				<div class="fieldWrapper">
+					{{form.link1.errors}}
+				<label for="id_link1"> URL Link: </label>
+					{{form.link1}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link1_text.errors}}
+				<label for="id_link1_text"> Link Description: </label>
+					{{form.link1_text}}
+			   </div>
+			
+			<h4> link2 </h4>
+			
+				<div class="fieldWrapper">
+					{{form.link2.errors}}
+				<label for="id_link2"> URL Link: </label>
+					{{form.link2}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link2_text.errors}}
+				<label for="id_link2_text"> Link Description: </label>
+					{{form.link2_text}}
+			   </div>
+			
+			<h4> link3 </h4>
+			
+				<div class="fieldWrapper">
+					{{form.link3.errors}}
+				<label for="id_link3"> URL Link: </label>
+					{{form.link3}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link3_text.errors}}
+				<label for="id_link3_text"> Link Description: </label>
+					{{form.link3_text}}
+			   </div>
+			
+			<h4> link4 </h4>
+			
+				<div class="fieldWrapper">
+					{{form.link4.errors}}
+				<label for="id_link4"> URL Link: </label>
+					{{form.link4}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link4_text.errors}}
+				<label for="id_link4_text"> Link Description: </label>
+					{{form.link4_text}}
+			   </div>
+			
+			
+
+	        <input type="submit" value="Submit">
+	</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
