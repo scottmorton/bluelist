@@ -1,5 +1,16 @@
-# Django default settings for profinder project.
+# Django default settings for bluelist project.
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+BASE_PATH="/Users/ScottGMorton/Documents/WebDev/Django"
+
+import os
+import django
+DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
+SITE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
+BASE_PATH=SITE_ROOT
 
 
 ADMINS = (
@@ -11,7 +22,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/ScottGMorton/Documents/WebDev/Django/mydata.db',                      # Or path to database file if using sqlite3.
+        'NAME': BASE_PATH+'/mydata.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -70,9 +81,9 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    "/Users/ScottGMorton/Documents/WebDev/Django/profinder/static/javascript",
-    "/Users/ScottGMorton/Documents/WebDev/Django/profinder/static/javascript/libraries",
-    "/Users/ScottGMorton/Documents/WebDev/Django/profinder/static/stylesheets"
+    BASE_PATH+"/bluelist/static/javascript",
+    BASE_PATH+"/bluelist/static/javascript/libraries",
+    BASE_PATH+"/bluelist/static/stylesheets"
     
     #os.path.join(BASE_DIR, "static"),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -108,13 +119,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'profinder.urls'
+ROOT_URLCONF = 'bluelist.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'profinder.wsgi.application'
+WSGI_APPLICATION = 'bluelist.wsgi.application'
 
 FIXTURE_DIRS = (
-    "/Users/ScottGMorton/Documents/WebDev/Django/profinder/profinder/fixtures",
+    BASE_PATH+"/bluelist/bluelist/fixtures",
 )
 
 import os.path
@@ -124,7 +135,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 	#os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
-	"/Users/ScottGMorton/Documents/WebDev/Django/profinder/templates"
+	BASE_PATH+"/bluelist/templates"
 )
 
 INSTALLED_APPS = (

@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.forms.models import model_to_dict
 
-from profinder.helper_functions import getCategoryVars
+from bluelist.helper_functions import getCategoryVars
 
 """
 def user_form(request):

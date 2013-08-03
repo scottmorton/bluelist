@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from profinder.views import homepage, prof_list_get, prof_request
+from bluelist.views import homepage, prof_list_get, prof_request
 from user_profile.views import user_form, signup, signin, signout
 
 

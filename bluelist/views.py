@@ -8,7 +8,7 @@ import json
 from django.contrib.auth import authenticate
 
 
-from profinder.helper_functions import getCategoryVars
+from bluelist.helper_functions import getCategoryVars
 
 def homepage(request):
     
