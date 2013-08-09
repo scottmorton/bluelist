@@ -7,7 +7,7 @@
 	margin-top: 10px;
 	text-align:left;
 	overflow:hidden;
-	border: solid 1px red;
+	/*border: solid 1px red;*/
 }
 
 .results
@@ -68,7 +68,7 @@
 
 .profile-name
 {
-       border: 1px solid blue;
+       /*border: 1px solid blue;*/
        float:left;
        width:210px;
        Height: 20px;
@@ -80,7 +80,7 @@
 {
     float:right;
     margin-top:0px;
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     overflow:hidden;
     width:300px;
     Height: 20px;
@@ -89,7 +89,7 @@
 
 .short-desc
 {
-        border: 1px solid red;
+        /*border: 1px solid red;*/
         margin-top:0px;
         float:left;
         width:520px;
