@@ -1,0 +1,139 @@
+
+.base-container
+{
+width: 676px;
+margin-top: 20px;
+margin-bottom: 20px;
+margin-left:auto;
+margin-right:auto;
+background-color: white;
+padding-top: 10px;
+padding-bottom: 30px;
+padding-left:15px;
+padding-right:15px;
+background: rgba(255, 255, 255, 0.9);
+overflow: auto;
+/*box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);*/
+text-align: center;
+border: 1px solid white;
+border: 1px solid rgba(0,0,0,0.3) ;
+
+}
+
+.menu-container
+{
+	overflow: hidden;
+	padding-left:2%;
+	padding-right:2%;
+	
+}
+
+
+/* Profile List */
+
+
+.box
+{
+	height:150px; 
+	width:161px; 
+	text-align:center; 
+	float:left; 
+	vertical-align:top;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	
+	
+	
+}
+
+
+.category
+{
+	height:120px;
+	width:160px; 
+	border-left: 1px solid rgba(0,0,0,0.3) ;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	background:#FFFFFF;
+	text-align:left; 
+	margin:0px auto;
+	/*box-shadow: 0 0 4px white;*/
+}
+
+
+.subcat{
+	margin-top: 0px;
+	margin-bottom:0px;
+	height:120px;
+	overflow-y:scroll;
+}
+
+
+
+p.title
+{
+	height: 20px;
+	width: 160px;
+	margin:0px 4px 6px 4px;
+	font-family: "HelveticaNeue-light", "Helvetica Neue light", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-size:19px;
+	color: rgb(8, 37, 103);
+}
+
+
+p.label
+{
+color:#FFFFFF;
+}
+
+
+
+ul
+{
+	margin:0px;
+	padding-left:0;
+	list-style-position: inside;
+	list-style: none;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-size: 17px;
+}
+
+
+li
+{
+    margin-top: 0px;
+    margin-bottom: 1px;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+
+li.a
+{ 
+	color: white;
+	padding-left: 5px;
+	/*background: #474747;*/
+	background:rgb(0,124,223);
+	/*background: -moz-linear-gradient(top center, rgb(0,144,243), rgb(33,109,236)); 
+	background: -webkit-gradient(linear, left top,left bottom, from(rgb(0,164,253)), to(rgb(33,109,236))); 
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#00a4fd, 
+	endColorStr=#216dec);*/
+	cursor:pointer;
+	
+}
+
+
+li.b
+{
+	background-color:#FFFFFF ;
+	cursor:pointer;
+	padding-left: 5px;
+	cursor:pointer;
+	
+}
+
+li.b:hover
+{ 
+	background-color:#F0F0F0;
+	cursor:pointer;
+}

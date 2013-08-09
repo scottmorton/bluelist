@@ -140,7 +140,7 @@ class UserProfile(models.Model):
     
     name = models.CharField(max_length=30)
     shortdesc= models.CharField(max_length=200)
-    longdesc = models.CharField(max_length=600)
+    longdesc = models.CharField(blank=True, max_length=600)
     city = models.ForeignKey(City)
     state = models.ForeignKey(State)
     skillcategory = models.ForeignKey(SkillCategory)

@@ -3,26 +3,29 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-BASE_PATH="/Users/ScottGMorton/Documents/WebDev/Django"
-
 import os
 import django
-DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
-SITE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-BASE_PATH=SITE_ROOT
+
+DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+  ('Scott', 'scottgmorton@gmail.com'),
 )
+
+DEFAULT_FROM_EMAIL='webmaster@bluelist.us'
+
+SERVER_EMAIL=DEFAULT_FROM_EMAIL
 
 MANAGERS = ADMINS
 
+"""
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': BASE_PATH+'/mydata.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # or 'oracle'.
+        'NAME': BASE_PATH+'/mydata.db',                     # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -30,10 +33,24 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+"""
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'django_db',                     # Or path to database file if using sqlite3.
+        'USER': 'django_login',
+        'PASSWORD': 'django2',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
+    }
+}
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.bluelist.us']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -71,7 +88,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = BASE_PATH+'/bluelist/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -81,9 +98,9 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    BASE_PATH+"/bluelist/static/javascript",
-    BASE_PATH+"/bluelist/static/javascript/libraries",
-    BASE_PATH+"/bluelist/static/stylesheets"
+    BASE_PATH+"/bluelist/bluelist/static_files/javascript",
+    BASE_PATH+"/bluelist/bluelist/static_files/javascript/libraries",
+    BASE_PATH+"/bluelist/bluelist/static_files/stylesheets"
     
     #os.path.join(BASE_DIR, "static"),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".

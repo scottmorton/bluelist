@@ -2,13 +2,12 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.template import Template, Context
 from django.shortcuts import render
 from django.template.loader import get_template
-from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
 from django.core import serializers
 import json
 from django.contrib.auth import authenticate
 
-
 from bluelist.helper_functions import getCategoryVars
+from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
 
 def homepage(request):
     
@@ -60,7 +59,7 @@ def prof_list_get(request):
            kwargs["skill"]=int(selskill)
         else:
             if selcat!="0":
-                kwargs["skillcat"]=int(selcat)    
+                kwargs["skillcategory"]=int(selcat)    
         
         userobs=UserProfile.objects.filter(**kwargs)
         
