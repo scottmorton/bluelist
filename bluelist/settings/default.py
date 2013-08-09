@@ -1,4 +1,4 @@
-# Django default settings for bluelist project.
+# 2Django default settings for bluelist project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
