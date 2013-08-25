@@ -10,7 +10,6 @@ from django.forms.models import model_to_dict
 import json
 from bluelist.helper_functions import getCategoryVars
 
-from user_profile.picture_upload import handle_uploaded_file
 
 
 
