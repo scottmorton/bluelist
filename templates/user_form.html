@@ -7,10 +7,12 @@
 	
 	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
 	<script type="text/javascript" src="{% static "userform.js" %}" > </script>
+	<script type="text/javascript" src="{% static "authentication.js" %}" > </script>
 	
 	
 	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "userform.css" %}">
 
 
 	<script type="text/javascript"> 
@@ -18,15 +20,17 @@
 		var cities = {{citylist|safe}};
 		var categories = {{catlist|safe}};
 		var skills = {{skilllist|safe}};
+		var signed_in = {{auth|safe}};
+		
 	</script>
 
 </head>
 <body>
 	
-
 	{% include 'header.html' %}
+	
+	
 <div class= "body-container">
-
 
     {% if form.errors %}
         <p style="color: red;">
@@ -34,7 +38,7 @@
         </p>
     {% endif %}
 
-	<form action="" method="post">
+	<form action="" method="post" enctype="multipart/form-data">
 		{{ form.non_field_errors }}
 			   <div class="fieldWrapper">
 					{{form.name.errors}}
@@ -42,6 +46,11 @@
 					{{form.name}}
 			   </div>
 			
+				<div class="fieldWrapper">
+					{{form.prof_pic.errors}}
+				<label for="id_name"> Profile Picture: </label>
+					{{form.prof_pic}}
+			   </div>
 			
 			   <div class="fieldWrapper">
 					{{form.state.errors}}
@@ -59,7 +68,6 @@
 				<label for="id_skillcategory"> Category: </label>
 					{{form.skillcategory}}
 			   </div>
-			
 
 			   <div class="fieldWrapper">
 					{{form.skill.errors}}
@@ -67,7 +75,6 @@
 					{{form.skill}}
 			   </div>
 
-			
 			   <div class="fieldWrapper">
 					{{form.shortdesc.errors}}
 				<label for="id_shortdesc"> Listing Description: </label>
@@ -75,63 +82,193 @@
 			   </div>
 			   <div class="fieldWrapper">
 					{{form.longdesc.errors}}
-				<label for="id_longdesc"> Profile Information: </label>
+				<label for="id_longdesc"> Additional Profile Information: </label>
 					{{form.longdesc}}
 			   </div>
 			
-			<h3> Links to websites or samples of work (youtube, vimeo, soundcloud etc.)</h3>
+			<h4> Contact Information </h4>
 			
-			<h4> link1 </h4>
+				<div class="fieldWrapper">
+					{{form.public_email.errors}}
+				<label for="id_shortdesc"> Contact Email Address </label>
+					{{form.public_email}}
+			   </div>
+			   <div class="fieldWrapper">
+					{{form.public_phone_num.errors}}
+				<label for="id_longdesc"> Contact Phone Number </label>
+					{{form.public_phone_num}}
+			   </div>
 			
+			
+			
+			<h4> Links to websites or samples of work (youtube, vimeo, soundcloud etc.)</h4>
+			
+			
+			<div id="link1" class="link-container">
+				
+				<div class="fieldWrapper">
+					{{form.link1_title.errors}}
+				<label for="id_link1_title"> Link Title: </label>
+					{{form.link1_title}}
+			   </div>
 				<div class="fieldWrapper">
 					{{form.link1.errors}}
 				<label for="id_link1"> URL Link: </label>
 					{{form.link1}}
 			   </div>
 				<div class="fieldWrapper">
-					{{form.link1_text.errors}}
-				<label for="id_link1_text"> Link Description: </label>
-					{{form.link1_text}}
+					{{form.link1_desc.errors}}
+				<label for="id_link1_desc"> Link Description: </label>
+					{{form.link1_desc}}
 			   </div>
+			</div>
 			
-			<h4> link2 </h4>
-			
+			<div id="link2" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link2_title.errors}}
+				<label for="id_link2_title"> Link Title: </label>
+					{{form.link2_title}}
+			   </div>
 				<div class="fieldWrapper">
 					{{form.link2.errors}}
 				<label for="id_link2"> URL Link: </label>
 					{{form.link2}}
 			   </div>
+
 				<div class="fieldWrapper">
-					{{form.link2_text.errors}}
-				<label for="id_link2_text"> Link Description: </label>
-					{{form.link2_text}}
+					{{form.link2_desc.errors}}
+				<label for="id_link2_desc"> Link Description: </label>
+					{{form.link2_desc}}
 			   </div>
 			
-			<h4> link3 </h4>
+			</div>
 			
+			<div id="link3" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link3_title.errors}}
+				<label for="id_link3_title"> Link Title: </label>
+					{{form.link3_title}}
+			   </div>
 				<div class="fieldWrapper">
 					{{form.link3.errors}}
 				<label for="id_link3"> URL Link: </label>
 					{{form.link3}}
 			   </div>
+
 				<div class="fieldWrapper">
-					{{form.link3_text.errors}}
-				<label for="id_link3_text"> Link Description: </label>
-					{{form.link3_text}}
+					{{form.link3_desc.errors}}
+				<label for="id_link3_desc"> Link Description: </label>
+					{{form.link3_desc}}
 			   </div>
 			
-			<h4> link4 </h4>
+			</div>
 			
+			<div id="link4" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link4_title.errors}}
+				<label for="id_link4_title"> Link Title: </label>
+					{{form.link4_title}}
+			   </div>
 				<div class="fieldWrapper">
 					{{form.link4.errors}}
 				<label for="id_link4"> URL Link: </label>
 					{{form.link4}}
 			   </div>
+
 				<div class="fieldWrapper">
-					{{form.link4_text.errors}}
-				<label for="id_link4_text"> Link Description: </label>
-					{{form.link4_text}}
+					{{form.link4_desc.errors}}
+				<label for="id_link4_desc"> Link Description: </label>
+					{{form.link4_desc}}
 			   </div>
+			
+			</div>
+			
+			<div id="link5" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link5_title.errors}}
+				<label for="id_link5_title"> Link Title: </label>
+					{{form.link5_title}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link5.errors}}
+				<label for="id_link5"> URL Link: </label>
+					{{form.link5}}
+			   </div>
+
+				<div class="fieldWrapper">
+					{{form.link5_desc.errors}}
+				<label for="id_link5_desc"> Link Description: </label>
+					{{form.link5_desc}}
+			   </div>
+			</div>
+			
+			
+			<div id="link6" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link6_title.errors}}
+				<label for="id_link6_title"> Link Title: </label>
+					{{form.link6_title}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link6.errors}}
+				<label for="id_link6"> URL Link: </label>
+					{{form.link6}}
+			   </div>
+
+				<div class="fieldWrapper">
+					{{form.link6_desc.errors}}
+				<label for="id_link6_desc"> Link Description: </label>
+					{{form.link6_desc}}
+			   </div>
+			</div>
+			
+			
+			<div id="link7" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link7_title.errors}}
+				<label for="id_link7_title"> Link Title: </label>
+					{{form.link7_title}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link7.errors}}
+				<label for="id_link7"> URL Link: </label>
+					{{form.link7}}
+			   </div>
+
+				<div class="fieldWrapper">
+					{{form.link7_desc.errors}}
+				<label for="id_link7_desc"> Link Description: </label>
+					{{form.link7_desc}}
+			   </div>
+			</div>
+			
+			
+			<div id="link8" class="link-container">
+				<div class="fieldWrapper">
+					{{form.link8_title.errors}}
+				<label for="id_link8_title"> Link Title: </label>
+					{{form.link8_title}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link8.errors}}
+				<label for="id_link8"> URL Link: </label>
+					{{form.link8}}
+			   </div>
+				<div class="fieldWrapper">
+					{{form.link8_desc.errors}}
+				<label for="id_link8_desc"> Link Description: </label>
+					{{form.link8_desc}}
+			   </div>
+			</div>
+			
+			
+			<div id="add_link" >
+			
+				<p class="addlink"> Add Link </p>
+				
+			</div>
+			
+			
 			
 			
 

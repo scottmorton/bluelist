@@ -3,6 +3,10 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+    
+from PIL import Image
+import sys, time
+
 
 
 class MyUserManager(BaseUserManager):
@@ -40,7 +44,11 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
         db_index=True,
+        error_messages={'unique' : 'This Email address is already in use',
+                        'invalid' : 'This Email address is invalid',
+                        'required': 'An Email address is required'},
     )
+    
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     
@@ -145,22 +153,53 @@ class UserProfile(models.Model):
     state = models.ForeignKey(State)
     skillcategory = models.ForeignKey(SkillCategory)
     skill = models.ForeignKey(Skill)
+    
+    
+    public_email=models.EmailField(blank=True)
+    public_phone_num=models.CharField(blank=True,max_length=30)
+    
+    
+    now = str(int(time.time()))
+    filepath = 'profile_pics/'+now+'/'
+    
+    prof_pic = models.ImageField(upload_to=filepath, blank=True)
+    
+    #prof_pic_original = models.FileField('original file upload', upload_to=filepath)
+    #prof_pic_thumbnail = models.CharField(max_length=255, blank=True)
+    #prof_pic_name = models.CharField(max_length=255)
+    #prof_pic_desc = models.TextField(blank=True)
+    
     link1 = models.URLField(blank=True)
-    link1_text = models.CharField(blank=True, max_length=100)
+    link1_title = models.CharField(blank=True, max_length=50)
+    link1_desc = models.CharField(blank=True, max_length=100)
+    
     link2 = models.URLField(blank=True)
-    link2_text = models.CharField(blank=True, max_length=100)
+    link2_title = models.CharField(blank=True, max_length=50)
+    link2_desc = models.CharField(blank=True, max_length=100)
+    
     link3 = models.URLField(blank=True)
-    link3_text = models.CharField(blank=True, max_length=100)
+    link3_title = models.CharField(blank=True, max_length=50)
+    link3_desc = models.CharField(blank=True, max_length=100)
+    
     link4 = models.URLField(blank=True)
-    link4_text = models.CharField(blank=True, max_length=100)
+    link4_title = models.CharField(blank=True, max_length=50)
+    link4_desc = models.CharField(blank=True, max_length=100)
+    
     link5 = models.URLField(blank=True)
-    link5_text = models.CharField(blank=True, max_length=100)
+    link5_title = models.CharField(blank=True, max_length=50)
+    link5_desc = models.CharField(blank=True, max_length=100)
+    
     link6 = models.URLField(blank=True)
-    link6_text = models.CharField(blank=True, max_length=100)
+    link6_title = models.CharField(blank=True, max_length=50)
+    link6_desc = models.CharField(blank=True, max_length=100)
+    
     link7 = models.URLField(blank=True)
-    link7_text = models.CharField(blank=True, max_length=100)
+    link7_title = models.CharField(blank=True, max_length=50)
+    link7_desc = models.CharField(blank=True, max_length=100)
+    
     link8 = models.URLField(blank=True)
-    link8_text = models.CharField(blank=True, max_length=100)
+    link8_title = models.CharField(blank=True, max_length=50)
+    link8_desc = models.CharField(blank=True, max_length=100)
 
     def __unicode__(self):
-        return self.name
+            return self.name

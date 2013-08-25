@@ -6,34 +6,22 @@ from django.core import serializers
 import json
 from django.contrib.auth import authenticate
 
-from bluelist.helper_functions import getCategoryVars
+from bluelist.helper_functions import getCategoryVars, profile_serializer
 from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
 
 def homepage(request):
-    
-    
+
     if request.user.is_authenticated():
-        button_dict={   'button2_text':'Logout',
-                        'button2_link':'signout',
-                        'button3_text':'Profile',
-                        'button3_link':'userform'}
+        auth_dict={'auth':'true'}
         
     else:
-        button_dict={   'button2_text':'Login',
-                        'button2_link':'signin',
-                        'button3_text':'Signup',
-                        'button3_link':'signup'}
-    
+        auth_dict={'auth':'false'}
         
     menu_dict=getCategoryVars()
     
-    out_dict=dict(button_dict.items() + menu_dict.items())
-        
+    out_dict=dict(menu_dict.items()+auth_dict.items())
         
     return render(request, 'homepage.html',out_dict)
-                                            
-                                            
-
 
 def prof_list_get(request):
     if request.method == 'GET':
@@ -63,6 +51,7 @@ def prof_list_get(request):
         
         userobs=UserProfile.objects.filter(**kwargs)
         
+        
         """
         userlist='['
         for user in userobs:
@@ -74,6 +63,7 @@ def prof_list_get(request):
         
         return HttpResponse(json.dumps(obj), content_type="application/json")
         """
+        #return HttpResponse(profile_serializer(userobs), content_type="application/json")
         
         return HttpResponse(serializers.serialize("json", userobs,use_natural_keys=True), content_type="application/json")
         
@@ -83,7 +73,16 @@ def prof_request(request):
         selpk=request.GET['selpk']
     
     
+def send_email(request):
+     #if request.user.is_authenticated():
+     #    user=request.GET['user']
+     
+     from django.core.mail import send_mail
+
+     #send_mail('Subject here', 'Here is the message.', 'morto091@umn.edu',
+     #    ['morto091@umn.edu'], fail_silently=False)
     
+     return HttpResponseRedirect('/')
     
     
     

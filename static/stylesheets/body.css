@@ -1,0 +1,58 @@
+body {
+	margin: 0px;
+	background-color: #FFF;
+	background-position:center top;
+	background-repeat:no-repeat;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    
+}
+
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+
+
+
+
+.container
+{
+text-align: center;
+}
+
+.body-container
+{
+
+margin-left:auto;
+margin-right:auto;
+width: 700px;
+background-color: rgba(0, 0, 0, 0);
+border-radius:4px;
+text-align: center;
+padding: 20px;
+}
+
+input
+{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;  
+}
+
+p
+{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+h1
+{
+font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+

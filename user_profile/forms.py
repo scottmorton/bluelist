@@ -14,23 +14,25 @@ class UserInfo(forms.ModelForm):
         model = UserProfile
         exclude = ['user']
         widgets = {
-                    'shortdesc': forms.Textarea(attrs={'cols': 40, 'rows': 5}),
-                    'longdesc': forms.Textarea(attrs={'cols': 40, 'rows': 10}),
+                    'shortdesc': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
+                    'longdesc': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
+                     'link1': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link1_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link2': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link2_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link3': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link3_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link4': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link4_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link5': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link5_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link6': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link6_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link7': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link7_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'link8': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
+                    'link8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                 }
-                
-      
-      
-    """   
-    name = forms.CharField()
-    email = forms.EmailField(required=False)
-    website = forms.URLField(required=False)
-    desc = forms.CharField(widget=forms.Textarea)
-    state_sel = forms.ModelChoiceField(queryset=states)
-    city_sel =  forms.ModelChoiceField(queryset=cities)
-    jobcat_sel = forms.ModelChoiceField(queryset=jobcats)
-    job_sel = forms.ModelChoiceField(queryset=jobs)
-    
-    """
     
     
     
