@@ -3,8 +3,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
-    
-from PIL import Image
+
 import sys, time
 
 
