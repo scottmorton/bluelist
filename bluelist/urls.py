@@ -18,7 +18,7 @@ urlpatterns = patterns('',
 	url(r'^proflist$', prof_list_get),
 	url(r'^profrequest$', prof_request),
 	url(r'^sendemail$', send_email),
-	
-	url (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.BASE_PATH+'/bluelist/media'}),
 )
+
+#url (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.BASE_PATH+'/bluelist/media'})
 
