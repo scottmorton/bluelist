@@ -29,7 +29,7 @@
 	
 	{% include 'header.html' %}
 	
-	
+ 
 <div class= "body-container">
 
     {% if form.errors %}
@@ -40,42 +40,37 @@
 
 	<form action="" method="post" enctype="multipart/form-data">
 		{{ form.non_field_errors }}
-			   <div class="fieldWrapper">
-					{{form.name.errors}}
-				<label for="id_name"> Name: </label>
-					{{form.name}}
-			   </div>
+		
+	<div class="form-container">	
+		
+	
+	<table>
+		<tr><td> <h5> Name </h5> </td>
+			<td>{{form.name}}	</td>
+			<td>{{form.name.errors}}</td></tr>
 			
-				<div class="fieldWrapper">
-					{{form.prof_pic.errors}}
-				<label for="id_name"> Profile Picture: </label>
-					{{form.prof_pic}}
-			   </div>
-			
-			   <div class="fieldWrapper">
-					{{form.state.errors}}
-				<label for="id_state"> State: </label>
-					{{form.state}}
-			   </div>
-
-			   <div class="fieldWrapper">
-					{{form.city.errors}}
-				<label for="id_city"> City: </label>
-					{{form.city}}
-			   </div>
-			   <div class="fieldWrapper">
-					{{form.skillcategory.errors}}
-				<label for="id_skillcategory"> Category: </label>
-					{{form.skillcategory}}
-			   </div>
-
-			   <div class="fieldWrapper">
-					{{form.skill.errors}}
-				<label for="id_skill"> Skill: </label>
-					{{form.skill}}
-			   </div>
-
-			   <div class="fieldWrapper">
+		<tr><td> <h5> Profile Picture </h5></td>
+			<td>{{form.prof_pic}}</td>
+			<td>{{form.prof_pic.errors}}</td></tr>
+		
+		<tr><td> <h5> Location <h5> </td>
+			<td><table>
+			<tr><td>State:</td><td>{{form.state}}</td></tr>
+			<tr><td>City:</td><td>{{form.city}}</td></tr>
+			</table>
+				</td>
+			<td>{{form.state.errors}} {{form.city.errors}}</td></tr>
+	
+		<tr><td> <h5> Profession </h5></td>
+			<td><table>
+				<tr><td>Category: </td><td>{{form.skillcategory}}</td></tr>
+				<tr><td>Skill: </td><td>{{form.skill}}</td></tr>
+				</table>
+			</td>
+			<td>{{form.skillcategory.errors}}{{form.skill.errors}}</td></tr>	
+	
+	</table>
+			  
 					{{form.shortdesc.errors}}
 				<label for="id_shortdesc"> Listing Description: </label>
 					{{form.shortdesc}}
@@ -85,7 +80,7 @@
 				<label for="id_longdesc"> Additional Profile Information: </label>
 					{{form.longdesc}}
 			   </div>
-			
+
 			<h4> Contact Information </h4>
 			
 				<div class="fieldWrapper">
@@ -270,14 +265,13 @@
 			
 			
 			
-			
 
 	        <input type="submit" value="Submit">
 	</form>
 
 
 
-
+	</div>
 
 
 

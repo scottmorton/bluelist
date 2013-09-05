@@ -53,6 +53,94 @@
      "name": "Chicago",
 		"state": 13
 	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 7,
+   "fields": {
+     "name": "Birmingham",
+		"state": 1
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 8,
+   "fields": {
+     "name": "Huntsville",
+		"state": 1
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 9,
+   "fields": {
+     "name": "Mobile",
+		"state": 1
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 10,
+   "fields": {
+     "name": "Montgomery",
+		"state": 1
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 11,
+   "fields": {
+     "name": "Anchorage",
+		"state": 2
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 12,
+   "fields": {
+     "name": "Phoenix",
+		"state": 3
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 13,
+   "fields": {
+     "name": "Tucson",
+		"state": 3
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 14,
+   "fields": {
+     "name": "Mesa",
+		"state": 3
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 15,
+   "fields": {
+     "name": "Chandler",
+		"state": 3
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 16,
+   "fields": {
+     "name": "Glendale",
+		"state": 3
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 17,
+   "fields": {
+     "name": "Scottsdale",
+		"state": 3
+	}
  }
 
 ]

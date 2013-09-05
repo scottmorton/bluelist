@@ -161,6 +161,7 @@ class UserProfile(models.Model):
     now = str(int(time.time()))
     filepath = 'profile_pics/'+now+'/'
     
+ 
     prof_pic = models.ImageField(upload_to=filepath, blank=True)
     
     #prof_pic_original = models.FileField('original file upload', upload_to=filepath)

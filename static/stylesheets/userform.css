@@ -1,38 +1,190 @@
 
+
+
+.form-container
+{
+    overflow:hidden;
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.form-table
+{
+    margin-left:auto;
+    margin-right:auto; 
+}
+
+
+
+.form-outer-field
+{
+    overflow:hidden;
+    text-align:center;
+    width:500px;
+}
+
+
+.form-field-container
+{
+    display:inline-block;
+    
+}
+
+
+.form-label
+{
+    margin-top:20px;
+    margin-bottom:0px;
+}
+
+
+.form-sub-label
+{
+    width:80px
+}
+
+
+.form-contact-label
+{
+    width:200px;
+}
+
+.form-link-label
+{
+    width:150px;
+}
+
+
+
+table
+{
+    margin-left:-3px;
+    margin-right:-3px;
+}
+
+img
+{
+    height:200px;
+    margin-left:100px;
+    margin-right:100px;
+    
+}
+
+
+input[type="text"]
+{
+    margin-bottom:10px;
+    font-size:16px;
+    height:30px;
+    width:500px;
+    margin-bottom:0px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+select
+{
+    font-size:14px;
+    
+}
+
+
+
+input[type="file"]
+{
+    margin-top:10px;
+    font-size:16px;
+    height:30px;
+    width:200px;
+}
+
+
+
+textarea
+{
+    font-size:16px;
+    width:500px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.link-container
+{
+    margin-bottom:20px;
+    
+}
+
+
+
+
+
+.form-button-spacer
+{
+    overflow:hidden;
+    margin-left:auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+
+
 #add_link
 {
     display:block;
     overflow:hidden;
     height:35px;
-    width:100px;
+    width: 200px;
     border: solid 1px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     margin-left:auto;
     margin-right:auto;
-    margin-top:10px;
+    margin-top:0px;
     margin-bottom:10px;
-    background: #FFFFFF;
+    background: rgb(0,124,223);
     font-size: 15px;
-   
-    
+    color:white;
+    float:left;
+    font-weight:bold;
 }
 
 #add_link:hover {
-    background: #F0F0F0;
+    background: rgb(0,100,200);
+    cursor:pointer;
+}
+
+
+
+input[type="submit"]
+{
+    margin-top:30px;
+    font-size:16px;
+    height:50px;
+    width:400px;
+    margin-top:50px;
+    margin-bottom: 0px;
+	padding:		10px 20px !important;
+	font-size:		16px !important;
+	background-color:	#c4f1fe;
+	font-weight:		bold;
+	color: white;
+	border: solid 1px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background: rgb(34,139,34);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+
+input[type="submit"]:hover
+{
+    background: rgb(24,119,24);
     cursor:pointer;
 }
 
 
 p.addlink
 {
-    margin:7px;
-    
-    
+    margin:7px;   
 }
 
 
-.link-container
-{
-    margin-top:20px;
-    
-}

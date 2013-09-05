@@ -1,7 +1,7 @@
 from django import forms
 from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from user_profile.widgets import ImageWidget
 
 
 #class UserAccount(forms.Form):
@@ -13,7 +13,7 @@ class UserInfo(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ['user']
-        widgets = {
+        widgets = { 'prof_pic': ImageWidget(),
                     'shortdesc': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
                     'longdesc': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
                      'link1': forms.Textarea(attrs={'cols': 40, 'rows': 1}),

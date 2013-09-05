@@ -11,11 +11,14 @@ from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserP
 
 def homepage(request):
 
+    
+
     if request.user.is_authenticated():
-        auth_dict={'auth':'true'}
+        email=str(request.user.email)
+        auth_dict={"user":email}
         
     else:
-        auth_dict={'auth':'false'}
+        auth_dict={"user":"false"}
         
     menu_dict=getCategoryVars()
     

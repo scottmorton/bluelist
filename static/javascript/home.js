@@ -5,20 +5,17 @@
 //var skills = new Array(new Array('All', '0', '0'),new Array('Javascript', '1', '1'),new Array('Weddings', '2', '2'));
 //Cities number should start from 0 for each state
 
-
-
 // State variables (initialized to "All" and not signed in)
 
 var selState = "0";
 var selCity = "0";
 var selCat	= "0";
 var selSkill = "0";
-//var signed_in= false;
+//var signed_in=false;
 
 
 $(document).ready(function() {
-
-	
+    
     // Initialize
     
 	fillOptions('#state', states, selState);
@@ -28,9 +25,11 @@ $(document).ready(function() {
 	fillSubOptions('#skills', skills, selCat, selSkill);
 	renderResults(selCity,selState,selSkill,selCat);
 	
-	
 	renderHeader(signed_in);
 
+	
+	
+	
 	
 	/* Message system removed for MVP 1.0
 	
@@ -73,6 +72,10 @@ $(document).ready(function() {
 	$(document).on('click','#contact', function(event) {
 	   event.stopPropagation();
 	   
+	   if(signed_in=="true")
+	   {
+	   
+	   
 	   var selid = $(this).closest(".profile-index-expanded, .profile-index").attr("id");
        var pnum=Number(selid.slice(4));
        name= profiles[pnum].fields.name;
@@ -80,7 +83,7 @@ $(document).ready(function() {
        public_phone_num= profiles[pnum].fields.public_phone_num;
 
        contact_html='<div class="lbox-container">                                                                          \
-                   <img class="lbox-close" id="lbox_close" src="static/close.png" alt="Smiley face">                        \
+                   <img class="lbox-close" id="lbox_close" src="static/close.png" alt="close">                        \
                    <div class="lbox-info">                                                                                  \
                         <h4> Contact info provided by '+name+' </h4>\
                         <table class="lbox-table" id="contact_info"> \
@@ -91,13 +94,34 @@ $(document).ready(function() {
              	   </div>';
        
        
-       
-       
        $(contact_html).lightbox_me({closeSelector:'#lbox_close',centered: true, 
                overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
            }, onClose: function(){$('.lbox-container').remove();} });
            e.preventDefault();
 	    
+	   
+	   }
+	   
+	   else
+	   {
+	        
+	        contact_error_html='<div class="lbox-container">                                                                          \
+                           <img class="lbox-close" id="lbox_close" src="static/close.png" alt="close">                        \
+                           <div class="lbox-info">                                                                                  \
+                                <p> Please Login or Signup to view contact information</p> \
+                                <div class="button-div">\
+                                <a class= "contact-error-button" id="signin"><p class="navb">Login</p></a>\
+                                <a class= "contact-error-button" id="signup"><p class="navb" action="">Signup</p></a>\
+                                </div>\
+                           </div>                                                                                                   \
+                     	   </div>';
+	        
+	        
+           $(contact_error_html).lightbox_me({closeSelector:'#lbox_close',centered: true, 
+                   overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
+               }, onClose: function(){$('.lbox-container').remove();} });
+               e.preventDefault();
+           }
 	   
     });
 	
@@ -115,36 +139,12 @@ $(document).ready(function() {
       });
     
     
+    
     $(document).on('click','#signup', function(e) {
         
-                //remove 
-        
-                 var indiv='<div class="lbox-container">                                                                                      \
-                            <img class="lbox-close" id="lbox_close" src="static/close.png" alt="Smiley face">              \
-                            <div class="lbox-info">                                                                                           \
-                            <h3 class="lbox-heading"> Bluelist Signup</h3> \
-                            <div id="error-msgs"> \
-                            </div>                    \                                                 \                                                                                     \
-                            <form action="" method="post" id="signup_form">                                                                    \
-                  		        <table class="lbox-table">                                                                                     \
-                  		            <tr><td><label for="id_email">Email address</label></td></tr>                                               \
-                  		            <tr><td><input class="input-field" id="id_email" maxlength="255" name="email" type="text" /></td></tr>      \
-                                    <tr><td><label for="id_password1" >Password</label> </td></tr>                                              \
-                                    <tr><td><input class="input-field" id="id_password1" name="password1" type="password" /></td></tr>           \
-                                    <tr><td><label for="id_password2">Password again!</label>   </td></tr>                                      \
-                                    <tr><td><input class="input-field" id="id_password2" name="password2" type="password" /></td></tr>          \
-                  		        </table>                                                                                                        \
-                  		        <div class="lbox-submit" id="signup-submit"> Signup </div>                                               \
-                  		</form>                                                                                                                 \
-                  		</div>                                                                                                                 \
-                  		</div>';
-                  		
-                  	
-                   $(indiv).lightbox_me({ closeSelector:'#lbox_close', centered: true, 
-                        overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
-                          $("#id_email").focus();
-                    },onClose: function(){$('.lbox-container').remove();}});
-                    e.preventDefault();
+                //remove
+                 
+                signup();
     });
     
     
@@ -164,7 +164,6 @@ $(document).ready(function() {
            
          if(password_error=="" &&  email_error=="")
          {
-             alert("successful submit")
              $.post("/signup",{ 'email':ent_email,'password1': ent_pw1,'password2': ent_pw2 }, function(data,status){
          	                            
          	      if(data=="success")
@@ -184,7 +183,7 @@ $(document).ready(function() {
          	            {
                             if (data.hasOwnProperty(key)) 
                             {
-               	             error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
+               	             var error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
                             }
                         }
                         $("#error-msgs").html(error_string);
@@ -204,31 +203,8 @@ $(document).ready(function() {
     
     $(document).on('click','#signin', function() {
         
-                  
-                        var indiv=' <div class="lbox-container">                                                                                \
-                                    <img class="lbox-close" id="lbox_close" src="static/close.png" alt="Smiley face">         \
-                                    <div class="lbox-info">                                                                                     \
-                                    <h3 class="lbox-heading">Bluelist Login</h3>                                                             \
-                                    <div id="error-msgs"> \
-                                    </div>                                                                                                      \
-                                    <form action="" method="post">                                                                              \
-                          		        <table class="lbox-table">                                                                              \
-                          		            <tr><td><label for="id_email">Email:</label></td></tr>                                              \
-                            		        <tr><td><input class="input-field" id="id_email" name="email" type="text" /></td></tr>              \
-                                            <tr><td><label for="id_password">Password:</label></td></tr>                                        \
-                                            <tr><td><input class="input-field" id="id_password" name="password" type="password" /></td></tr>    \
-                          		        </table>                                                                                                \
-                          		        <div class="lbox-submit" id="login-submit"> Login </div>                                               \
-                          		</form>                                                                                                         \
-                          		</div>                                                                                                          \                                                                                                                 \
-                          		</div>';
-                  
-                  
-                                 $(indiv).lightbox_me({closeSelector:'#lbox_close',centered: true, 
-                                        overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
-                                          $("#id_email").focus();
-                                    }, onClose: function(){$('.lbox-container').remove();} });
-                                    e.preventDefault();
+                  signin();
+
     });
       
       
@@ -246,7 +222,6 @@ $(document).ready(function() {
          if(email_error=="" && password_error=="")
          {
              $.post("/signin",{'email':ent_email,'password': ent_pw}, function(data,status){
-                 alert(data)
          	      if(data=="success")
          	      {
          	          // return to state
@@ -265,7 +240,7 @@ $(document).ready(function() {
          	            {
                             if (data.hasOwnProperty(key)) 
                             {
-               	             error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
+               	             var error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
                             }
                         }
                         $("#error-msgs").html(error_string);

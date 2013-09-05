@@ -177,8 +177,10 @@ def user_form(request):
         try:
             prof=UserProfile.objects.get(user=request.user)
             form = UserInfo(instance=prof)
+            #prof_dict=prof.__dict__
         except:
             form=UserInfo()
+            #prof_dict={}
         
         
     menu_dict=getCategoryVars()
@@ -189,16 +191,17 @@ def user_form(request):
     else:
         auth_dict={'auth':'false'}
 
-    form_dict={'form':form}
+    
 
+    form_dict={'form':form}
 
     out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items())
             
-            
-    return render(request, 'user_form.html',out_dict )
+    return render(request, 'user_form2.html',out_dict )
         
         
-        
+def register(request):
+    "nice"        
 
     
 def signup(request):
@@ -249,4 +252,4 @@ def signin(request):
     
 def signout(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('https://www.bluelist.us')
