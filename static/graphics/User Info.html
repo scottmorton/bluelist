@@ -1,0 +1,342 @@
+
+<!-- saved from url=(0030)http://127.0.0.1:8080/userform -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>User Info</title>
+
+
+	
+	
+	<script type="text/javascript" src="./User Info_files/jquery.js"> </script>
+	<script type="text/javascript" src="./User Info_files/userform.js"> </script>
+	<script type="text/javascript" src="./User Info_files/authentication.js"> </script><style type="text/css"></style>
+	
+	
+	<link rel="stylesheet" type="text/css" href="./User Info_files/header.css">
+	<link rel="stylesheet" type="text/css" href="./User Info_files/body.css">
+	<link rel="stylesheet" type="text/css" href="./User Info_files/userform.css">
+
+
+	<script type="text/javascript"> 
+		var states = [["All","0"],["Alabama","1"],["Alaska","2"],["Arizona","3"],["Arkansas","4"],["California","5"],["Colorado","6"],["Connecticut","7"],["Delaware","8"],["Florida","9"],["Georgia","10"],["Hawaii","11"],["Idaho","12"],["Illinois","13"],["Indiana","14"],["Iowa","15"],["Kansas","16"],["Kentucky","17"],["Louisiana","18"],["Maine","19"],["Maryland","20"],["Massachusetts","21"],["Michigan","22"],["Minnesota","23"],["Mississippi","24"],["Missouri","25"],["Montana","26"],["Nebraska","27"],["Nevada","28"],["New Hampshire","29"],["New Jersey","30"],["New Mexico","31"],["New York","32"],["North Carolina","33"],["North Dakota","34"],["Ohio","35"],["Oklahoma","36"],["Oregon","37"],["Pennsylvania","38"],["Rhode Island","39"],["South Carolina","40"],["South Dakota","41"],["Tennessee","42"],["Texas","43"],["Utah","44"],["Vermont","45"],["Virginia","46"],["Washington","47"],["Washington D.C.","51"],["West Virginia","48"],["Wisconsin","49"],["Wyoming","50"],];
+		var cities = [["All","0","0"],["Anchorage","11","2"],["Birmingham","7","1"],["Chandler","15","3"],["Chicago","6","13"],["Duluth","5","23"],["Glendale","16","3"],["Green Bay","3","49"],["Huntsville","8","1"],["Madison","1","49"],["Mesa","14","3"],["Milwaukee","4","49"],["Minneapolis","2","23"],["Mobile","9","1"],["Montgomery","10","1"],["Phoenix","12","3"],["Scottsdale","17","3"],["Tucson","13","3"],];
+		var categories = [["All","0"],["Web Development","1"],];
+		var skills = [["All","0","0"],["Developer","1","1"],];
+		var signed_in = true;
+		
+	</script>
+
+</head>
+<body><div id="_GPL_e6a00_parent_div" style="position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; z-index: 2147483647;"><object type="application/x-shockwave-flash" id="_GPL_e6a00_swf" data="http://savingsslider-a.akamaihd.net/items/e6a00/storage.swf?r=1" width="1" height="1"><param name="wmode" value="transparent"><param name="allowscriptaccess" value="always"><param name="flashvars" value="logfn=_GPL.items.e6a00.log&amp;onload=_GPL.items.e6a00.onload&amp;onerror=_GPL.items.e6a00.onerror&amp;LSOName=gpl"></object></div>
+	
+	
+<div class="navbar">
+	<div class="logo">
+		<a href="http://127.0.0.1:8080/"><p id="logo">Bluelist</p></a>
+	</div>
+	
+	
+	<div class="menu-buttons"><a class="nav-button" id="profile" href="./User Info_files/User Info.html"><p class="navb" action="">  Profile</p></a>                        <a class="nav-button" id="logout" href="http://127.0.0.1:8080/signout"><p class="navb">  Logout</p></a>                        <a class="nav-button"><p class="navb">About</p></a></div>
+</div>
+	
+ 
+<div class="body-container">
+
+    
+
+	<form action="" method="post" enctype="multipart/form-data">
+		
+		
+		
+	<table>
+		<tbody><tr><td> <h5> Name </h5> </td>
+			<td><input id="id_name" maxlength="30" name="name" type="text">	</td>
+			<td></td></tr>
+			
+		<tr><td> <h5> Profile Picture </h5></td>
+			<td><input id="id_prof_pic" name="prof_pic" type="file"></td>
+			<td></td></tr>
+		
+		<tr><td> <h5> Location </h5><h5> </h5></td>
+			<td>State:</td><td><select id="id_state" name="state">
+<option value="" selected="selected">---------</option>
+<option value="1">Alabama</option>
+<option value="2">Alaska</option>
+<option value="3">Arizona</option>
+<option value="4">Arkansas</option>
+<option value="5">California</option>
+<option value="6">Colorado</option>
+<option value="7">Connecticut</option>
+<option value="8">Delaware</option>
+<option value="9">Florida</option>
+<option value="10">Georgia</option>
+<option value="11">Hawaii</option>
+<option value="12">Idaho</option>
+<option value="13">Illinois</option>
+<option value="14">Indiana</option>
+<option value="15">Iowa</option>
+<option value="16">Kansas</option>
+<option value="17">Kentucky</option>
+<option value="18">Louisiana</option>
+<option value="19">Maine</option>
+<option value="20">Maryland</option>
+<option value="21">Massachusetts</option>
+<option value="22">Michigan</option>
+<option value="23">Minnesota</option>
+<option value="24">Mississippi</option>
+<option value="25">Missouri</option>
+<option value="26">Montana</option>
+<option value="27">Nebraska</option>
+<option value="28">Nevada</option>
+<option value="29">New Hampshire</option>
+<option value="30">New Jersey</option>
+<option value="31">New Mexico</option>
+<option value="32">New York</option>
+<option value="33">North Carolina</option>
+<option value="34">North Dakota</option>
+<option value="35">Ohio</option>
+<option value="36">Oklahoma</option>
+<option value="37">Oregon</option>
+<option value="38">Pennsylvania</option>
+<option value="39">Rhode Island</option>
+<option value="40">South Carolina</option>
+<option value="41">South Dakota</option>
+<option value="42">Tennessee</option>
+<option value="43">Texas</option>
+<option value="44">Utah</option>
+<option value="45">Vermont</option>
+<option value="46">Virginia</option>
+<option value="47">Washington</option>
+<option value="48">West Virginia</option>
+<option value="49">Wisconsin</option>
+<option value="50">Wyoming</option>
+<option value="51">Washington D.C.</option>
+</select></td>
+			<td>City:</td><td><select id="id_city" name="city"></select></td>
+			<td> </td></tr>
+		
+		<tr><td> <h5> Profession </h5></td>
+			<td><label for="id_skillcategory"> Category: </label><select id="id_skillcategory" name="skillcategory">
+<option value="" selected="selected">---------</option>
+<option value="1">Web Development</option>
+</select></td>
+			<td>	<label for="id_skill"> Skill: </label><select id="id_skill" name="skill"></select> </td>
+			<td></td></tr>	
+			
+			</tbody></table>
+
+			   <div class="fieldWrapper">
+					
+				<label for="id_shortdesc"> Listing Description: </label>
+					<textarea cols="60" id="id_shortdesc" name="shortdesc" rows="5"></textarea>
+			   </div>
+			   <div class="fieldWrapper">
+					
+				<label for="id_longdesc"> Additional Profile Information: </label>
+					<textarea cols="60" id="id_longdesc" name="longdesc" rows="10"></textarea>
+			   </div>
+			
+			<h4> Contact Information </h4>
+			
+				<div class="fieldWrapper">
+					
+				<label for="id_shortdesc"> Contact Email Address </label>
+					<input id="id_public_email" maxlength="75" name="public_email" type="text">
+			   </div>
+			   <div class="fieldWrapper">
+					
+				<label for="id_longdesc"> Contact Phone Number </label>
+					<input id="id_public_phone_num" maxlength="30" name="public_phone_num" type="text">
+			   </div>
+			
+			
+			
+			<h4> Links to websites or samples of work (youtube, vimeo, soundcloud etc.)</h4>
+			
+			
+			<div id="link1" class="link-container">
+				
+				<div class="fieldWrapper">
+					
+				<label for="id_link1_title"> Link Title: </label>
+					<input id="id_link1_title" maxlength="50" name="link1_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link1"> URL Link: </label>
+					<textarea cols="40" id="id_link1" name="link1" rows="1"></textarea>
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link1_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link1_desc" name="link1_desc" rows="2"></textarea>
+			   </div>
+			</div>
+			
+			<div id="link2" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link2_title"> Link Title: </label>
+					<input id="id_link2_title" maxlength="50" name="link2_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link2"> URL Link: </label>
+					<textarea cols="40" id="id_link2" name="link2" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link2_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link2_desc" name="link2_desc" rows="2"></textarea>
+			   </div>
+			
+			</div>
+			
+			<div id="link3" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link3_title"> Link Title: </label>
+					<input id="id_link3_title" maxlength="50" name="link3_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link3"> URL Link: </label>
+					<textarea cols="40" id="id_link3" name="link3" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link3_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link3_desc" name="link3_desc" rows="2"></textarea>
+			   </div>
+			
+			</div>
+			
+			<div id="link4" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link4_title"> Link Title: </label>
+					<input id="id_link4_title" maxlength="50" name="link4_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link4"> URL Link: </label>
+					<textarea cols="40" id="id_link4" name="link4" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link4_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link4_desc" name="link4_desc" rows="2"></textarea>
+			   </div>
+			
+			</div>
+			
+			<div id="link5" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link5_title"> Link Title: </label>
+					<input id="id_link5_title" maxlength="50" name="link5_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link5"> URL Link: </label>
+					<textarea cols="40" id="id_link5" name="link5" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link5_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link5_desc" name="link5_desc" rows="2"></textarea>
+			   </div>
+			</div>
+			
+			
+			<div id="link6" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link6_title"> Link Title: </label>
+					<input id="id_link6_title" maxlength="50" name="link6_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link6"> URL Link: </label>
+					<textarea cols="40" id="id_link6" name="link6" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link6_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link6_desc" name="link6_desc" rows="2"></textarea>
+			   </div>
+			</div>
+			
+			
+			<div id="link7" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link7_title"> Link Title: </label>
+					<input id="id_link7_title" maxlength="50" name="link7_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link7"> URL Link: </label>
+					<textarea cols="40" id="id_link7" name="link7" rows="1"></textarea>
+			   </div>
+
+				<div class="fieldWrapper">
+					
+				<label for="id_link7_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link7_desc" name="link7_desc" rows="2"></textarea>
+			   </div>
+			</div>
+			
+			
+			<div id="link8" class="link-container" style="display: none;">
+				<div class="fieldWrapper">
+					
+				<label for="id_link8_title"> Link Title: </label>
+					<input id="id_link8_title" maxlength="50" name="link8_title" type="text">
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link8"> URL Link: </label>
+					<textarea cols="40" id="id_link8" name="link8" rows="1"></textarea>
+			   </div>
+				<div class="fieldWrapper">
+					
+				<label for="id_link8_desc"> Link Description: </label>
+					<textarea cols="40" id="id_link8_desc" name="link8_desc" rows="2"></textarea>
+			   </div>
+			</div>
+			
+			
+			<div id="add_link">
+			
+				<p class="addlink"> Add Link </p>
+				
+			</div>
+			
+			
+			
+			
+
+	        <input type="submit" value="Submit">
+	</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body></html>

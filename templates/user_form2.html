@@ -1,0 +1,456 @@
+<html>
+<head>
+    <title>User Info</title>
+
+
+	{% load staticfiles %}
+	
+	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
+	<script type="text/javascript" src="{% static "userform.js" %}" > </script>
+	<script type="text/javascript" src="{% static "authentication.js" %}" > </script>
+	
+	
+	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "userform.css" %}">
+
+
+	<script type="text/javascript"> 
+		var states = {{statelist|safe}};
+		var cities = {{citylist|safe}};
+		var categories = {{catlist|safe}};
+		var skills = {{skilllist|safe}};
+		var signed_in = {{auth|safe}};
+		
+	</script>
+
+</head>
+<body>
+	
+	{% include 'header.html' %}
+	
+ 
+<div class= "body-container">
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+	<form action="" method="post" enctype="multipart/form-data">
+		{{ form.non_field_errors }}
+		
+	<div class="form-container">
+		<table class="form-table">	
+		<tr><td><h4 class="form-label"> Name </h4></td></tr>
+		<tr><td>{{form.name.errors}}</td></tr>
+		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.name}}</div></div></td></tr>
+
+			
+		<tr><td> <h4 class="form-label"> Profile Picture </h4></td><tr>
+		<tr><td>{{form.prof_pic.errors}}</td></tr>
+		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.prof_pic}}</div></div></td></tr>
+		
+		
+		<tr><td> <h4 class="form-label"> Location </h4> </td></tr>
+			<tr><td>{{form.state.errors}} {{form.city.errors}}</td></tr>
+			<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">
+				<table>	
+					<tr><td><p class="form-sub-label">State: <p></td>
+						<td>{{form.state}}</td></tr>
+					<tr><td><p class="form-sub-label">City: <p></td>
+						<td>{{form.city}}</td></tr>
+				</table>
+			</div></div>
+		</td></tr>
+			
+		<tr><td> <h4 class="form-label"> Profession </h4> </td></tr>
+			<tr><td>{{form.skillcategory.errors}} {{form.skill.errors}}</td></tr>
+			<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">
+			<table>	
+				<tr><td><p class="form-sub-label">Category: <p></td>
+					<td>{{form.skillcategory}}</td></tr>
+				<tr><td><p class="form-sub-label">Skill: <p> </td>
+					<td>{{form.skill}}</td></tr>
+			</table>
+			</div></div>
+		</td></tr>
+
+		<tr><td><h4 class="form-label"> Listing Description </h4></td></tr>
+		<tr><td>{{form.shortdesc.errors}}</td></tr>
+		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.shortdesc}}</div></div></td></tr>
+		
+
+
+		<tr><td><h4 class="form-label"> Additional Information </h4></td></tr>
+		<tr><td>{{form.longdesc.errors}}</td></tr>
+		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.longdesc}}</div></div></td></tr>
+
+		<tr><td><h4 class="form-label"> Contact Information </h4></td></tr>
+		<tr><td>{{form.public_email.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>	
+				<tr><td><p class="form-contact-label">Contact Email Address:<p></td></tr>
+				<tr><td>{{form.public_email}}</td></tr>
+			</table>
+			</div></div>
+			</tr></td>
+			
+		<tr><td>{{form.public_phone_num.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>		
+				<tr><td><p class="form-contact-label">Contact Phone Number:<p></td></tr>
+				<tr><td>{{form.public_phone_num}}</td></tr>
+			</table>
+			</div></div>
+		</td></tr>
+		
+		
+		<tr><td><h4 class="form-label"> References and Samples of Work </h4></td></tr>
+
+		</table>
+
+
+
+		<div id="link1" class="link-container">
+		
+		<table class="form-table">
+			
+		<tr><td>{{form.link1_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link1_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link1.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link1}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link1_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link1_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="link2" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link2_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link2_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link2.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link2}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link2_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link2_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="link3" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link3_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link3_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link3.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link3}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link3_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link3_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="link4" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link4_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link4_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link4.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link4}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link4_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link4_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="link5" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link5_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link5_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link5.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link5}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link5_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link5_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="link6" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link6_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link6_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link6.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link6}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link6_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link6_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="link7" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link7_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link7_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link7.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link7}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link7_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link7_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		<div id="link8" class="link-container">
+		
+			<table class="form-table">
+			
+		<tr><td>{{form.link8_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-link-label">Link Title:<p></td></td>
+					<tr><td>{{form.link8_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link8.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+			<tr><td>{{form.link8}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		<tr><td>{{form.link8_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-link-label">Link Description:<p></td></tr>
+			<tr><td>{{form.link8_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+			<div class="form-button-spacer">
+			<div id="add_link" >
+			
+				<p class="addlink"> Add Another Link </p>
+			</div>
+			</div>
+			
+			
+			
+			<div class="form-button-spacer">
+	        <input type="submit" value="Submit">
+			</div>
+	
+	</form>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
