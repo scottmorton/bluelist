@@ -188,7 +188,7 @@ function minProfile(selid){
     shortdesc= profiles[pnum].fields.shortdesc;
     
     profTemplate='      <div class="index-pic"> 				                                \
-		                    <img src="/media/'+prof_pic+'" height="100">  \
+		                    <img src="https://www.bluelist.us/media/'+prof_pic+'" height="100">  \
 	                    </div> 									                                \
 				 		<div class="index-text">                                                \
 				 			    <div class="profile-name">                                      \
