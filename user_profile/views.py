@@ -191,8 +191,6 @@ def user_form(request):
     else:
         auth_dict={'auth':'false'}
 
-    
-
     form_dict={'form':form}
 
     out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items())
