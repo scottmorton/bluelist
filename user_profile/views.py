@@ -177,26 +177,61 @@ def user_form(request):
         try:
             prof=UserProfile.objects.get(user=request.user)
             form = UserInfo(instance=prof)
+            
+            pic_string="""
+                            
+                            <a target="_blank" href='"""+prof.prof_pic.url+"""'>
+                            <img src='"""+prof.prof_pic.url+"""' /></a>
+                            <div class="form-field-container">
+                           
+                            Upload a new profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+                            
+                            </div>
+                            """ 
+
+            pic_dict={'prof_pic':pic_string}
             #prof_dict=prof.__dict__
-        except:
+            
+            
+            
+        except UserProfile.DoesNotExist:
             form=UserInfo()
-            #prof_dict={}
-        
+            
+            pic_string="""<input id="id_prof_pic" name="prof_pic" type="file" />""" 
+
+            pic_dict={'prof_pic':pic_string}
+            
         
     menu_dict=getCategoryVars()
+
     
-    if request.user.is_authenticated():
-        auth_dict={'auth':'true'}
-        
-    else:
-        auth_dict={'auth':'false'}
-
+    
+    
+    
+    
+    
+    
+    
+    
+    auth_dict={'auth':'true'}
     form_dict={'form':form}
+    
+    
 
-    out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items())
+    out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items())
+            
             
     return render(request, 'user_form2.html',out_dict )
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
 def register(request):
     "nice"        
@@ -250,4 +285,4 @@ def signin(request):
     
 def signout(request):
     logout(request)
-    return HttpResponseRedirect('https://www.bluelist.us')
+    return HttpResponseRedirect('/')

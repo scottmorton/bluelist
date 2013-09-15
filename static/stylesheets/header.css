@@ -1,7 +1,9 @@
 
 .navbar
 {
-	overflow:hidden;
+    position:absolute;
+    top:0;
+    bottom:60px;
 	margin: 0px;
 	height:60px;
 	width:100%;
@@ -10,7 +12,6 @@
 	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 	background-color:white;
-	
 	/*background: -webkit-gradient(linear, left top,left bottom, from(#606060 ), to(#000000 ));*/
 }
 
@@ -37,7 +38,8 @@
 
 
 .menu-buttons{
-    margin-right:10px;
+    margin-left:25px;
+    margin-right:25px;
 }
 
 .nav-button {

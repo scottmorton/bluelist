@@ -1,10 +1,49 @@
 body {
 	margin: 0px;
-	background-color: #FFF;
+	background-color: white;
 	background-position:center top;
 	background-repeat:no-repeat;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    width:100%;
+   
 }
+
+
+.body-container
+{
+
+
+text-align: center;
+background-image:url('/static/st_anthony_edit.png');
+background-position: center top;
+background-size: 100% auto;
+background-repeat:no-repeat;
+background-color:black;
+overflow-x:hidden;
+overflow-y:hidden;
+margin-bottom:auto;
+margin-top:auto;
+background-color:black;
+width: 100%;
+position: absolute;
+top:60px;
+bottom:0;
+
+
+}
+
+
+.body-scroll
+{
+    overflow-y:scroll;
+    width:100%;
+    position: absolute;
+    top:0;
+    bottom:0;
+    padding-bottom:40px;
+    padding-top:40px;
+}
+
 
 
 section {
@@ -21,24 +60,13 @@ textarea {
 
 
 
-
-
 .container
 {
 text-align: center;
 }
 
-.body-container
-{
 
-margin-left:auto;
-margin-right:auto;
-width: 700px;
-background-color: rgba(0, 0, 0, 0);
-border-radius:4px;
-text-align: center;
-padding: 20px;
-}
+
 
 input
 {

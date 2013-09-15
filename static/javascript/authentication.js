@@ -40,8 +40,8 @@ function renderHeader(signed_in)
     if(String(signed_in)!="false")
     {
         
-        var menu_html= '<a class= "nav-button" id="profile" href="/userform"><p class="navb" action="">  Profile</p></a>\
-                        <a class= "nav-button" id="logout" href="/signout"><p class="navb">  Logout</p></a>\
+        var menu_html= '<a class= "nav-button" id="profile" href="/userform"><p class="navb" action="">Edit Profile</p></a>\
+                        <a class= "nav-button" id="logout" href="/signout"><p class="navb">Logout</p></a>\
                         <a class= "nav-button"><p class="navb">About</p></a>';
         
         $(".menu-buttons").html(menu_html)

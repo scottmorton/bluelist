@@ -27,10 +27,12 @@
 </head>
 <body>
 	
-	{% include 'header.html' %}
 	
  
 <div class= "body-container">
+<div class="body-scroll">
+
+<div class="base-container-userform">
 
     {% if form.errors %}
         <p style="color: red;">
@@ -50,7 +52,13 @@
 			
 		<tr><td> <h4 class="form-label"> Profile Picture </h4></td><tr>
 		<tr><td>{{form.prof_pic.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.prof_pic}}</div></div></td></tr>
+		<tr><td>
+			<div class="form-outer-field">
+				<div class="form-field-container">
+					{{prof_pic|safe }}
+				</div>
+			</div>
+		</td></tr>
 		
 		
 		<tr><td> <h4 class="form-label"> Location </h4> </td></tr>
@@ -424,7 +432,6 @@
 		</div>
 		
 		
-		
 			<div class="form-button-spacer">
 			<div id="add_link" >
 			
@@ -440,17 +447,15 @@
 	
 	</form>
 
-
+</div>
+</div>
+</div>
 
 </div>
 
 
+{% include 'header.html' %}
 
-
-
-
-
-</div>
 
 </body>
 </html>

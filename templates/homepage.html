@@ -35,16 +35,21 @@
 <body>
 
 
-{% include 'header.html' %}
 
 
 <div class= "body-container">
 
 
-<p class="greeting">  Find local professionals</p>
+<div class= "body-scroll">
+
+	<div class="greeting-container-menu">
+
+	<p class="greeting">  Find local professionals, view examples of their work</p>
+	</div>
 
 
-<div class="base-container" id="options">
+
+<div class="base-container-menu" id="options">
 
 	<div class="menu-container">
 	<div class="box" id="states container">
@@ -92,14 +97,21 @@
 	
 	<div class="results container"
 			<div class="results" id="searchResults">
+				
+				
 			</div>
 	</div>
 
 	
 </div>
+</div>
+
 
 
 </div>
+
+{% include 'header.html' %}
+
 
 </body>
 </html>

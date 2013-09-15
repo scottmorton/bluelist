@@ -101,7 +101,8 @@ STATICFILES_DIRS = (
     BASE_PATH+"/bluelist/static/javascript",
     BASE_PATH+"/bluelist/static/javascript/libraries",
     BASE_PATH+"/bluelist/static/stylesheets",
-    BASE_PATH+"/bluelist/static/graphics"
+    BASE_PATH+"/bluelist/static/graphics",
+    BASE_PATH+"/bluelist/static/graphics/background_pics"
     
     #os.path.join(BASE_DIR, "static"),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
