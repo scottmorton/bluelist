@@ -23,7 +23,7 @@ def user_form(request):
 
 def user_form(request):
     if not request.user.is_authenticated():
-            return HttpResponseRedirect('/signin')
+            return HttpResponseRedirect('/')
     
     
     if request.method == 'POST':
@@ -119,8 +119,6 @@ def user_form(request):
             except UserProfile.DoesNotExist:
                
                #prof=UserProfile.objects.get(user=request.user)
-               
-               
                #u=form.save()
                
                obj = form.save(commit=False)
@@ -203,14 +201,6 @@ def user_form(request):
             
         
     menu_dict=getCategoryVars()
-
-    
-    
-    
-    
-    
-    
-    
     
     
     auth_dict={'auth':'true'}
@@ -231,11 +221,6 @@ def user_form(request):
     
     
     
-    
-        
-def register(request):
-    "nice"        
-
     
 def signup(request):
     if request.user.is_authenticated():
@@ -260,6 +245,17 @@ def signup(request):
     
     else:
         return HttpResponse("error")
+
+
+
+
+
+def register(request):
+    "nice"        
+
+
+
+
 
 
 def signin(request):

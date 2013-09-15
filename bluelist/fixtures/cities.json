@@ -141,6 +141,143 @@
      "name": "Scottsdale",
 		"state": 3
 	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 18,
+   "fields": {
+     "name": "Little Rock",
+		"state": 4
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 19,
+   "fields": {
+     "name": "Fayatteville",
+		"state": 4
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 20,
+   "fields": {
+     "name": "Fort Smith",
+		"state": 4
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 21,
+   "fields": {
+     "name": "Los Angeles",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 22,
+   "fields": {
+     "name": "San Francisco",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 23,
+   "fields": {
+     "name": "San Diego",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 24,
+   "fields": {
+     "name": "Riverside",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 25,
+   "fields": {
+     "name": "Sacramento",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 26,
+   "fields": {
+     "name": "San Jose",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 27,
+   "fields": {
+     "name": "Fresno",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 28,
+   "fields": {
+     "name": "Concord",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 29,
+   "fields": {
+     "name": "San Clemente",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 30,
+   "fields": {
+     "name": "Bakersfield",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 31,
+   "fields": {
+     "name": "Murrieta",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 32,
+   "fields": {
+     "name": "Stockton",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 33,
+   "fields": {
+     "name": "Oxnard",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 34,
+   "fields": {
+     "name": "Modesto",
+		"state": 6
+	}
  }
+
 
 ]
