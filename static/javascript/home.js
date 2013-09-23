@@ -83,7 +83,7 @@ $(document).ready(function() {
        public_phone_num= profiles[pnum].fields.public_phone_num;
 
        contact_html='<div class="lbox-container">                                                                          \
-                   <img class="lbox-close" id="lbox_close" src="static/close.png" alt="close">                        \
+                   <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">                        \
                    <div class="lbox-info">                                                                                  \
                         <h4> Contact info provided by '+name+' </h4>\
                         <table class="lbox-table" id="contact_info"> \
@@ -106,7 +106,7 @@ $(document).ready(function() {
 	   {
 	        
 	        contact_error_html='<div class="lbox-container">                                                                          \
-                           <img class="lbox-close" id="lbox_close" src="static/close.png" alt="close">                        \
+                           <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">                        \
                            <div class="lbox-info">                                                                                  \
                                 <p> Please Login or Signup to view contact information</p> \
                                 <div class="button-div">\

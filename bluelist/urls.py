@@ -18,8 +18,16 @@ urlpatterns = patterns('',
 	url(r'^proflist$', prof_list_get),
 	url(r'^profrequest$', prof_request),
 	url(r'^sendemail$', send_email),
-	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.BASE_PATH+'/bluelist/media'}),
     url(r'^register$', register)
 )
 
 
+from django.conf import settings
+
+#This is used to serve static files in development
+
+if settings.DEBUG:
+     urlpatterns += patterns('',url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+     'document_root': settings.BASE_PATH+'/bluelist/media'}))
+    
+    

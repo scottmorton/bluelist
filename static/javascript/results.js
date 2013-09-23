@@ -37,10 +37,19 @@ function loadProfiles(profarray){
 		    skill=profiles[i].fields.skill;
 		    prof_pic=profiles[i].fields.prof_pic;
 		    
+		    if(prof_pic=="")
+		    {
+		        image_string="";
+		    }
+		    else
+		    {
+		        image_string='<img src="/media/'+prof_pic+'" height="100">';
+	        }
+		    
 
 			profTemplate='<div class="profile-index" id="prof'+String(i)+'">                            \
 			                    <div class="index-pic"> 				                                \
-				                    <img src="/media/'+prof_pic+'" height="100">                        \
+				                    '+image_string+'                                                    \
 			                    </div> 									                                \
 						 		<div class="index-text">                                                \
 						 			    <div class="profile-name">                                      \
@@ -74,15 +83,14 @@ function expandProfile(selid){
     var pnum=Number(selid.slice(4));
     
     
+	var name= profiles[pnum].fields.name;
+	var city= profiles[pnum].fields.city;
+    var state=profiles[pnum].fields.state;
+    var skill=profiles[pnum].fields.skill;
+    var prof_pic=profiles[pnum].fields.prof_pic;
     
-	name= profiles[pnum].fields.name;
-	city= profiles[pnum].fields.city;
-    state=profiles[pnum].fields.state;
-    skill=profiles[pnum].fields.skill;
-    prof_pic=profiles[pnum].fields.prof_pic;
-    
-    shortdesc= profiles[pnum].fields.shortdesc;
-    longdesc = profiles[pnum].fields.longdesc;
+    var shortdesc= profiles[pnum].fields.shortdesc;
+    var longdesc = profiles[pnum].fields.longdesc;
     
     
     
@@ -140,9 +148,16 @@ function expandProfile(selid){
         
     }
     
+    
+    var image_string="";
+    
+    if(prof_pic!="")
+    {
+        image_string='<img src="/media/'+prof_pic+'" height="100">';
+    }
 
 	profTemplate='<div class="index-pic"> 				                                        \
-		                    <img src="/media/'+prof_pic+'" height="100">  \
+		                    '+image_string+'                                                    \
 	                    </div> 									                                \
 				 		<div class="index-text">                                                \
 				 			    <div class="profile-name">                                      \
@@ -179,16 +194,25 @@ function expandProfile(selid){
 function minProfile(selid){
     var pnum=Number(selid.slice(4));
     
-	name= profiles[pnum].fields.name;
-	city= profiles[pnum].fields.city;
-    state=profiles[pnum].fields.state;
-    skill=profiles[pnum].fields.skill;
-    prof_pic=profiles[pnum].fields.prof_pic;
+
     
-    shortdesc= profiles[pnum].fields.shortdesc;
+	var name= profiles[pnum].fields.name;
+	var city= profiles[pnum].fields.city;
+    var state=profiles[pnum].fields.state;
+    var skill=profiles[pnum].fields.skill;
+    var prof_pic=profiles[pnum].fields.prof_pic;
     
-    profTemplate='      <div class="index-pic"> 				                                \
-		                    <img src="/media/'+prof_pic+'" height="100">  \
+    var image_string="";
+    
+    if(prof_pic!="")
+    {
+        image_string='<img src="/media/'+prof_pic+'" height="100">';
+    }
+    
+    var shortdesc= profiles[pnum].fields.shortdesc;
+    
+    var profTemplate='      <div class="index-pic"> 				                            \
+		                    '+image_string+'                                                    \
 	                    </div> 									                                \
 				 		<div class="index-text">                                                \
 				 			    <div class="profile-name">                                      \
@@ -212,4 +236,3 @@ function minProfile(selid){
         $('#'+selid).attr('class','profile-index');
     
 }
-

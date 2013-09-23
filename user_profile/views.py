@@ -176,8 +176,9 @@ def user_form(request):
             prof=UserProfile.objects.get(user=request.user)
             form = UserInfo(instance=prof)
             
-            pic_string="""
-                            
+            
+            if prof.prof_pic!="":
+                pic_string="""  
                             <a target="_blank" href='"""+prof.prof_pic.url+"""'>
                             <img src='"""+prof.prof_pic.url+"""' /></a>
                             <div class="form-field-container">
@@ -186,8 +187,17 @@ def user_form(request):
                             
                             </div>
                             """ 
-
-            pic_dict={'prof_pic':pic_string}
+                pic_dict={'prof_pic':pic_string}
+                
+            else:
+                pic_string="""
+                    <div class="form-field-container">
+                        Upload aprofile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+                    </div>
+                    """
+                pic_dict={'prof_pic':pic_string}
+                    
+                    
             #prof_dict=prof.__dict__
             
             
@@ -205,8 +215,6 @@ def user_form(request):
     
     auth_dict={'auth':'true'}
     form_dict={'form':form}
-    
-    
 
     out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items())
             
