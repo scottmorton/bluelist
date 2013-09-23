@@ -129,13 +129,24 @@ $(document).ready(function() {
 	
 	$(document).on('click','.profile-index', function() {
 	    var selid=$(this).attr("id");
-	    expandProfile(selid);
+	    var pnum=Number(selid.slice(4));
+	    
+	   
+	    var profTemplate=expandProfile(pnum);
+	    
+	    $('#'+selid).html(profTemplate);
+        $('#'+selid).attr('class','profile-index-expanded');
     });
     
     
     $(document).on('click','#less', function() {
         var selid = $(this).closest(".profile-index-expanded").attr("id");
-        minProfile(selid);
+        var pnum=Number(selid.slice(4));
+        
+        var profTemplate=minProfile(pnum);
+        $('#'+selid).html(profTemplate);
+        $('#'+selid).attr('class','profile-index');
+        
       });
     
     

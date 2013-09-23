@@ -30,46 +30,10 @@ function loadProfiles(profarray){
 		
 		    num+=1;
 		    
-			name= profiles[i].fields.name;
-		    desc= profiles[i].fields.shortdesc;
-		    city= profiles[i].fields.city;
-		    state=profiles[i].fields.state;
-		    skill=profiles[i].fields.skill;
-		    prof_pic=profiles[i].fields.prof_pic;
-		    
-		    if(prof_pic=="")
-		    {
-		        image_string="";
-		    }
-		    else
-		    {
-		        image_string='<img src="/media/'+prof_pic+'" height="100">';
-	        }
-		    
-
-			profTemplate='<div class="profile-index" id="prof'+String(i)+'">                            \
-			                    <div class="index-pic"> 				                                \
-				                    '+image_string+'                                                    \
-			                    </div> 									                                \
-						 		<div class="index-text">                                                \
-						 			    <div class="profile-name">                                      \
-										    <p class="index-name">'+name+'</p>                          \
-										</div>                                                          \
-										<div class="profile-tag">                                       \
-										    <p class="tag">'+skill+' in '+city+', '+state+'</p>         \
-										</div>                                                          \
-										<div class="short-desc">                                        \
-										    <p class="index-desc">'+desc+'</p> 	                        \
-										</div>                                                          \
-										<div class="index-options">                                     \
-										    <div class="option">                                        \
-    						 			        <a class="index-option" id="contact">Contact</a>       \
-    						 			        <a class="index-option" id="more">More</a>              \
-    						 			    </div>                                                     \
-    						 			</div>                                                          \
-    						 			</div>                                                          \
-					  	  </div>';
-					listString+= profTemplate;		//Combine string list
+		    var profTemplate=minProfile(i);
+			listString+= '<div class="profile-index" id="prof'+String(i)+'">'+profTemplate+'</div>';	//Combine string list
+			
+			
 			}
 
 	results='<p class="Results">'+String(num)+' Results</p>';
@@ -78,9 +42,7 @@ function loadProfiles(profarray){
 
 
 
-function expandProfile(selid){
-    
-    var pnum=Number(selid.slice(4));
+function expandProfile(pnum){
     
     
 	var name= profiles[pnum].fields.name;
@@ -129,12 +91,16 @@ function expandProfile(selid){
     links[7][1]=profiles[pnum].fields.link8_title;
     links[7][2]=profiles[pnum].fields.link8_desc;
 
-    linklist="";
+    var linklist="";
+    var link_present=false;
+    
     
     for(var i=0; i<8; i++)
     {
         if(links[i][0]!="" && links[i][1]!="")
         {
+            link_present=true;
+            
             linklist=linklist+'<div class="link-container">                                     \
                                     <div class="link-title-container">                          \
                                         <a href="'+links[i][0]+'">'+links[i][1]+'</a>           \
@@ -148,7 +114,6 @@ function expandProfile(selid){
         
     }
     
-    
     var image_string="";
     
     if(prof_pic!="")
@@ -156,7 +121,15 @@ function expandProfile(selid){
         image_string='<img src="/media/'+prof_pic+'" height="100">';
     }
 
-	profTemplate='<div class="index-pic"> 				                                        \
+    var sample_work_title="";
+    
+    if(link_present)
+    {
+        sample_work_title="	<h4> Samples of Work </h4>"
+    }
+
+
+	var profTemplate='<div class="index-pic"> 				                                        \
 		                    '+image_string+'                                                    \
 	                    </div> 									                                \
 				 		<div class="index-text">                                                \
@@ -173,7 +146,7 @@ function expandProfile(selid){
 								    <p class="long-desc">'+ longdesc+'</p> 	                    \
 								</div>                                                          \
 								<div class="links">                                             \
-								<h4> Samples of Work </h4>                                      \
+								'+sample_work_title+'                                       \
 								'+linklist+'                                                    \
 								</div>                                                          \
 								<div class="index-options">                                     \
@@ -184,17 +157,12 @@ function expandProfile(selid){
 					 			</div>                                                          \
 					 	</div>';
     
-    
+    return profTemplate;
 
-    $('#'+selid).html(profTemplate);
-    $('#'+selid).attr('class','profile-index-expanded');
 }
 
 
-function minProfile(selid){
-    var pnum=Number(selid.slice(4));
-    
-
+function minProfile(pnum){
     
 	var name= profiles[pnum].fields.name;
 	var city= profiles[pnum].fields.city;
@@ -232,7 +200,6 @@ function minProfile(selid){
 					 			</div>                                                          \
 					 	</div>';
 			 	  
-		$('#'+selid).html(profTemplate);
-        $('#'+selid).attr('class','profile-index');
+    return profTemplate;
     
 }

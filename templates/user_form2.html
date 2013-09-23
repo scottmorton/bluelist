@@ -56,6 +56,22 @@
 			<div class="form-outer-field">
 				<div class="form-field-container">
 					{{prof_pic|safe }}
+					
+					{% if pic_url != "none" %}
+						<a target="_blank" href="{{ pic_url|safe }}">
+                        <img src="{{ pic_url|safe }}" /></a>
+                        <div class="form-field-container">
+                        Upload a new profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+						
+						
+					{% else %}
+						<div class="form-field-container">
+	                        Upload a profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+	                    </div>
+					{% endif %}
+					
+					
+					
 				</div>
 			</div>
 		</td></tr>

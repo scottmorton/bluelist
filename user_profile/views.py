@@ -178,36 +178,20 @@ def user_form(request):
             
             
             if prof.prof_pic!="":
-                pic_string="""  
-                            <a target="_blank" href='"""+prof.prof_pic.url+"""'>
-                            <img src='"""+prof.prof_pic.url+"""' /></a>
-                            <div class="form-field-container">
-                           
-                            Upload a new profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
-                            
-                            </div>
-                            """ 
-                pic_dict={'prof_pic':pic_string}
+
+                pic_dict={'pic_url': prof.prof_pic.url}
                 
             else:
-                pic_string="""
-                    <div class="form-field-container">
-                        Upload aprofile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
-                    </div>
-                    """
-                pic_dict={'prof_pic':pic_string}
+                pic_dict={'pic_url':"none"}
                     
                     
             #prof_dict=prof.__dict__
             
             
-            
         except UserProfile.DoesNotExist:
             form=UserInfo()
-            
-            pic_string="""<input id="id_prof_pic" name="prof_pic" type="file" />""" 
 
-            pic_dict={'prof_pic':pic_string}
+            pic_dict={'pic_url':"none"}
             
         
     menu_dict=getCategoryVars()
