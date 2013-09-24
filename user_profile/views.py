@@ -42,8 +42,6 @@ def user_form(request):
             #This block makes sure that URL links fill the lower numbers before the last so they are displayed
             # properly in the profileb
             
-            
-            
             """
             link=[""]*8
             link_desc=[""]*8
@@ -68,51 +66,7 @@ def user_form(request):
                 
                 
                 bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
-                u=bam.save()
-
-
-                """
-                UserProfile.objects.filter(user=request.user).update(
-                                name=cd['name'],
-                                prof_pic = cd['prof_pic'],  
-                                shortdesc=cd['shortdesc'],
-                                longdesc=cd['longdesc'],
-                                state=cd['state'],
-                                city=cd['city'],
-                                public_email=cd['public_email'],
-                                public_phone_num=cd['public_phone_num'],
-                                skillcategory=cd['skillcategory'],
-                                skill=cd['skill'],
-                                
-                                link1=link[0],
-                                link1_title=link_title[0],
-                                link1_desc=link_desc[0],
-                                link2=link[1],
-                                link2_title=link_title[1],
-                                link2_desc=link_desc[1],
-                                link3=link[2],
-                                link3_title=link_title[2],
-                                link3_desc=link_desc[2],
-                                link4=link[3],
-                                link4_title=link_title[3],
-                                link4_desc=link_desc[3],
-                                link5=link[4],
-                                link5_title=link_title[4],
-                                link5_desc=link_desc[4],
-                                link6=link[5],
-                                link6_title=link_title[5],
-                                link6_desc=link_desc[5],
-                                link7=link[6],
-                                link7_title=link_title[6],
-                                link7_desc=link_desc[6],
-                                link8=link[7],
-                                link8_title=link_title[7],
-                                link8_desc=link_desc[7])
-               
-                
-                #handle_uploaded_file(request.FILES['prof_pic'])
-                """  
-                       
+                u=bam.save()  
                                 
                 return HttpResponseRedirect('/')
                 
@@ -124,50 +78,24 @@ def user_form(request):
                obj = form.save(commit=False)
                obj.user= request.user
                obj.save()
-               
-               
-               """
-                UserProfile.objects.create(user=request.user,
-                                name=cd['name'],
-                                prof_pic = cd['prof_pic'],  
-                                shortdesc=cd['shortdesc'],
-                                longdesc=cd['longdesc'],
-                                state=cd['state'],
-                                city=cd['city'],
-                                public_email=cd['public_email'],
-                                public_phone_num=cd['public_phone_num'],
-                                skillcategory=cd['skillcategory'],
-                                skill=cd['skill'],
-                                link1=link[0],
-                                link1_title=link_title[0],
-                                link1_desc=link_desc[0],
-                                link2=link[1],
-                                link2_title=link_title[1],
-                                link2_desc=link_desc[1],
-                                link3=link[2],
-                                link3_title=link_title[2],
-                                link3_desc=link_desc[2],
-                                link4=link[3],
-                                link4_title=link_title[3],
-                                link4_desc=link_desc[3],
-                                link5=link[4],
-                                link5_title=link_title[4],
-                                link5_desc=link_desc[4],
-                                link6=link[5],
-                                link6_title=link_title[5],
-                                link6_desc=link_desc[5],
-                                link7=link[6],
-                                link7_title=link_title[6],
-                                link7_desc=link_desc[6],
-                                link8=link[7],
-                                link8_title=link_title[7],
-                                link8_desc=link_desc[7])           
-            #handle_uploaded_file(request.FILES['prof_pic'])
               
-             """
                             
             return HttpResponseRedirect('/')
             
+            
+        else:
+            # This is case where form is not valid and method is post
+            
+            prof=UserProfile.objects.get(user=request.user)
+            
+            if prof.prof_pic!="":
+
+                 pic_dict={'pic_url': prof.prof_pic.url}
+
+            else:
+                 pic_dict={'pic_url':"none"}
+            
+                
     else:
         
         ## load in profile for signed in user, if none exists  catch and start with empty form
@@ -183,9 +111,6 @@ def user_form(request):
                 
             else:
                 pic_dict={'pic_url':"none"}
-                    
-                    
-            #prof_dict=prof.__dict__
             
             
         except UserProfile.DoesNotExist:

@@ -125,7 +125,7 @@ function expandProfile(pnum){
     
     if(link_present)
     {
-        sample_work_title="	<h4> Samples of Work </h4>"
+        sample_work_title="	<h4> Reference Links </h4>"
     }
 
 

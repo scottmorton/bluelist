@@ -211,7 +211,7 @@
    "pk": 26,
    "fields": {
      "name": "San Jose",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -219,7 +219,7 @@
    "pk": 27,
    "fields": {
      "name": "Fresno",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -227,7 +227,7 @@
    "pk": 28,
    "fields": {
      "name": "Concord",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -235,7 +235,7 @@
    "pk": 29,
    "fields": {
      "name": "San Clemente",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -243,7 +243,7 @@
    "pk": 30,
    "fields": {
      "name": "Bakersfield",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -251,7 +251,7 @@
    "pk": 31,
    "fields": {
      "name": "Murrieta",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -259,7 +259,7 @@
    "pk": 32,
    "fields": {
      "name": "Stockton",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -267,7 +267,7 @@
    "pk": 33,
    "fields": {
      "name": "Oxnard",
-		"state": 6
+		"state": 5
 	}
  },
  {
@@ -275,7 +275,327 @@
    "pk": 34,
    "fields": {
      "name": "Modesto",
+		"state": 5
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 35,
+   "fields": {
+     "name": "Denver",
 		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 36,
+   "fields": {
+     "name": "Boulder",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 37,
+   "fields": {
+     "name": "Colorado Springs",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 38,
+   "fields": {
+     "name": "Greeley",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 39,
+   "fields": {
+     "name": "Fort Collins",
+		"state": 6
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 40,
+   "fields": {
+     "name": "Bridgeport",
+		"state": 7
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 41,
+   "fields": {
+     "name": "New Haven",
+		"state": 7
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 42,
+   "fields": {
+     "name": "Hartford",
+		"state": 7
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 43,
+   "fields": {
+     "name": "Waterbury",
+		"state": 7
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 44,
+   "fields": {
+     "name": "Wilmington",
+		"state": 8
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 45,
+   "fields": {
+     "name": "Georgetown",
+		"state": 8
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 46,
+   "fields": {
+     "name": "Miami",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 47,
+   "fields": {
+     "name": "Orlando",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 48,
+   "fields": {
+     "name": "Jacksonville",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 49,
+   "fields": {
+     "name": "Tampa",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 50,
+   "fields": {
+     "name": "Fort Myers",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 51,
+   "fields": {
+     "name": "Pensacola",
+		"state": 9
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 52,
+   "fields": {
+     "name": "Atlanta",
+		"state": 10
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 53,
+   "fields": {
+     "name": "Augusta",
+		"state": 10
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 54,
+   "fields": {
+     "name": "Savannah",
+		"state": 10
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 55,
+   "fields": {
+     "name": "Honolulu",
+		"state": 11
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 56,
+   "fields": {
+     "name": "Boise",
+		"state": 12
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 57,
+   "fields": {
+     "name": "Chicago",
+		"state": 13
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 58,
+   "fields": {
+     "name": "Rockford",
+		"state": 13
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 59,
+   "fields": {
+     "name": "Peoria",
+		"state": 13
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 60,
+   "fields": {
+     "name": "Champaign",
+		"state": 13
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 61,
+   "fields": {
+     "name": "Indianapolis",
+		"state": 14
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 62,
+   "fields": {
+     "name": "Fort Wayne",
+		"state": 14
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 63,
+   "fields": {
+     "name": "Des Moines",
+		"state": 15
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 64,
+   "fields": {
+     "name": "Cedar Rapids",
+		"state": 15
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 65,
+   "fields": {
+     "name": "Witchita",
+		"state": 16
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 66,
+   "fields": {
+     "name": "Topeka",
+		"state": 16
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 67,
+   "fields": {
+     "name": "Louisville",
+		"state": 17
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 68,
+   "fields": {
+     "name": "Lexington",
+		"state": 17
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 69,
+   "fields": {
+     "name": "New Orleans",
+		"state": 18
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 70,
+   "fields": {
+     "name": "Baton Rouge",
+		"state": 18
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 71,
+   "fields": {
+     "name": "Lafayette",
+		"state": 18
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 72,
+   "fields": {
+     "name": "Shreveport",
+		"state": 18
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 73,
+   "fields": {
+     "name": "Portland",
+		"state": 19
+	}
+ },
+ {
+   "model": "user_profile.city",
+   "pk": 74,
+   "fields": {
+     "name": "Baltimore",
+		"state": 20
 	}
  }
 

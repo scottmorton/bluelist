@@ -78,27 +78,25 @@
 		
 		
 		<tr><td> <h4 class="form-label"> Location </h4> </td></tr>
-			<tr><td>{{form.state.errors}} {{form.city.errors}}</td></tr>
 			<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">
 				<table>	
-					<tr><td><p class="form-sub-label">State: <p></td>
-						<td>{{form.state}}</td></tr>
-					<tr><td><p class="form-sub-label">City: <p></td>
-						<td>{{form.city}}</td></tr>
+					<tr><td><p class="form-sub-label">State:<p></td>
+						<td>{{form.state}} </td><td>{{form.state.errors}}</td></tr>
+					<tr><td><p class="form-sub-label">City:<p></td>
+						<td>{{form.city}} </td><td> {{form.city.errors}}</td></tr>
 				</table>
 			</div></div>
 		</td></tr>
 			
 		<tr><td> <h4 class="form-label"> Profession </h4> </td></tr>
-			<tr><td>{{form.skillcategory.errors}} {{form.skill.errors}}</td></tr>
 			<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">
 			<table>	
 				<tr><td><p class="form-sub-label">Category: <p></td>
-					<td>{{form.skillcategory}}</td></tr>
+					<td>{{form.skillcategory}}</td><td>{{form.skillcategory.errors}}</td></tr>
 				<tr><td><p class="form-sub-label">Skill: <p> </td>
-					<td>{{form.skill}}</td></tr>
+					<td>{{form.skill}}</td><td>{{form.skill.errors}}</td></tr>
 			</table>
 			</div></div>
 		</td></tr>
