@@ -66,7 +66,7 @@ function renderHeader(signed_in)
 
 function signin()
 {
-    var indiv=' <img class="lbox-close" id="lbox_close" src="/static_prod/close.png" alt="close">         \
+    var indiv=' <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">         \
                 <div class="lbox-info">                                                                                     \
                 <h3 class="lbox-heading">Bluelist Login</h3>                                                             \
                 <div id="error-msgs"> \
@@ -101,7 +101,7 @@ function signin()
 function signup()
 {
     
-        var indiv= '<img class="lbox-close" id="lbox_close" src="/static_prod/close.png" alt="close">              \
+        var indiv= '<img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">              \
                    <div class="lbox-info">                                                                                           \
                    <h3 class="lbox-heading"> Bluelist Signup</h3> \
                    <div id="error-msgs"> \

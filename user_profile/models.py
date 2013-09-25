@@ -8,7 +8,13 @@ import sys, time
 
 
 
-class MyUserManager(BaseUserManager):
+
+import os
+def get_upload_path(instance, filename):
+    return os.path.join("profile_data","user_%d" % instance.user.pk, filename)
+
+
+class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email,
@@ -37,7 +43,7 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class MyUser(AbstractBaseUser):
+class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -51,7 +57,7 @@ class MyUser(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     
-    objects = MyUserManager()
+    objects = UserManager()
 
     USERNAME_FIELD = 'email'
 
@@ -143,7 +149,7 @@ class Skill(models.Model):
 
 class UserProfile(models.Model):
     
-    user = models.OneToOneField(MyUser)
+    user = models.OneToOneField(User)
     
     name = models.CharField(max_length=30)
     shortdesc= models.CharField(max_length=200)
@@ -158,11 +164,9 @@ class UserProfile(models.Model):
     public_phone_num=models.CharField(blank=True,max_length=30)
     
     
-    now = str(int(time.time()))
-    filepath = 'profile_pics/'+now+'/'
     
- 
-    prof_pic = models.ImageField(upload_to=filepath, blank=True)
+    prof_pic = models.ImageField(upload_to=get_upload_path, blank=True)
+    
     
     #prof_pic_original = models.FileField('original file upload', upload_to=filepath)
     #prof_pic_thumbnail = models.CharField(max_length=255, blank=True)
@@ -201,5 +205,43 @@ class UserProfile(models.Model):
     link8_title = models.CharField(blank=True, max_length=50)
     link8_desc = models.CharField(blank=True, max_length=100)
 
+
+
+
+    file1 = models.FileField(upload_to=get_upload_path,blank=True)
+    file1_title = models.CharField(blank=True, max_length=50)
+    file1_desc = models.CharField(blank=True, max_length=100)
+    
+    file2 = models.FileField(upload_to=get_upload_path,blank=True)
+    file2_title = models.CharField(blank=True, max_length=50)
+    file2_desc = models.CharField(blank=True, max_length=100)
+    
+    file3 = models.FileField(upload_to=get_upload_path,blank=True)
+    file3_title = models.CharField(blank=True, max_length=50)
+    file3_desc = models.CharField(blank=True, max_length=100)
+    
+    file4 = models.FileField(upload_to=get_upload_path,blank=True)
+    file4_title = models.CharField(blank=True, max_length=50)
+    file4_desc = models.CharField(blank=True, max_length=100)
+    
+    file5 = models.FileField(upload_to=get_upload_path,blank=True)
+    file5_title = models.CharField(blank=True, max_length=50)
+    file5_desc = models.CharField(blank=True, max_length=100)
+    
+    file6 = models.FileField(upload_to=get_upload_path,blank=True)
+    file6_title = models.CharField(blank=True, max_length=50)
+    file6_desc = models.CharField(blank=True, max_length=100)
+    
+    file7 = models.FileField(upload_to=get_upload_path,blank=True)
+    file7_title = models.CharField(blank=True, max_length=50)
+    file7_desc = models.CharField(blank=True, max_length=100)
+    
+    file8 = models.FileField(upload_to=get_upload_path,blank=True)
+    file8_title = models.CharField(blank=True, max_length=50)
+    file8_desc = models.CharField(blank=True, max_length=100)
+
+
+
     def __unicode__(self):
             return self.name
+

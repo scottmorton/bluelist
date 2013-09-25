@@ -3,13 +3,12 @@ from django.template import Template, Context
 from django.http import HttpResponseRedirect
 from user_profile.forms import UserInfo, UserSignup, UserSignin
 from django.http import HttpResponse
-from user_profile.models import UserProfile, MyUser
+from user_profile.models import UserProfile, User
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.forms.models import model_to_dict
 import json
 from bluelist.helper_functions import getCategoryVars
-
 
 
 
@@ -34,9 +33,7 @@ def user_form(request):
 
             
             #prof=UserProfile.objects.get(user=request.user)
-            
             #bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
-            
             #u=bam.save()
             
             #This block makes sure that URL links fill the lower numbers before the last so they are displayed
@@ -128,7 +125,7 @@ def user_form(request):
     out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items())
             
             
-    return render(request, 'user_form2.html',out_dict )
+    return render(request, 'user_form3.html',out_dict )
     
     
     

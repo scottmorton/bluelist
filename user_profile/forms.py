@@ -1,5 +1,5 @@
 from django import forms
-from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
+from user_profile.models import State, City, SkillCategory, Skill, User, UserProfile
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from user_profile.widgets import ImageWidget
 
@@ -32,6 +32,14 @@ class UserInfo(forms.ModelForm):
                     'link7_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                     'link8': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file1_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file2_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file3_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file4_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file5_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file6_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file7_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
+                    'file8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                 }
     
     
@@ -48,7 +56,7 @@ class UserSignup(forms.ModelForm):
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = User
         fields = ['email']
 
     def clean_password2(self):
@@ -76,7 +84,7 @@ class UserChange(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
     
     class Meta:
-        model = MyUser
+        model = User
         fields = ['email']
 
     def clean_password(self):

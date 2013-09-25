@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
     <title>User Info</title>
 
@@ -27,12 +27,12 @@
 </head>
 <body>
 	
-	{% include 'header.html' %}
 	
  
 <div class= "body-container">
+<div class="body-scroll">
 
-<div class="base-container">
+<div class="base-container-userform">
 
     {% if form.errors %}
         <p style="color: red;">
@@ -52,35 +52,51 @@
 			
 		<tr><td> <h4 class="form-label"> Profile Picture </h4></td><tr>
 		<tr><td>{{form.prof_pic.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div
-			
-			
-
- class="form-field-container">{{form.prof_pic}}</div></div></td></tr>
+		<tr><td>
+			<div class="form-outer-field">
+				<div class="form-field-container">
+					{{prof_pic|safe }}
+					
+					{% if pic_url != "none" %}
+						<a target="_blank" href="{{ pic_url|safe }}">
+                        <img src="{{ pic_url|safe }}" /></a>
+                        <div class="form-field-container">
+                        Upload a new profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+						
+						
+					{% else %}
+						<div class="form-field-container">
+	                        Upload a profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
+	                    </div>
+					{% endif %}
+					
+					
+					
+				</div>
+			</div>
+		</td></tr>
 		
 		
 		<tr><td> <h4 class="form-label"> Location </h4> </td></tr>
-			<tr><td>{{form.state.errors}} {{form.city.errors}}</td></tr>
 			<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">
 				<table>	
-					<tr><td><p class="form-sub-label">State: <p></td>
-						<td>{{form.state}}</td></tr>
-					<tr><td><p class="form-sub-label">City: <p></td>
-						<td>{{form.city}}</td></tr>
+					<tr><td><p class="form-sub-label">State:<p></td>
+						<td>{{form.state}} </td><td>{{form.state.errors}}</td></tr>
+					<tr><td><p class="form-sub-label">City:<p></td>
+						<td>{{form.city}} </td><td> {{form.city.errors}}</td></tr>
 				</table>
 			</div></div>
 		</td></tr>
 			
 		<tr><td> <h4 class="form-label"> Profession </h4> </td></tr>
-			<tr><td>{{form.skillcategory.errors}} {{form.skill.errors}}</td></tr>
 			<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">
 			<table>	
 				<tr><td><p class="form-sub-label">Category: <p></td>
-					<td>{{form.skillcategory}}</td></tr>
+					<td>{{form.skillcategory}}</td><td>{{form.skillcategory.errors}}</td></tr>
 				<tr><td><p class="form-sub-label">Skill: <p> </td>
-					<td>{{form.skill}}</td></tr>
+					<td>{{form.skill}}</td><td>{{form.skill.errors}}</td></tr>
 			</table>
 			</div></div>
 		</td></tr>
@@ -91,42 +107,63 @@
 		
 
 
-		<tr><td><h4 class="form-label"> Additional Information </h4></td></tr>
-		<tr><td>{{form.longdesc.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.longdesc}}</div></div></td></tr>
-
-		<tr><td><h4 class="form-label"> Contact Information </h4></td></tr>
-		<tr><td>{{form.public_email.errors}}</td></tr>
 		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>	
-				<tr><td><p class="form-contact-label">Contact Email Address:<p></td></tr>
-				<tr><td>{{form.public_email}}</td></tr>
-			</table>
-			</div></div>
-			</tr></td>
-			
-		<tr><td>{{form.public_phone_num.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>		
-				<tr><td><p class="form-contact-label">Contact Phone Number:<p></td></tr>
-				<tr><td>{{form.public_phone_num}}</td></tr>
-			</table>
-			</div></div>
+			<div id="additional_info">
+				<h4 id="add_info_label" class="form-label"> Additional Information </h4>
+				{{form.longdesc.errors}}
+				<div class="form-outer-field"><div class="form-field-container">{{form.longdesc}}</div></div>
+			</div>
 		</td></tr>
+
+
+		<tr><td>
+		
+			<div id="contact" class="contact-container">
+			<h4 id="contact_label" class="form-label"> Contact Information </h4>
+		
+			<table>
+				<tr><td>{{form.public_email.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+						<table>	
+							<tr><td><p class="form-contact-label">Contact Email Address:<p></td></tr>
+							<tr><td>{{form.public_email}}</td></tr>
+						</table>
+					</div></div>
+				</tr></td>
+			
+				<tr><td>{{form.public_phone_num.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+						<table>		
+							<tr><td><p class="form-contact-label">Contact Phone Number:<p></td></tr>
+							<tr><td>{{form.public_phone_num}}</td></tr>
+						</table>
+					</div></div>
+				</table>
+	
+				</div>
+		
+	</td></tr>
 		
 		
-		<tr><td><h4 class="form-label"> References and Samples of Work </h4></td></tr>
-
-		</table>
-
-
+		
+	<tr><td><h4 id="links_label" class="form-label"> Profile Links </h4></td></tr>	
+		
+	<tr><td>
 
 		<div id="link1" class="link-container">
 		
 		<table class="form-table">
-			
+			<tr><td>{{form.link1.errors}}</td></tr>
+			<tr><td>
+				<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+				<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+				<tr><td>{{form.link1}}</td></tr>
+				</table>
+				</div></div>
+			</tr></td>
 		<tr><td>{{form.link1_title.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -136,15 +173,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link1.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link1}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+
 		<tr><td>{{form.link1_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -165,6 +194,16 @@
 		<div id="link2" class="link-container">
 		
 			<table class="form-table">
+		
+				<tr><td>{{form.link2.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link2}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
 		<tr><td>{{form.link2_title.errors}}</td></tr>
 		<tr><td>
@@ -175,15 +214,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link2.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link2}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+
 		<tr><td>{{form.link2_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -205,6 +236,16 @@
 		
 			<table class="form-table">
 			
+				<tr><td>{{form.link3.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link3}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>			
+			
 		<tr><td>{{form.link3_title.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -214,15 +255,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link3.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link3}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+		
 		<tr><td>{{form.link3_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -242,6 +275,16 @@
 		<div id="link4" class="link-container">
 		
 			<table class="form-table">
+		
+				<tr><td>{{form.link4.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link4}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
 		<tr><td>{{form.link4_title.errors}}</td></tr>
 		<tr><td>
@@ -252,15 +295,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link4.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link4}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+
 		<tr><td>{{form.link4_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -280,6 +315,15 @@
 		<div id="link5" class="link-container">
 		
 			<table class="form-table">
+				<tr><td>{{form.link5.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link5}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
 		<tr><td>{{form.link5_title.errors}}</td></tr>
 		<tr><td>
@@ -290,15 +334,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link5.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link5}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+		
 		<tr><td>{{form.link5_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -318,6 +354,16 @@
 		<div id="link6" class="link-container">
 		
 			<table class="form-table">
+		
+				<tr><td>{{form.link6.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link6}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
 		<tr><td>{{form.link6_title.errors}}</td></tr>
 		<tr><td>
@@ -328,15 +374,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link6.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link6}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+		
 		<tr><td>{{form.link6_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -357,7 +395,15 @@
 		<div id="link7" class="link-container">
 		
 			<table class="form-table">
-			
+				<tr><td>{{form.link7.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link7}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>			
 		<tr><td>{{form.link7_title.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -367,15 +413,7 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link7.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link7}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+
 		<tr><td>{{form.link7_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -397,7 +435,16 @@
 		<div id="link8" class="link-container">
 		
 			<table class="form-table">
-			
+				<tr><td>{{form.link8.errors}}</td></tr>	
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td><p class="form-link-label">Link URL:<p></td></tr>
+					<tr><td>{{form.link8}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>
+							
 		<tr><td>{{form.link8_title.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -407,15 +454,8 @@
 				</table>
 			</div></div>
 		</tr></td>
-		<tr><td>{{form.link8.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-link-label">Link URL:<p></td></tr>
-			<tr><td>{{form.link8}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
+
+		
 		<tr><td>{{form.link8_desc.errors}}</td></tr>
 		<tr><td>
 			<div class="form-outer-field"><div class="form-field-container">	
@@ -429,16 +469,367 @@
 		
 		</div>
 		
+	
+	
+	
+	
+	
 		
-			<div class="form-button-spacer">
-			<div id="add_link" >
+		</td></tr>
+	
+		<tr><td><h4 id="uploads_label" class="form-label"> Uploaded Files </h4></td></tr>
+		
+		<tr><td>	
+		
+		
+		
+		<div id="file1" class="file-container">
+		
+		<table class="form-table">
+			<tr><td>{{form.file1.errors}}</td></tr>
+			<tr><td>
+				<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+				<tr><td>{{form.file1}}</td></tr>
+				</table>
+				</div></div>
+			</tr></td>
+		<tr><td>{{form.file1_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file1_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+
+		<tr><td>{{form.file1_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file1_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="file2" class="file-container">
+		
+			<table class="form-table">
+		
+				<tr><td>{{form.file2.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file2}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
-				<p class="addlink"> Add Another Link </p>
-			</div>
-			</div>
+		<tr><td>{{form.file2_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file2_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+
+		<tr><td>{{form.file2_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file2_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="file3" class="file-container">
+		
+			<table class="form-table">
 			
+				<tr><td>{{form.file3.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file3}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>			
 			
+		<tr><td>{{form.file3_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file3_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		
+		<tr><td>{{form.file3_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file3_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="file4" class="file-container">
+		
+			<table class="form-table">
+		
+				<tr><td>{{form.file4.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file4}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
 			
+		<tr><td>{{form.file4_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file4_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+
+		<tr><td>{{form.file4_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file4_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="file5" class="file-container">
+		
+			<table class="form-table">
+				<tr><td>{{form.file5.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file5}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
+			
+		<tr><td>{{form.file5_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file5_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		
+		<tr><td>{{form.file5_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file5_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		<div id="file6" class="file-container">
+		
+			<table class="form-table">
+		
+				<tr><td>{{form.file6.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file6}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>		
+			
+		<tr><td>{{form.file6_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file6_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+		
+		<tr><td>{{form.file6_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file6_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		
+		
+		
+		<div id="file7" class="file-container">
+		
+			<table class="form-table">
+				<tr><td>{{form.file7.errors}}</td></tr>
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file7}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>			
+		<tr><td>{{form.file7_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file7_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+
+		<tr><td>{{form.file7_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file7_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		
+		<div id="file8" class="file-container">
+		
+			<table class="form-table">
+				<tr><td>{{form.file8.errors}}</td></tr>	
+				<tr><td>
+					<div class="form-outer-field"><div class="form-field-container">	
+					<table>
+					<tr><td>{{form.file8}}</td></tr>
+					</table>
+					</div></div>
+				</tr></td>
+							
+		<tr><td>{{form.file8_title.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+				<table>
+					<tr><td><p class="form-file-label">File Title:<p></td></td>
+					<tr><td>{{form.file8_title}}</td></tr>
+				</table>
+			</div></div>
+		</tr></td>
+
+		
+		<tr><td>{{form.file8_desc.errors}}</td></tr>
+		<tr><td>
+			<div class="form-outer-field"><div class="form-field-container">	
+			<table>
+			<tr><td><p class="form-file-label">File Description:<p></td></tr>
+			<tr><td>{{form.file8_desc}}</td></tr>
+			</table>
+			</div></div>
+		</tr></td>
+		</table>
+		
+		</div>
+		
+		</td></tr>
+		
+		<tr><td>	
+			<table>
+				<tr><td>
+					<div class="table-button-spacer">
+					<div class="add_ref" id="add_contact" >
+
+						<p class="add_ref_text"> Add Contact Info </p>
+					</div>
+					</div>
+		
+				</td>
+				<td>
+					<div class="table-button-spacer">
+						<div class="add_ref" id="add_info" >
+							<p class="add_ref_text"> Add Text </p>
+						</div>
+					</div>
+				</td></tr>
+				<tr><td>
+					<div class="tab;e-button-spacer">
+						<div class="add_ref" id="add_link" >
+							<p class="add_ref_text"> Add a Link </p>
+						</div>
+				</div>
+				</td>
+				<td>
+					<div class="table-button-spacer">
+						<div class="add_ref" id="add_file" >
+
+							<p class="add_ref_text"> Upload a File </p>
+						</div>
+					</div>
+				</td></tr>
+			</table>
+		</tr></td>
+		
+		
+		</table>
+		
+
 			<div class="form-button-spacer">
 	        <input type="submit" value="Submit">
 			</div>
@@ -447,9 +838,13 @@
 
 </div>
 </div>
-
+</div>
 
 </div>
+
+
+{% include 'header.html' %}
+
 
 </body>
 </html>

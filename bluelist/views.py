@@ -7,7 +7,7 @@ import json
 from django.contrib.auth import authenticate
 
 from bluelist.helper_functions import getCategoryVars, profile_serializer
-from user_profile.models import State, City, SkillCategory, Skill, MyUser, UserProfile
+from user_profile.models import State, City, SkillCategory, Skill, User, UserProfile
 
 def homepage(request):
 
