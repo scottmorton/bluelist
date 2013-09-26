@@ -83,15 +83,30 @@ def user_form(request):
         else:
             # This is case where form is not valid and method is post
             
-            prof=UserProfile.objects.get(user=request.user)
-            
-            if prof.prof_pic!="":
+            try:
+                
+                prof=UserProfile.objects.get(user=request.user)
+                if prof.prof_pic!="":
+                    pic_dict={'pic_url': prof.prof_pic.url}
+                else:
+                    pic_dict={'pic_url':"none"}
+        
+        
+        ## Case when user does not exist, and form is invalid
+        
+            except UserProfile.DoesNotExist:
 
-                 pic_dict={'pic_url': prof.prof_pic.url}
-
-            else:
                  pic_dict={'pic_url':"none"}
-            
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+    ## This else statement is for GET        
                 
     else:
         
