@@ -16,21 +16,13 @@ class UserInfo(forms.ModelForm):
         widgets = { 'prof_pic': ImageWidget(),
                     'shortdesc': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
                     'longdesc': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
-                     'link1': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link1_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link2': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link2_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link3': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link3_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link4': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link4_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link5': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link5_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link6': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link6_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link7': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link7_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
-                    'link8': forms.Textarea(attrs={'cols': 40, 'rows': 1}),
                     'link8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                     'file1_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                     'file2_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
@@ -42,6 +34,9 @@ class UserInfo(forms.ModelForm):
                     'file8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                 }
     
+    
+    
+
     
     
 class UserSignin(forms.Form):

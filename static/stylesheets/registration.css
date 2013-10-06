@@ -1,0 +1,33 @@
+
+
+
+.base-container
+{
+border-radius:4px;
+width: 675px;
+margin-left:auto;
+margin-right:auto;
+background-color: white;
+padding-top: 10px;
+padding-bottom: 30px;
+padding-left:15px;
+padding-right:15px;
+background: rgba(255, 255, 255, 0.9);
+overflow-y:hidden;
+text-align: center;
+border: 1px solid rgba(0,0,0,0.3) ;
+margin-top:20px;
+
+}
+
+
+
+.form-container
+{
+    margin-top:40px;
+    overflow:hidden;
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    display:inline-block;
+}

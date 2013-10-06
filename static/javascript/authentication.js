@@ -34,34 +34,6 @@ function authPasswordField(password)
 }
 
 
-function renderHeader(signed_in)
-{
-    
-    if(String(signed_in)!="false")
-    {
-        
-        var menu_html= '<a class= "nav-button" id="profile" href="/userform"><p class="navb" action="">Edit Profile</p></a>\
-                        <a class= "nav-button" id="logout" href="/signout"><p class="navb">Logout</p></a>\
-                        <a class= "nav-button"><p class="navb">About</p></a>';
-        
-        $(".menu-buttons").html(menu_html)
-        
-        
-    }
-    else
-    {
-        
-        var menu_html= '<a class= "nav-button" id="signup"><p class="navb" action="">Signup</p></a>\
-                        <a class= "nav-button" id="signin"><p class="navb">Login</p></a>\
-                        <a class= "nav-button" href="nothing"><p class="navb">About</p></a>';
-
-         $(".menu-buttons").html(menu_html)
-        
-    }
-    
-    
-}
-
 
 
 function signin()

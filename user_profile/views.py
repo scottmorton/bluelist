@@ -10,6 +10,7 @@ from django.forms.models import model_to_dict
 import json
 from bluelist.helper_functions import getCategoryVars
 
+import stripe
 
 
 """
@@ -146,11 +147,6 @@ def user_form(request):
     
     
     
-    
-    
-    
-    
-    
 def signup(request):
     if request.user.is_authenticated():
         return HttpResponse("Already signed in")
@@ -179,9 +175,31 @@ def signup(request):
 
 
 
-def register(request):
-    "nice"        
+def registration(request):
+    if not request.user.is_authenticated():
+            return HttpResponseRedirect('/')
+        
+    if request.method == 'GET':
+        return render(request, 'registration.html')
+    
+    if request.method == 'POST':
+        
+        # Set your secret key: remember to change this to your live secret key in production
+        # See your keys here https://manage.stripe.com/account
+        stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
 
+        # Get the credit card details submitted by the form
+        token = request.POST['stripeToken']
+
+        # Create a Customer
+        customer = stripe.Customer.create(
+            card=token,
+            plan="standard",
+            email=str(request.user.email),
+            )
+        
+        
+        return HttpResponseRedirect('/')
 
 
 

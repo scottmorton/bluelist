@@ -1,0 +1,70 @@
+ <html>
+<head>
+    <title>Bluelist</title>
+
+
+	{% load staticfiles %}
+	
+	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
+	<script type="text/javascript" src="{% static "registration.js" %}" > </script>	
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	
+	<script type="text/javascript">
+	  // This identifies your website in the createToken call below
+	  Stripe.setPublishableKey('pk_test_OJ4HXQ3SBShYjtgqA6hq7Ynr');
+	  // ...
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "registration.css" %}">
+	<script type="text/javascript"> 
+		var signed_in = {{auth|safe}};
+		
+	</script>
+
+</head>
+<body>
+
+	{% include 'header.html' %}
+	
+	
+ 
+<div class= "body-container">
+<div class="body-scroll">
+
+<div class="base-container">
+<div class="form-container">
+	
+	<form action="" method="POST" id="payment-form">
+	  <div id="payment-errors"></div>
+
+	  <div class="form-row">
+	    <label><span>Card Number</span></label>
+	      <input type="text" size="20" id="cardNumber" autocomplete="off"/>
+	    
+	  </div>
+
+	  <div class="form-row">
+	    <label><span>CVC</span></label>
+	      <input type="text" size="4" id="cvc" autocomplete="off"/>
+	    
+	  </div>
+
+	  <div class="form-row">
+	    <label><span>Expiration (MM/YYYY)</span></label>
+	      <input type="text" size="2" id="expMonth" autocomplete="off"/>
+	   
+	    <span> / </span>
+	    <input type="text" size="4" id="expYear" autocomplete="off"/>
+	  </div>
+
+	  <button id="submitButton" type="submit">Submit Payment</button>
+	</form>
+</div>
+</div>
+</div>
+
+
+
+</body>

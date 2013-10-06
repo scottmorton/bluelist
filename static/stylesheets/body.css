@@ -11,7 +11,12 @@ body {
 
 .body-container
 {
-background-image:url('/static/st_anthony_edit.png');
+    background-image: -webkit-gradient(radial, center center, 0, center center, 447, color-stop(0, #FFFFFF), color-stop(1, #0099E0));
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-radial-gradient(center, circle farthest-corner, #FFFFFF 0%, #0099E0 100%);
+
+
 background-position: center top;
 background-size: 100% auto;
 background-repeat:no-repeat;
@@ -20,7 +25,6 @@ overflow-x:hidden;
 overflow-y:hidden;
 margin-bottom:auto;
 margin-top:auto;
-background-color:black;
 width: 100%;
 position: absolute;
 top:60px;

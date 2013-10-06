@@ -113,6 +113,68 @@ function expandProfile(pnum){
         }
         
     }
+
+    
+    var files =[[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "]];
+    
+    
+    files[0][0]=profiles[pnum].fields.file1;
+    files[0][1]=profiles[pnum].fields.file1_title;
+    files[0][2]=profiles[pnum].fields.file1_desc;
+
+    files[1][0]=profiles[pnum].fields.file2;
+    files[1][1]=profiles[pnum].fields.file2_title;
+    files[1][2]=profiles[pnum].fields.file2_desc;
+    
+    files[2][0]=profiles[pnum].fields.file3;
+    files[2][1]=profiles[pnum].fields.file3_title;
+    files[2][2]=profiles[pnum].fields.file3_desc;
+    
+    files[3][0]=profiles[pnum].fields.file4;
+    files[3][1]=profiles[pnum].fields.file4_title;
+    files[3][2]=profiles[pnum].fields.file4_desc;
+    
+    files[4][0]=profiles[pnum].fields.file5;
+    files[4][1]=profiles[pnum].fields.file5_title;
+    files[4][2]=profiles[pnum].fields.file5_desc;
+    
+    files[5][0]=profiles[pnum].fields.file6;
+    files[5][1]=profiles[pnum].fields.file6_title;
+    files[5][2]=profiles[pnum].fields.file6_desc;
+    
+    files[6][0]=profiles[pnum].fields.file7;
+    files[6][1]=profiles[pnum].fields.file7_title;
+    files[6][2]=profiles[pnum].fields.file7_desc;
+    
+    files[7][0]=profiles[pnum].fields.file8;
+    files[7][1]=profiles[pnum].fields.file8_title;
+    files[7][2]=profiles[pnum].fields.file8_desc;
+    
+ 
+
+    
+    
+    var filelist="";
+    var file_present=false;
+
+    for(var i=0; i<8; i++)
+    {
+        if(files[i][0]!="" && files[i][1]!="")
+        {
+            file_present=true;
+            
+            filelist=filelist+'<div class="file-container">                                     \
+                                    <div class="file-title-container">                          \
+                                        <a href="/media/'+files[i][0]+'">'+files[i][1]+'</a>           \
+                                    </div>                                                      \
+                                    <div class="file-desc-container"                            \
+                                        <p class="file-desc">'+files[i][2]+'</p>                \
+                                    </div>                                                      \
+                                </div>';
+            
+        }
+    }
+    
     
     var image_string="";
     
@@ -123,13 +185,21 @@ function expandProfile(pnum){
 
     var sample_work_title="";
     
-    if(link_present)
+    if(link_present || file_present)
     {
-        sample_work_title="	<h4> Reference Links </h4>"
+        sample_work_title="	<h4> References and Links </h4>"
     }
+    
+    /*
+    if(file_present)
+    {
+        sample_work_title="	<h4> Uploaded Files </h4>"
+    }
+    */
+    
 
 
-	var profTemplate='<div class="index-pic"> 				                                        \
+	var profTemplate='<div class="index-pic"> 				                                    \
 		                    '+image_string+'                                                    \
 	                    </div> 									                                \
 				 		<div class="index-text">                                                \
@@ -146,12 +216,12 @@ function expandProfile(pnum){
 								    <p class="long-desc">'+ longdesc+'</p> 	                    \
 								</div>                                                          \
 								<div class="links">                                             \
-								'+sample_work_title+'                                       \
-								'+linklist+'                                                    \
+								'+sample_work_title+'                                           \
+								'+linklist+filelist+'                                           \
 								</div>                                                          \
 								<div class="index-options">                                     \
 								    <div class="option">                                        \
-					 			        <a class="index-option" id="contact">Contact</a>       \
+					 			        <a class="index-option" id="contact">Contact</a>        \
 					 			        <a class="index-option" id="less">Less</a>              \
 					 			    </div>                                                      \
 					 			</div>                                                          \

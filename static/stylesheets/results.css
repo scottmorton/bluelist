@@ -150,6 +150,24 @@ link-title-container
 }
 
 
+
+
+file-container
+{
+    margin-top:10px;
+}
+
+file-desc-container
+{
+    float:left;
+}
+file-title-container
+{
+    float:left;
+}
+
+
+
 a.index-option
 {
     font: helvetica;

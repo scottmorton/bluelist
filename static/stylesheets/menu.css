@@ -11,7 +11,7 @@ padding-top: 10px;
 padding-bottom: 30px;
 padding-left:15px;
 padding-right:15px;
-background: rgba(255, 255, 255, 0.9);
+background: rgba(255, 255, 255, 0.85);
 text-align: center;
 border: 1px solid rgba(0,0,0,0.3);
 
@@ -22,7 +22,6 @@ border: 1px solid rgba(0,0,0,0.3);
 
 .menu-container
 {
-	overflow: hidden;
 	padding-left:2%;
 	padding-right:2%;
 	
@@ -113,7 +112,7 @@ li.a
 	color: white;
 	padding-left: 5px;
 	/*background: #474747;*/
-	background:rgb(0,124,223);
+	background:#0099E0;
 	/*background: -moz-linear-gradient(top center, rgb(0,144,243), rgb(33,109,236)); 
 	background: -webkit-gradient(linear, left top,left bottom, from(rgb(0,164,253)), to(rgb(33,109,236))); 
 	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#00a4fd, 
