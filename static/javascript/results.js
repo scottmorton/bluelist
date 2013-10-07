@@ -1,15 +1,35 @@
+
 function renderResults(selCity, selState, selSkill, selCat) {
-    
-    var profiles=[["this","awesome"],["fun","times"]]
-    
+    var pg_num=1;
+    l_prof=0;
     $.get("/proflist",{ 'selstate' : String(selState),
 	                        'selcity': String(selCity),
 	                        'selcat':String(selCat),
-	                        'selskill':String(selSkill)}, function(data,status){
+	                        'selskill':String(selSkill),
+	                        'pg_num':String(pg_num)}, function(data,status){
       
         
-       profiles=data;
-       loadProfiles(profiles)
+                               	   
+       profiles=jQuery.parseJSON(data.profiles);
+       var num_profs=data.num_profiles;
+       
+       var more_profs=String(data.more_profs);
+       
+       if(more_profs=="false")
+  	    {
+  	        $('#more_profs').hide();
+          }
+         else
+         {
+             $('#more_profs').show();
+         }
+          
+       var listString=profString();
+       
+       listString='<p id="num_profs" class="Results">'+num_profs+' Results</p>'+listString;
+       $('#searchResults').html(listString);
+       
+       l_prof=profiles.length;
        
        
      });
@@ -17,18 +37,40 @@ function renderResults(selCity, selState, selSkill, selCat) {
 };
 
 
-function loadProfiles(profarray){
+function addResults(selCity, selState, selSkill, selCat, pg_num) {
     
-    profiles=profarray;
-    
-    var listString="";
-	
-	var num=0;
+    $.get("/proflist",{ 'selstate' : String(selState),
+	                        'selcity': String(selCity),
+	                        'selcat':String(selCat),
+	                        'selskill':String(selSkill),
+	                        'pg_num':String(pg_num)}, function(data,status){
 
-	for(var i=0; i < profiles.length; i++)  //Iterate through profiles variables
+       var new_profiles=jQuery.parseJSON(data.profiles);
+       
+       profiles=profiles.concat(new_profiles);
+       
+       var more_profs=String(data.more_profs);
+       
+       if(more_profs=="false")
+  	    {
+  	        $('#more_profs').hide();
+        }
+       
+       
+       var listString=profString();
+       $('#searchResults').append(listString);
+       l_prof=profiles.length;
+
+     });
+     
+};
+
+function profString(){
+
+    var listString="";
+
+	for(var i=l_prof; i < profiles.length; i++)  //Iterate through profiles variables
 		{
-		
-		    num+=1;
 		    
 		    var profTemplate=minProfile(i);
 			listString+= '<div class="profile-index" id="prof'+String(i)+'">'+profTemplate+'</div>';	//Combine string list
@@ -36,9 +78,12 @@ function loadProfiles(profarray){
 			
 			}
 
-	results='<p class="Results">'+String(num)+' Results</p>';
-	$('#searchResults').html(results+listString);
+            return listString;
 }
+
+
+
+
 
 
 
@@ -97,7 +142,7 @@ function expandProfile(pnum){
     
     for(var i=0; i<8; i++)
     {
-        if(links[i][0]!="" && links[i][1]!="")
+        if(links[i][0]!="" || links[i][1]!="" || links[i][2]!="")
         {
             link_present=true;
             
@@ -153,13 +198,12 @@ function expandProfile(pnum){
  
 
     
-    
     var filelist="";
     var file_present=false;
 
     for(var i=0; i<8; i++)
     {
-        if(files[i][0]!="" && files[i][1]!="")
+        if(files[i][0]!="" || files[i][1]!="" || files[i][2]!="")
         {
             file_present=true;
             

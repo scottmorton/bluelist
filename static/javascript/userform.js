@@ -59,8 +59,7 @@ $(document).ready(function(){
   
   
   
-  
-  
+ 
   
   var last_file=1;
   
@@ -69,7 +68,7 @@ $(document).ready(function(){
         
         if( document.getElementById("id_file"+String(i)).value=="" && 
             document.getElementById("id_file"+String(i)+"_desc").value=="" &&
-            document.getElementById("id_link"+String(i)+"_title").value=="")
+            document.getElementById("id_file"+String(i)+"_title").value=="")
             {
                 document.getElementById("file"+String(i)).style.display = "none";
             }

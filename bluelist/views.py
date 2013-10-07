@@ -3,9 +3,9 @@ from django.template import Template, Context
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.core import serializers
+from django.utils import simplejson
 import json
 from django.contrib.auth import authenticate
-
 from bluelist.helper_functions import getCategoryVars, profile_serializer
 from user_profile.models import State, City, SkillCategory, Skill, User, UserProfile
 
@@ -26,6 +26,9 @@ def homepage(request):
         
     return render(request, 'homepage.html',out_dict)
 
+
+
+
 def prof_list_get(request):
     if request.method == 'GET':
         
@@ -34,6 +37,8 @@ def prof_list_get(request):
         
         selcat=request.GET['selcat']
         selskill=request.GET['selskill']
+        
+        pg_num=request.GET['pg_num']
         
         #get list of cities and skills to get user profiles with
         #get user profiles with specified cities and skills
@@ -52,23 +57,24 @@ def prof_list_get(request):
             if selcat!="0":
                 kwargs["skillcategory"]=int(selcat)    
         
+        profs_per_page=15
+        
         userobs=UserProfile.objects.filter(**kwargs)
         
+        strt=(int(pg_num)-1)*profs_per_page
         
-        """
-        userlist='['
-        for user in userobs:
-            userlist=userlist+'["'+str(user.pk)+'","'+user.name.encode('ascii','ignore')+'","'+user.shortdesc.encode('ascii','ignore')+'","'+'"],'
-        userlist=userlist+']'
+        userobs_out=userobs[strt:pg_num*profs_per_page]
         
-        obj={ "userlist": eval(userlist) }
+        if len(userobs)>(profs_per_page*int(pg_num)):
+            bool_more_profs='true'
+        else:
+            bool_more_profs='false'
+
+        userobs_json=serializers.serialize("json", userobs_out,use_natural_keys=True)
         
+        json_comb=simplejson.dumps({'num_profiles':len(userobs), 'more_profs':bool_more_profs,'profiles':userobs_json})
         
-        return HttpResponse(json.dumps(obj), content_type="application/json")
-        """
-        #return HttpResponse(profile_serializer(userobs), content_type="application/json")
-        
-        return HttpResponse(serializers.serialize("json", userobs,use_natural_keys=True), content_type="application/json")
+        return HttpResponse(json_comb, content_type="application/json")
         
 
 def prof_request(request):

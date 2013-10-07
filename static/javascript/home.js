@@ -11,22 +11,24 @@ var selState = "0";
 var selCity = "0";
 var selCat	= "0";
 var selSkill = "0";
+var pg_num=1;
+var profiles=[["this","awesome"],["fun","times"]];
 //var signed_in=false;
 
 
 $(document).ready(function() {
     
-    // Initialize
-    
+    // Initialize menu and navbar states
 	fillOptions('#state', states, selState);
 	fillSubOptions('#city', cities, selState, selCity);
 
 	fillOptions('#category', categories, selCat );
 	fillSubOptions('#skills', skills, selCat, selSkill);
 	renderResults(selCity,selState,selSkill,selCat);
-	
 	renderHeader(signed_in);
 
+
+    //This block of code is for the nav bar
 	$('#nav li').hover(
     function () {
         //show submenu
@@ -37,6 +39,11 @@ $(document).ready(function() {
     });
     
 	
+	$(document).on('click','#more_profs', function(event) {
+	    pg_num=pg_num+1;
+	    addResults(selCity, selState, selSkill, selCat, pg_num);
+
+	});
 	
 	
 	/* Message system removed for MVP 1.0
@@ -75,6 +82,7 @@ $(document).ready(function() {
         });
    
     */
+	
 	
 	
 	$(document).on('click','#contact', function(event) {
@@ -176,9 +184,6 @@ $(document).ready(function() {
     
     
     $(document).on('click','#signup', function(e) {
-        
-                //remove
-                 
                 signup();
     });
     

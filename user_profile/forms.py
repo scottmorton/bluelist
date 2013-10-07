@@ -4,10 +4,13 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from user_profile.widgets import ImageWidget
 
 
+
 #class UserAccount(forms.Form):
 #    email = forms.EmailField()
-#
 
+from django.template.defaultfilters import filesizeformat
+from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 class UserInfo(forms.ModelForm):
     class Meta:
@@ -33,7 +36,11 @@ class UserInfo(forms.ModelForm):
                     'file7_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                     'file8_desc': forms.Textarea(attrs={'cols': 40, 'rows': 2}),
                 }
-    
+    def clean_content(self):
+        content = self.cleaned_data['content']
+        if content._size > settings.MAX_UPLOAD_SIZE:
+            raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s') % (filesizeformat(settings.MAX_UPLOAD_SIZE), filesizeformat(content._size)))
+        return content
     
     
 

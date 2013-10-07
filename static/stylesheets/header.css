@@ -17,7 +17,6 @@
 }
 
 
-
 #logo {
   float: left;
   margin-left: 10px;
@@ -35,6 +34,7 @@
 
 
 .menu-div-nav{
+    height:60px;
     float:right;
     margin-right:0px;
     padding-right:0px;
