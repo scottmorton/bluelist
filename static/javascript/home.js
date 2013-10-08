@@ -141,10 +141,10 @@ $(document).ready(function() {
 	        contact_html='<div class="lbox-container">                                                                          \
                            <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">                        \
                            <div class="lbox-info">                                                                                  \
-                                <p> Please Login or Signup to view contact information</p> \
+                                <p> Please Login or Sign Up to view contact information</p> \
                                 <div class="button-div">\
                                 <a class= "contact-error-button" id="signin"><p class="navb">Login</p></a>\
-                                <a class= "contact-error-button" id="signup"><p class="navb" action="">Signup</p></a>\
+                                <a class= "contact-error-button" id="signup"><p class="navb" action="">Sign Up</p></a>\
                                 </div>\
                            </div>                                                                                                   \
                      	   </div>';

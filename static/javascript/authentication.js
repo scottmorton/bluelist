@@ -75,7 +75,7 @@ function signup()
     
         var indiv= '<img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">              \
                    <div class="lbox-info">                                                                                           \
-                   <h3 class="lbox-heading"> Bluelist Signup</h3> \
+                   <h3 class="lbox-heading"> Bluelist Sign Up</h3> \
                    <div id="error-msgs"> \
                    </div>                    \                                                 \                                                                                     \
                    <form action="" method="post" id="signup_form">                                                                    \
@@ -87,7 +87,7 @@ function signup()
                            <tr><td><label for="id_password2">Password again!</label>   </td></tr>                                      \
                            <tr><td><input class="input-field" id="id_password2" name="password2" type="password" /></td></tr>          \
          		        </table>                                                                                                        \
-         		        <div class="lbox-submit" id="signup-submit"> Signup </div>                                               \
+         		        <div class="lbox-submit" id="signup-submit"> Sign Up </div>                                               \
          		</form>                                                                                                                 \
          		</div>';
          		

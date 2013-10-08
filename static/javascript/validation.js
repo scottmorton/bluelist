@@ -28,7 +28,7 @@ function validatePasswordFields(password1, password2)
     
     if(password1=="" || password2=="")
     {
-        return "Please enter a password and confirmation"
+        return "Please enter a password and confirmation";
     }
     else{
         if(password1==password2)
@@ -37,7 +37,7 @@ function validatePasswordFields(password1, password2)
          }
          else
          {
-             return "Passwords do not match"
+             return "Passwords do not match";
          }
     }
  
