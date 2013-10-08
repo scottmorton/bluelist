@@ -15,6 +15,8 @@ def homepage(request):
 
     if request.user.is_authenticated():
         email=str(request.user.email)
+        #reguest.user.registered
+        #return boolean for registered or not
         auth_dict={"user":email}
         
     else:

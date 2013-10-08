@@ -10,7 +10,7 @@ from django.forms.models import model_to_dict
 import json
 from bluelist.helper_functions import getCategoryVars
 
-import stripe
+#import stripe
 
 
 """

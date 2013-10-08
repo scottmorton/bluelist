@@ -34,7 +34,7 @@ p.greeting
 	margin-right: auto;
 	color: white;
 	font-size:30px;
-  	letter-spacing: 1px;
+  	letter-spacing: 0.4px;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
