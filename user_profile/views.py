@@ -229,3 +229,7 @@ def signin(request):
 def signout(request):
     logout(request)
     return HttpResponseRedirect('/')
+    
+
+    
+    

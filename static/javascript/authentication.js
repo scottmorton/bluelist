@@ -45,9 +45,9 @@ function signin()
                 </div>                                                                                                      \
                 <form action="" method="post">                                                                              \
       		        <table class="lbox-table">                                                                              \
-      		            <tr><td><label for="id_email">Email:</label></td></tr>                                              \
+      		            <tr><td><label for="id_email">Email</label></td></tr>                                              \
         		        <tr><td><input class="input-field" id="id_email" name="email" type="text" /></td></tr>              \
-                        <tr><td><label for="id_password">Password:</label></td></tr>                                        \
+                        <tr><td><label for="id_password">Password</label></td></tr>                                        \
                         <tr><td><input class="input-field" id="id_password" name="password" type="password" /></td></tr>    \
       		        </table>                                                                                                \
       		        <div class="lbox-submit" id="login-submit"> Login </div>                                               \

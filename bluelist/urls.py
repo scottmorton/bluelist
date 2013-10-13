@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from bluelist.views import homepage, prof_list_get, prof_request, send_email
+from bluelist.views import homepage, prof_list_get, prof_request, send_email, uploadTest, upload, get_upload_progress
 from user_profile.views import user_form, signup, signin, signout, registration
 from django.conf import settings
 
@@ -18,7 +18,10 @@ urlpatterns = patterns('',
 	url(r'^proflist$', prof_list_get),
 	url(r'^profrequest$', prof_request),
 	url(r'^sendemail$', send_email),
-    url(r'^registration$', registration)
+    url(r'^registration$', registration),
+    url(r'^uploadTest$', uploadTest),
+    url(r'^upload$',upload),
+    url(r'^get_upload_progress$',get_upload_progress)
 )
 
 

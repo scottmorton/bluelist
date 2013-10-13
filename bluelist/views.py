@@ -12,7 +12,6 @@ from user_profile.models import State, City, SkillCategory, Skill, User, UserPro
 def homepage(request):
 
     
-
     if request.user.is_authenticated():
         email=str(request.user.email)
         #reguest.user.registered
@@ -94,9 +93,27 @@ def send_email(request):
      #    ['morto091@umn.edu'], fail_silently=False)
     
      return HttpResponseRedirect('/')
+
+def upload(request):
+    path = '/var/www/bluelist.us/src/bluelist/media/test2'
+    f = request.FILES['file']
+    destination = open(path, 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+        destination.close()
+    return HttpResponse(simplejson.dumps({'status':'ok'}), content_type="application/json")
+        
     
-    
-    
-    
+from django.utils import simplejson
+from django.core.cache import cache
+def get_upload_progress(request):
+    cache_key = "%s_%s" % (request.META['REMOTE_ADDR'], request.GET['X-Progress-ID'])
+    data = cache.get(cache_key)
+    return HttpResponse(simplejson.dumps(data))
+
+def uploadTest(request):
+    return render(request, 'upload_test.html')
+
+
     
 
