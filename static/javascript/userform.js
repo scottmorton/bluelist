@@ -1,6 +1,9 @@
 $(document).ready(function(){
   
     
+    
+    //Header
+
   renderHeader(signed_in);
   
   $('#nav li').hover(
@@ -11,6 +14,127 @@ $(document).ready(function(){
       //hide submenu
       $('ul', this).slideUp("fast");
   });
+  
+  
+  $('#edit li').hover(
+  function () {
+      //show submenu
+      $('ul', this).slideDown("fast");
+  }, function () {
+      //hide submenu
+      $('ul', this).slideUp("fast");
+  });
+  
+  
+
+  $(document).on('click','#prof_pic_replace', function() {
+      //unhide
+      
+      $("#id_prof_pic").show();
+      $("#id_prof_pic").trigger('click');
+      $("#id_prof_pic").hide();
+
+  });
+  
+  
+  $(document).on('click','#prof_pic_delete', function() {
+      var name = this.name;
+      
+      
+      var data = new FormData();
+      data.append('name',name)
+      var xhr = new XMLHttpRequest();
+      alert(name)
+      xhr.onload = function(){
+                  
+		        var jsonResponse = JSON.parse(xhr.responseText);
+                
+                //return upload state to 
+                  
+                  if(name=="prof_pic" && jsonResponse.status=="ok")
+                  {
+                      $('#img_prof_pic').attr("src", "");
+                      $('#prof_im_container1').hide();
+                      $('#prof_im_container2').show();
+                  }
+		       };
+		       
+      	xhr.open('post', '/userDeleteFile', true);
+   	    xhr.send(data);
+      
+  });
+  
+  
+  
+  // Asynchronous file uploads
+  
+  	$( "input:file" ).each(function() {
+  	    
+  	    this.addEventListener('change', function(e) {
+
+  	    //Disable submit button so that form is not submitted during upload
+  	    $('#submitButton').attr('disabled', 'disabled');
+  	    
+		var data = new FormData();
+		var sel_file=$(this).get(0).files[0];
+		var name = this.name;
+		var input_id=this.id;
+    	
+    	//give the name of the file for the server to know what type of upload it is
+    	data.append('name',name)
+		data.append(name,sel_file);
+		
+		//create the id for the progress bar and add a progress bar under the input filed
+		var prog_id=this.id.concat('_progress');
+	    $(this).after( '<progress value="0" max="0" id="'+prog_id+'"></progress>' );
+		 
+		var xhr = new XMLHttpRequest();
+		
+		xhr.upload.onprogress = function(e) {
+	            
+	            console.log('xhr progress: ' + (Math.floor(e.loaded/e.total*1000)/10) + '%');
+			   $('#'+prog_id).attr('value', e.loaded);
+		       $('#'+prog_id).attr('max', e.total);
+	        };
+	        
+		xhr.onload = function(){
+		    
+		            console.log('upload complete');
+		            
+		            $('#'+prog_id).remove();
+		            //show picture
+		            //document.write(xhr.responseText);
+		            
+		            var jsonResponse = JSON.parse(xhr.responseText);
+		           
+		            $('#submitButton').prop('disabled', false);
+		            
+		            //set up conditionls for each failure possibility
+		            //confirm file successfully uploaded
+                    
+                    if(input_id=="id_prof_pic" && jsonResponse.status=="ok")
+                    {
+                        $('#img_prof_pic').attr("src", String(jsonResponse.file_url));
+                        
+                        $('#prof_im_container2').hide();
+                        $('#prof_im_container1').show();                              
+                        
+                        
+                    }
+                    
+                    
+		       };
+		
+		    xhr.open('post', '/userFileUpload', true);
+		    xhr.send(data);
+				
+		}, false);
+		
+    });
+  
+  
+  
+  
   
   
   
@@ -36,7 +160,6 @@ $(document).ready(function(){
         document.getElementById("links_label").style.display = "none";
     }
   
-  
     
 	$(document).on('click','#add_link', function() {
     
@@ -57,11 +180,7 @@ $(document).ready(function(){
   
   
   
-  
-  
- 
-  
-  var last_file=1;
+    var last_file=1;
   
     for(var i=1; i < 9; i++)
     {

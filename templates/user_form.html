@@ -32,7 +32,6 @@
 </head>
 <body>
 	
- 	
 
 <div class= "body-container">
 <div class="body-scroll">
@@ -50,71 +49,113 @@
 		
 	<div class="form-container">
 		<table class="form-table">	
+
 		<tr><td><h4 class="form-label"> Name </h4></td></tr>
 		<tr><td>{{form.name.errors}}</td></tr>
 		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.name}}</div></div></td></tr>
-
-			
-		<tr><td> <h4 class="form-label"> Profile Picture </h4></td><tr>
-		<tr><td>{{form.prof_pic.errors}}</td></tr>
 		<tr><td>
-			<div class="form-outer-field">
-				<div class="form-field-container">					
-					{% if pic_url != "none" %}
-						<a target="_blank" href="{{ pic_url|safe }}">
-                        <img src="{{ pic_url|safe }}" /></a>
-                        <div class="form-field-container">
-                        Upload a new profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
-					{% else %}
-						<div class="form-field-container">
-	                        Upload a profile picture: <input id="id_prof_pic" name="prof_pic" type="file" />
-	                    </div>
-					{% endif %}
-					
-				</div>
-			</div>
+			<table>
+				<tr><td>	
+					<table>
+						<tr><td> <h4 class="form-label"> Profile Picture </h4></td></tr>
+						<tr><td>{{form.prof_pic.errors}}</td></tr>
+						<tr><td>
+							<div class="form-outer-field-new">
+								<div class="form-field-container">					
+									{% if pic_url != "none" %}
+									
+									<div  id="prof_im_container1" class="form-field-container">
+									
+										<div class="image_div">
+											<a target="_blank" href="{{ pic_url|safe }}"><img id="img_prof_pic" src="{{ pic_url|safe }}" /></a>
+											<div class="footerBar">
+												<ul id="edit"> 
+													<li id="edit_prof_pic_li">
+														<a id="edit_prof_pic" href="#">Edit &#x25BE</a>
+								                        <ul>
+								                             <li><a id="prof_pic_delete" name="prof_pic" href="#">Delete </a></li>
+								                             <li><a id="prof_pic_replace" href="#">Replace </a></li>
+								                        </ul>
+													</ul>
+                        						</div>
+											</div>
+											
+											<input hidden id="id_prof_pic" name="prof_pic" type="file" />
+											
+											
+										</div>
+										
+										<div hidden id="prof_im_container2" class="form-field-container">
+	                        				<input id="id_prof_pic" name="prof_pic" type="file" />
+	                    				</div>
+										
+										
+									{% else %}
+									
+									
+									<div hidden id="prof_im_container1" class="form-field-container">
+									
+										<div class="image_div">
+											<a target="_blank" href=""><img id="img_prof_pic" src="" /></a>
+											<div class="footerBar">
+												<ul id="edit"> 
+													<li id="edit_prof_pic_li">
+														<a id="edit_prof_pic" href="#">Edit &#x25BE</a>
+								                        <ul>
+								                             <li><a id="prof_pic_delete" name="prof_pic" href="#">Delete </a></li>
+								                             <li><a id="prof_pic_replace" href="#">Replace </a></li>
+								                        </ul>
+													</ul>
+                        						</div>
+											</div>
+											
+											<input hidden id="id_prof_pic" name="prof_pic" type="file" />
+											
+											
+										</div>
+									
+										<div id="prof_im_container2" class="form-field-container">
+	                        				<input id="id_prof_pic" name="prof_pic" type="file" />
+	                    				</div>
+									{% endif %}
+									
+									
+								</div>
+							</div>
+						</td></tr>
+					</table>
+				</td><td>
+					<table>
+						<tr><td> <h4 class="form-label"> Location and Profession</h4> </td></tr>
+						<tr><td>
+							<div class="form-split-field-container">
+								<table>	
+									<tr><td><p class="form-sub-label">State:</p></td>
+										<td>{{form.state}} </td><td>{{form.state.errors}}</td></tr>
+									<tr><td><p class="form-sub-label">City:</p></td>
+										<td>{{form.city}} </td><td> {{form.city.errors}}</td></tr>
+								</table>
+							</div>
+						</td></tr>
+						
+						<tr><td>
+							<div class="form-split-field-container">
+								<table>	
+									<tr><td><p class="form-sub-label">Category: </p></td>
+										<td>{{form.skillcategory}}</td><td>{{form.skillcategory.errors}}</td></tr>
+									<tr><td><p class="form-sub-label">Specialty: <p> </td>
+										<td>{{form.skill}}</td><td>{{form.skill.errors}}</td></tr>
+								</table>
+							</div>
+						</td></tr>
+					</table>
+				</td></tr>
+			</table>
 		</td></tr>
 		
-		
-		
-		
-		<tr><td> <h4 class="form-label"> Location and Profession</h4> </td></tr>
-			<tr><td>
-				<div class="form-outer-field"><div class="form-field-container">
-				<table>
-					<tr><td>
-				
-				<div class="form-split-field-container">
-				<table>	
-					<tr><td><p class="form-sub-label">State:</p></td>
-						<td>{{form.state}} </td><td>{{form.state.errors}}</td></tr>
-					<tr><td><p class="form-sub-label">City:</p></td>
-						<td>{{form.city}} </td><td> {{form.city.errors}}</td></tr>
-				</table>
-				</div>
-
-			</td><td>
-				<div class="form-split-field-container">
-			<table>	
-				<tr><td><p class="form-sub-label">Category: </p></td>
-					<td>{{form.skillcategory}}</td><td>{{form.skillcategory.errors}}</td></tr>
-				<tr><td><p class="form-sub-label">Specialty: <p> </td>
-					<td>{{form.skill}}</td><td>{{form.skill.errors}}</td></tr>
-			</table>
-			</div>
-			
-			
-			</td></tr>
-			</table>
-			
-			</div></div>
-		</td></tr>
-
 		<tr><td><h4 class="form-label"> Listing Description </h4></td></tr>
 		<tr><td>{{form.shortdesc.errors}}</td></tr>
 		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.shortdesc}}</div></div></td></tr>
-		
-
 
 		<tr><td>
 			<div id="additional_info">

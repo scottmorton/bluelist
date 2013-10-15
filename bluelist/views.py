@@ -104,12 +104,9 @@ def upload(request):
     return HttpResponse(simplejson.dumps({'status':'ok'}), content_type="application/json")
         
     
-from django.utils import simplejson
+
 from django.core.cache import cache
-def get_upload_progress(request):
-    cache_key = "%s_%s" % (request.META['REMOTE_ADDR'], request.GET['X-Progress-ID'])
-    data = cache.get(cache_key)
-    return HttpResponse(simplejson.dumps(data))
+
 
 def uploadTest(request):
     return render(request, 'upload_test.html')

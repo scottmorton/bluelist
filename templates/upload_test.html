@@ -16,16 +16,6 @@ $(document).ready(function() {
 		
 		var xhr = new XMLHttpRequest();
 		
-		/*
-
-			xhr.addEventListener('progress', function(e) {
-			        var done = e.loaded;
-					var total = e.total;
-
-			    }, false);
-		*/
-		
-		
 		xhr.upload.onprogress = function(e) 
 	        {
 	            console.log('xhr progress: ' + (Math.floor(e.loaded/e.total*1000)/10) + '%');

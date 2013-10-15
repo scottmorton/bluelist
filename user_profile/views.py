@@ -9,7 +9,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.forms.models import model_to_dict
 import json
 from bluelist.helper_functions import getCategoryVars
-
+from django.conf import settings
+from django.utils import simplejson
+import time
 #import stripe
 
 
@@ -25,9 +27,8 @@ def user_form(request):
     if not request.user.is_authenticated():
             return HttpResponseRedirect('/')
     
-    
     if request.method == 'POST':
-        form = UserInfo(request.POST, request.FILES)
+        form = UserInfo(request.POST)
         
         if form.is_valid():
             cd = form.cleaned_data
@@ -52,18 +53,12 @@ def user_form(request):
                     link_title[j]=cd['link'+str(i)+'_title']
                     link_desc[j]=cd['link'+str(i)+'_desc']
                     j=j+1
-            
-            
            """
-            
-            
-            
             
             try: 
                 prof=UserProfile.objects.get(user=request.user)
                 
-                
-                bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
+                bam=UserInfo(data=request.POST, instance=prof)
                 u=bam.save()  
                                 
                 return HttpResponseRedirect('/')
@@ -92,20 +87,11 @@ def user_form(request):
                 else:
                     pic_dict={'pic_url':"none"}
         
-        
         ## Case when user does not exist, and form is invalid
         
             except UserProfile.DoesNotExist:
 
                  pic_dict={'pic_url':"none"}
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
                  
     ## This else statement is for GET        
                 
@@ -117,34 +103,24 @@ def user_form(request):
             prof=UserProfile.objects.get(user=request.user)
             form = UserInfo(instance=prof)
             
-            
             if prof.prof_pic!="":
-
                 pic_dict={'pic_url': prof.prof_pic.url}
                 
             else:
                 pic_dict={'pic_url':"none"}
             
-            
         except UserProfile.DoesNotExist:
             form=UserInfo()
-
             pic_dict={'pic_url':"none"}
-            
         
     menu_dict=getCategoryVars()
     
-    
     auth_dict={'auth':'true'}
     form_dict={'form':form}
-
+    
     out_dict=dict(auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items())
-            
-            
-    return render(request, 'user_form3.html',out_dict )
-    
-    
-    
+       
+    return render(request, 'user_form.html',out_dict )
     
     
 def signup(request):
@@ -167,7 +143,6 @@ def signup(request):
                     return"""
                     
             return HttpResponse(json.dumps(form.errors), content_type="application/json")
-    
     else:
         return HttpResponse("error")
 
@@ -197,16 +172,10 @@ def registration(request):
             plan="standard",
             email=str(request.user.email),
             )
-        
-        
         return HttpResponseRedirect('/')
 
 
-
-
-
-def signin(request):
-    
+def signin(request): 
     if request.user.is_authenticated():
         return HttpResponse("Already signed in")
     if request.method == 'POST':
@@ -229,7 +198,58 @@ def signin(request):
 def signout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+
+def userDeleteFile(request):
+    #get user information
+    if not request.user.is_authenticated():
+        return HttpResponse(simplejson.dumps({'status':'not signed in'}), content_type="application/json")
     
+    prof=UserProfile.objects.get(user=request.user)
+    name=request.POST['name']
+    if(getattr(prof, name).name ):
+        getattr(prof, name).delete()
+        
+    return HttpResponse(simplejson.dumps({'status':'ok','nice':'nice'}), content_type="application/json")
+
+
+
+
+
+def userFileUpload(request):
+    #get user information
+    if not request.user.is_authenticated():
+        return HttpResponse(simplejson.dumps({'status':'not signed in'}), content_type="application/json")
+            
+    #get name
+    #the name corresponds to the variable name in the model
+    name=request.POST['name']
+    f = request.FILES[name]
+    
+    if f.size > int(settings.MAX_UPLOAD_SIZE):
+         return HttpResponse(simplejson.dumps({'status':'file too large'}), content_type="application/json")
+    
+    #use date string to ensure no over writing
+    date_string = time.strftime("%Y%m%d%H%M%S")
+
+    prof=UserProfile.objects.get(user=request.user)
+    
+    #the name in the input field corresponds to the model name, getattr executes it as prof.name
+    if(getattr(prof, name).name ):
+        getattr(prof, name).delete(False)
+        
+    getattr(prof, name).save(date_string,f)
 
     
+    """
+    #path =settings.MEDIA_ROOT+'profile_data/user_'+str(request.user.pk)+'/'+date_string
+    path =settings.MEDIA_ROOT+'profile_data/user_'+str(request.user.pk)+'/'+f.name
     
+    destination = open(path, 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+        destination.close()
+    """
+    
+    return HttpResponse(simplejson.dumps({'status':'ok','file_url':str(getattr(prof, name).url)}), content_type="application/json")

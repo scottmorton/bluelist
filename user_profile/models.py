@@ -159,14 +159,10 @@ class UserProfile(models.Model):
     skillcategory = models.ForeignKey(SkillCategory)
     skill = models.ForeignKey(Skill)
     
-    
     public_email=models.EmailField(blank=True)
     public_phone_num=models.CharField(blank=True,max_length=30)
     
-    
-    
     prof_pic = models.ImageField(upload_to=get_upload_path, blank=True)
-    
     
     #prof_pic_original = models.FileField('original file upload', upload_to=filepath)
     #prof_pic_thumbnail = models.CharField(max_length=255, blank=True)
