@@ -105,7 +105,7 @@ $(document).ready(function(){
 		            
 		            $('#'+prog_id).remove();
 		            //show picture
-		            //document.write(xhr.responseText);
+		            document.write(xhr.responseText);
 		            
 		            var jsonResponse = JSON.parse(xhr.responseText);
 		           
