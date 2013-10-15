@@ -49,10 +49,12 @@ $(document).ready(function(){
                   
 		        var jsonResponse = JSON.parse(xhr.responseText);
                 
+                alert(jsonResponse.status)
                 //return upload state to 
                   
                   if(name=="prof_pic" && jsonResponse.status=="ok")
                   {
+                     
                       $('#img_prof_pic').attr("src", "");
                       $('#prof_im_container1').hide();
                       $('#prof_im_container2').show();
@@ -111,7 +113,7 @@ $(document).ready(function(){
 		            
 		            //set up conditionls for each failure possibility
 		            //confirm file successfully uploaded
-                    
+                    alert(jsonResponse.status)
                     if(input_id=="id_prof_pic" && jsonResponse.status=="ok")
                     {
                         $('#img_prof_pic').attr("src", String(jsonResponse.file_url));
