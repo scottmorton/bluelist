@@ -2,15 +2,6 @@ $(document).ready(function() {
  
  
     renderHeader(signed_in,registered);
- 
-    $('#nav li').hover(
-      function () {
-          //show submenu
-          $('ul', this).slideDown("fast");
-      }, function () {
-          //hide submenu
-          $('ul', this).slideUp("fast");
-      });
 
 
 

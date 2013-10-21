@@ -4,13 +4,13 @@ $(document).ready(function() {
 
   $(document).on('click',function(e) {
       
-      if($(e.target).closest('#nav').length)
+      if($(e.target).closest('#account_li').length)
        {
-           $('ul',"#nav").show();
+           $('ul',"#account_li").show();
        }
        else
        {
-           $('ul',"#nav").hide();
+           $('ul',"#account_li").hide();
        }
    });
    
