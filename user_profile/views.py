@@ -263,7 +263,7 @@ def registration(request):
             last4=customer.cards.data[0].last4
             header_dict={"registered":"true"}
             card_det={'last4':last4}
-            out_dict=dict(card_det.items())
+            out_dict=dict(card_det.items()+header_dict.items())
         
         return render(request, 'registration.html',out_dict)
 
