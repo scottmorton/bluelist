@@ -261,7 +261,7 @@ def registration(request):
             customer=stripe.Customer.retrieve(request.user.stripe_id)
             
             last4=customer.cards.data[0].last4
-        
+            header_dict={"registered":"true"}
             card_det={'last4':last4}
             out_dict=dict(card_det.items())
         

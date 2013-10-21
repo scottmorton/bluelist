@@ -3,8 +3,6 @@
     <title>Bluelist</title>
 
 
-	{% load staticfiles %}
-	
 	
 	<script type="text/javascript"> 
 		var signed_in = "{{user|safe}}";
@@ -12,6 +10,8 @@
 	</script>
 
 	
+	{% load staticfiles %}
+
 	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
 	<script type="text/javascript" src="{% static "registration.js" %}" > </script>	
 		<script type="text/javascript" src="{% static "header.js" %}" > </script>	
