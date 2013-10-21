@@ -21,7 +21,7 @@ stripe.api_version = '2013-08-13'
 def user_form(request):
     return HttpResponseRedirect('/test')
 
-"""
+
 def userForm(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/test')
@@ -519,5 +519,3 @@ def userFileUpload(request):
 
     
     return HttpResponse(simplejson.dumps({'status':'ok','file_url':str(getattr(prof, name).url)}), content_type="application/json")
-    
-    """
