@@ -2,6 +2,3 @@ from default import *
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
