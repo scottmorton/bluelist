@@ -17,14 +17,6 @@ import stripe
 stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
 stripe.api_version = '2013-08-13'
 
-"""
-def user_form(request):
-	t=get_template('user_info.html')
-	html = t.render(Context({'fun': 'YES'}))
-	
-	return HttpResponse(html)
-"""	
-
     
     
 def signup(request):
@@ -345,7 +337,7 @@ def cancelSubscription(request):
 
 def user_form(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/test')
 
     if not request.user.is_registered:
         return HttpResponseRedirect('/registration')
@@ -383,7 +375,7 @@ def user_form(request):
                 bam=UserInfo(data=request.POST, instance=prof)
                 u=bam.save()  
 
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/test1')
 
             except UserProfile.DoesNotExist:
 
@@ -394,7 +386,7 @@ def user_form(request):
                obj.user= request.user
                obj.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/test2')
 
 
         else:
@@ -475,8 +467,7 @@ def user_form(request):
         
         
     print file_titles
-
-    
+  
     #link_dict={'links':links,"link_title":link_titles,"link_descs":link_descs}
     #file_dict={'files':files,"file_titles":file_titles,"file_descs":file_descs}
 
