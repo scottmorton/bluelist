@@ -13,7 +13,6 @@ from django.conf import settings
 from django.utils import simplejson
 import time
 
-
 import stripe
 stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
 stripe.api_version = '2013-08-13'
@@ -110,8 +109,6 @@ def signin(request):
 def signout(request):
     logout(request)
     return HttpResponseRedirect('/')
-
-
 
 
 
@@ -346,12 +343,9 @@ def cancelSubscription(request):
     
 
 
-
-
-
 def user_form(request):
     if not request.user.is_authenticated():
-            return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/')
 
     if not request.user.is_registered:
         return HttpResponseRedirect('/registration')
@@ -362,8 +356,7 @@ def user_form(request):
         if form.is_valid():
             cd = form.cleaned_data
 
-
-                #prof=UserProfile.objects.get(user=request.user)
+                #prodaf=UserProfile.objects.get(user=request.user)
                 #bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
                 #u=bam.save()
 

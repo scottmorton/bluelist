@@ -138,7 +138,8 @@ $(document).ready(function() {
          if(password_error=="" &&  email_error=="")
          {
              $.post("/signup",{ 'email':ent_email,'password1': ent_pw1,'password2': ent_pw2 }, function(data,status){
-         	                            
+         	                   
+         	                   alert(data.status)         
          	      if(data.status=="success")
          	      {
          	          // return to state
