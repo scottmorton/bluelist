@@ -1,10 +1,10 @@
 $(document).ready(function(){
   
+  
     renderHeader(signed_in, registered);
     
     //Header
 
-  
   
    $(document).on('click',function(e) {
        

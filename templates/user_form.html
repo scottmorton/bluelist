@@ -10,7 +10,7 @@
 		var cities = {{citylist|safe}};
 		var categories = {{catlist|safe}};
 		var skills = {{skilllist|safe}};
-		var signed_in = {{auth|safe}};
+		var signed_in = "{{user|safe}}";
 		var registered = "{{registered|safe}}";
 	</script>
 
@@ -65,7 +65,7 @@
 							<div class="form-outer-field-new">
 								<div class="form-field-container">					
 									
-									<div {% if pic_url == "none" %} hidden {% endif %} id="prof_im_container1" class="form-field-container">
+									<div {% if pic_url == "" %} hidden {% endif %} id="prof_im_container1" class="form-field-container">
 									
 										<div class="image_div">
 											<a target="_blank" href="{{ pic_url|safe }}"><img id="img_prof_pic" src="{{ pic_url|safe }}" /></a>
@@ -86,7 +86,7 @@
 											
 										</div>
 										
-										<div {% if pic_url != "none" %} hidden {% endif %} id="prof_im_container2" class="form-field-container">
+										<div {% if pic_url != "" %} hidden {% endif %} id="prof_im_container2" class="form-field-container">
 	                        				<input id="id_prof_pic" name="prof_pic" type="file" />
 	                    				</div>
 									

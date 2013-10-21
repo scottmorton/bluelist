@@ -409,7 +409,7 @@ def user_form(request):
                 if prof.prof_pic!="":
                     pic_dict={'pic_url': prof.prof_pic.url}
                 else:
-                    pic_dict={'pic_url':"none"}
+                    pic_dict={'pic_url':""}
                     
                     
                     
@@ -419,7 +419,7 @@ def user_form(request):
 
             except UserProfile.DoesNotExist:
 
-                 pic_dict={'pic_url':"none"}
+                 pic_dict={'pic_url':""}
 
         ## This else statement is for GET        
 
@@ -435,16 +435,17 @@ def user_form(request):
                 pic_dict={'pic_url': prof.prof_pic.url}
 
             else:
-                pic_dict={'pic_url':"none"}
+                pic_dict={'pic_url':""}
 
         except UserProfile.DoesNotExist:
             prof=UserProfile.objects.create(user=request.user)
             form=UserInfo()
-            pic_dict={'pic_url':"none"}
+            pic_dict={'pic_url':""}
 
     menu_dict=getCategoryVars()
-
-    auth_dict={'auth':'true'}
+    email=str(request.user.email)
+    
+    auth_dict={"user":email}
     form_dict={'form':form}
     header_dict={"registered":"true"}
     
