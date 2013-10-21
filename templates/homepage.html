@@ -11,6 +11,7 @@
 	var categories = {{catlist|safe}};
 	var skills = {{skilllist|safe}};
 	var signed_in = "{{user|safe}}";
+	var registered = "{{registered|safe}}";
 </script>
 
 
@@ -23,6 +24,7 @@
 <script type="text/javascript" src="{% static "results.js" %}" > </script>
 <script type="text/javascript" src="{% static "validation.js" %}" > </script>
 <script type="text/javascript" src="{% static "authentication.js" %}" > </script>
+<script type="text/javascript" src="{% static "home_helpers.js" %}" > </script>
 <script type="text/javascript" src="{% static "header.js" %}" > </script>
 
 <link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
@@ -40,7 +42,7 @@
 
 <div class= "body-scroll">
 	<div class="greeting-container-menu">
-	<p class="greeting">Find people with the skills you need in your city</p>
+	<p class="greeting">Find the best freelancers and contractors in your city</p>
 </div>
 
 
@@ -95,11 +97,9 @@
 			<div class="results" id="searchResults">
 			
 				
-				
-				
 			</div>
 			
-			<a id="more_profs" href="#">More</a>
+			<a hidden id="more_profs" href="#">More</a>
 	</div>
 
 	

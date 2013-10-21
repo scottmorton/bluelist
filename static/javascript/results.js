@@ -72,7 +72,7 @@ function profString(){
 	for(var i=l_prof; i < profiles.length; i++)  //Iterate through profiles variables
 		{
 		    
-		    var profTemplate=minProfile(i);
+		    var profTemplate=expandProfile(i);
 			listString+= '<div class="profile-index" id="prof'+String(i)+'">'+profTemplate+'</div>';	//Combine string list
 			
 			
@@ -95,11 +95,11 @@ function expandProfile(pnum){
     var state=profiles[pnum].fields.state;
     var skill=profiles[pnum].fields.skill;
     var prof_pic=profiles[pnum].fields.prof_pic;
-    
     var shortdesc= profiles[pnum].fields.shortdesc;
+    
+    
+    
     var longdesc = profiles[pnum].fields.longdesc;
-    
-    
     
     var links=[[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "]];
     
@@ -194,8 +194,6 @@ function expandProfile(pnum){
     files[7][0]=profiles[pnum].fields.file8;
     files[7][1]=profiles[pnum].fields.file8_title;
     files[7][2]=profiles[pnum].fields.file8_desc;
-    
- 
 
     
     var filelist="";
@@ -241,6 +239,20 @@ function expandProfile(pnum){
     }
     */
     
+    var optionslist="";
+    if(link_present || file_present || longdesc!="")
+    {
+        optionslist='\
+        <a class="index-option" id="contact">Contact</a>        \
+        <a hidden class="index-option" id="less">Less</a>       \
+        <a class="index-option" id="more">More</a>';
+    }
+    else
+    {
+        optionslist='\
+        <a class="index-option" id="contact">Contact</a>';
+    }
+    
 
 
 	var profTemplate='<div class="index-pic"> 				                                    \
@@ -256,64 +268,20 @@ function expandProfile(pnum){
 								<div class="short-desc">                                        \
 								    <p class="index-desc">'+ shortdesc+'</p> 	                \
 								</div>                                                          \
-								<div class="long-desc">                                         \
+								<div hidden class="long-desc">                                         \
 								    <p class="long-desc">'+ longdesc+'</p> 	                    \
 								</div>                                                          \
-								<div class="links">                                             \
+								<div hidden class="links">                                             \
 								'+sample_work_title+'                                           \
 								'+linklist+filelist+'                                           \
 								</div>                                                          \
 								<div class="index-options">                                     \
 								    <div class="option">                                        \
-					 			        <a class="index-option" id="contact">Contact</a>        \
-					 			        <a class="index-option" id="less">Less</a>              \
+					 			        '+optionslist+'                                         \
 					 			    </div>                                                      \
 					 			</div>                                                          \
 					 	</div>';
     
     return profTemplate;
-
 }
 
-
-function minProfile(pnum){
-    
-	var name= profiles[pnum].fields.name;
-	var city= profiles[pnum].fields.city;
-    var state=profiles[pnum].fields.state;
-    var skill=profiles[pnum].fields.skill;
-    var prof_pic=profiles[pnum].fields.prof_pic;
-    
-    var image_string="";
-    
-    if(prof_pic!="")
-    {
-        image_string='<img src="/media/'+prof_pic+'" height="100">';
-    }
-    
-    var shortdesc= profiles[pnum].fields.shortdesc;
-    
-    var profTemplate='      <div class="index-pic"> 				                            \
-		                    '+image_string+'                                                    \
-	                    </div> 									                                \
-				 		<div class="index-text">                                                \
-				 			    <div class="profile-name">                                      \
-								    <p class="index-name">'+name+'</p>                          \
-								</div>                                                          \
-								<div class="profile-tag">                                       \
-								    <p class="tag">'+skill+' in '+city+', '+state+'</p>         \
-								</div>                                                          \
-								<div class="short-desc">                                        \
-								    <p class="index-desc">'+shortdesc+'</p> 	                \
-								</div>                                                          \
-								<div class="index-options">                                     \
-								    <div class="option">                                        \
-					 			        <a class="index-option" id="contact">Contact</a>       \
-					 			        <a class="index-option" id="more">More</a>              \
-					 			    </div>                                                      \
-					 			</div>                                                          \
-					 	</div>';
-			 	  
-    return profTemplate;
-    
-}

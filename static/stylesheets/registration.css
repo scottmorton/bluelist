@@ -1,22 +1,21 @@
 
 
 
-.base-container
+.base-container-registration
 {
-border-radius:4px;
-width: 675px;
+width: 700px;
 margin-left:auto;
 margin-right:auto;
 background-color: white;
 padding-top: 10px;
-padding-bottom: 30px;
-padding-left:15px;
-padding-right:15px;
-background: rgba(255, 255, 255, 0.9);
-overflow-y:hidden;
-text-align: center;
-border: 1px solid rgba(0,0,0,0.3) ;
-margin-top:20px;
+border-radius:3px;
+background: rgba(255, 255, 255, 0.95);
+overflow-y:center;
+line-height:100%;    
+margin-top:0px;
+-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -24,10 +23,84 @@ margin-top:20px;
 
 .form-container
 {
-    margin-top:40px;
+    margin-top:0px;
     overflow:hidden;
     width:600px;
     margin-left:auto;
     margin-right:auto;
     display:inline-block;
+}
+
+.submit_button_div
+{
+    margin-left:auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.title
+{
+    color: #808080;
+    font-weight:normal;
+    font-size:30px;
+    margin-bottom:30px;
+}
+
+.sub_title
+{
+    font-size:22px;
+    font-weight:normal;
+}
+
+.text
+{
+    font-size:18px;
+    margin:20px;
+    line-height:120%;
+}
+
+
+
+table
+{
+    display:inline-block;
+    margin-bottom:20px;
+}
+
+p.label
+{
+    font-size:18px;
+    text-align:right;
+}
+
+
+input[type="text"]
+{
+    font-size:16px;
+    line-height: 25px;
+    font-weight:bold;
+}
+
+#submitButton
+{
+    height:50px;
+    width:252px;
+    border-radius:3px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+	padding:	10px 20px !important;
+	font-size:	20px !important;
+	color: white;
+	border:none;
+    background: rgb(28, 184, 65);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+
+#submitButton:hover
+{
+    background:  rgb(13, 170, 50);
+    cursor:pointer;
 }

@@ -1,31 +1,39 @@
 $(document).ready(function(){
   
-    
+    renderHeader(signed_in, registered);
     
     //Header
 
-  renderHeader(signed_in);
   
-  $('#nav li').hover(
-  function () {
-      //show submenu
-      $('ul', this).slideDown("fast");
-  }, function () {
-      //hide submenu
-      $('ul', this).slideUp("fast");
-  });
+  
+   $(document).on('click',function(e) {
+       
+       if($(e.target).closest('#edit').length)
+        {
+            $('ul',"#edit").show();
+        }
+        else
+        {
+            $('ul',"#edit").hide();
+        }
+    });
+    
+    
+ /*
   
   
   $('#edit li').hover(
   function () {
       //show submenu
       $('ul', this).slideDown("fast");
-  }, function () {
+      }, function () {
       //hide submenu
       $('ul', this).slideUp("fast");
   });
   
-  
+   */
+   
+   
 
   $(document).on('click','#prof_pic_replace', function() {
       //unhide
@@ -37,19 +45,29 @@ $(document).ready(function(){
   });
   
   
-  $(document).on('click','#prof_pic_delete', function() {
+  $(document).on('click','.file-replace', function() {
+       var file_num=this.id.slice(7);
+       var input_id='id'+file_num;
+       
+       $('#'+input_id).show();
+       $('#'+input_id).trigger('click');
+       $('#'+input_id).hide();
+   });
+  
+  
+  
+  $(document).on('click','.file-delete', function() {
       var name = this.name;
       
       
       var data = new FormData();
       data.append('name',name)
       var xhr = new XMLHttpRequest();
-      alert(name)
       xhr.onload = function(){
                   
 		        var jsonResponse = JSON.parse(xhr.responseText);
                 
-                alert(jsonResponse.status)
+                //alert(jsonResponse.status)
                 //return upload state to 
                   
                   if(name=="prof_pic" && jsonResponse.status=="ok")
@@ -59,12 +77,60 @@ $(document).ready(function(){
                       $('#prof_im_container1').hide();
                       $('#prof_im_container2').show();
                   }
+                   else
+                      {
+                          var delete_file_slice=name.slice(0,-1);
+                          var num=name.slice(-1);
+                           if(delete_file_slice=="file" && jsonResponse.status=="ok")
+                          {
+                                
+                              $('#embed_file'+num).attr("data", "");
+                              $('#view_file'+num).attr("href", "");
+                                
+                              $('#file'+num+'_container1').hide();
+                              $('#file'+num+'_container2').show();
+                                alert("in")
+
+                          }
+                      }
 		       };
 		       
       	xhr.open('post', '/userDeleteFile', true);
    	    xhr.send(data);
-      
   });
+  
+  
+  
+  // Delete file 
+  
+  $(document).on('click','#prof_pic_delete', function() {
+      var name = this.name;
+      
+      
+      var data = new FormData();
+      data.append('name',name)
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function(){
+                  
+		        var jsonResponse = JSON.parse(xhr.responseText);
+                
+                //alert(jsonResponse.status)
+                //return upload state to 
+                  
+                  if(name=="prof_pic" && jsonResponse.status=="ok")
+                  {
+                     
+                      $('#img_prof_pic').attr("src", "");
+                      $('#prof_im_container1').hide();
+                      $('#prof_im_container2').show();
+                  }
+                  
+		       };
+		       
+      	xhr.open('post', '/userDeleteFile', true);
+   	    xhr.send(data);
+  });
+  
   
   
   
@@ -107,23 +173,40 @@ $(document).ready(function(){
 		            //show picture
 		            //document.write(xhr.responseText);
 		            
+		            
 		            var jsonResponse = JSON.parse(xhr.responseText);
-		           
+
 		            $('#submitButton').prop('disabled', false);
 		            
 		            //set up conditionls for each failure possibility
 		            //confirm file successfully uploaded
-                    alert(jsonResponse.status)
+		            
                     if(input_id=="id_prof_pic" && jsonResponse.status=="ok")
                     {
                         $('#img_prof_pic').attr("src", String(jsonResponse.file_url));
                         
                         $('#prof_im_container2').hide();
                         $('#prof_im_container1').show();                              
-                        
-                        
+                    }
+                    else
+                    {
+                        var input_file_slice=input_id.slice(0,7);
+                        var input_file_num=input_id.slice(-1);
+                    
+                         if(input_file_slice=="id_file" && jsonResponse.status=="ok")
+                        {
+                            
+                            $('#embed_file'+input_file_num).attr("data", String(jsonResponse.file_url));
+                            $('#view_file'+input_file_num).attr("href", String(jsonResponse.file_url));
+                            
+                            $('#file'+input_file_num+'_container2').hide();
+                            $('#file'+input_file_num+'_container1').show();
+                            
+                                                         
+                        }
                     }
                     
+                    //more complex
                     
 		       };
 		
@@ -181,13 +264,11 @@ $(document).ready(function(){
     });
   
   
-  
     var last_file=1;
   
     for(var i=1; i < 9; i++)
     {
-        
-        if( document.getElementById("id_file"+String(i)).value=="" && 
+        if( $("#view_file"+String(i)).attr('href')=="" && 
             document.getElementById("id_file"+String(i)+"_desc").value=="" &&
             document.getElementById("id_file"+String(i)+"_title").value=="")
             {
@@ -229,8 +310,9 @@ $(document).ready(function(){
   
   
   
-    if( document.getElementById("id_public_email").value=="" && 
-        document.getElementById("id_public_phone_num").value=="")
+    //if( document.getElementById("id_public_email").value=="" && 
+     //   document.getElementById("id_public_phone_num").value=="")
+     if(false)
         {
             document.getElementById("contact").style.display = "none";
         }

@@ -1,15 +1,23 @@
-
-
-
-
 $(document).ready(function() {
+ 
+ 
+    renderHeader(signed_in);
+    var cleared=false;
+ 
+    $( "#cardNumber" ).focus(function() {
+      if(cleared==false )
+      {
+          cleared=true;
+          $("#cardNumber").val("");
+          
+      };
+    });
+ 
  
     // Watch for a form submission:
     $("#payment-form").submit(function(event) {
     
         $('#submitButton').attr('disabled', 'disabled');
-       
-       
        
         var error = false;
         // Clear error div
@@ -38,8 +46,6 @@ $(document).ready(function() {
             reportError('The expiration date appears to be invalid.');
         }
         
-        
-        
         if (!error) {
             // Get the Stripe token:
             Stripe.createToken({
@@ -50,14 +56,12 @@ $(document).ready(function() {
             }, stripeResponseHandler);
          }
  
- 
     // stop form from submitting to server
     return false;
  
     }); // form submission
  
 }); // document ready.
-
 
 
 function stripeResponseHandler(status, response) {
@@ -68,21 +72,27 @@ function stripeResponseHandler(status, response) {
         
         // Get a reference to the form:
         var f = $("#payment-form");
-
         // Get the token from the response:
         var token = response.id;
-        
-        
-        alert('response')
         
         // Add the token to the form:
         f.append('<input type="hidden" name="stripeToken" value="' + token + '" />');
         
-        // Submit the form:
-        f.get(0).submit();
+        // Submit the form through ajax in order for server to not see card information but let it persist in browser:
         
+        $.post("/registration",f.serialize(), function(data,status){
         
+            //show error
+            if(data.status=="error")
+            {
+                reportError(data.message)
+            }
+            else if(data.status=="success")
+            {
+                window.location.replace("/userform");
+            }
         
+            });
         
     }
 }

@@ -18,12 +18,22 @@ def homepage(request):
         #return boolean for registered or not
         auth_dict={"user":email}
         
+        if request.user.is_registered:
+            header_dict={'registered':'true'}
+        
+        else:
+            header_dict={'registered':'false'}
+            
+        
     else:
         auth_dict={"user":"false"}
+        header_dict={}
+        
+    
         
     menu_dict=getCategoryVars()
     
-    out_dict=dict(menu_dict.items()+auth_dict.items())
+    out_dict=dict(menu_dict.items()+auth_dict.items()+header_dict.items())
         
     return render(request, 'homepage.html',out_dict)
 
@@ -60,7 +70,7 @@ def prof_list_get(request):
         
         profs_per_page=15
         
-        userobs=UserProfile.objects.filter(**kwargs)
+        userobs=UserProfile.objects.exclude(name="").filter(**kwargs)
         
         strt=(int(pg_num)-1)*profs_per_page
         
@@ -76,41 +86,12 @@ def prof_list_get(request):
         json_comb=simplejson.dumps({'num_profiles':len(userobs), 'more_profs':bool_more_profs,'profiles':userobs_json})
         
         return HttpResponse(json_comb, content_type="application/json")
-        
+
+
 
 def prof_request(request):
     if request.method == 'GET':
         selpk=request.GET['selpk']
     
-    
-def send_email(request):
-     #if request.user.is_authenticated():
-     #    user=request.GET['user']
-     
-     from django.core.mail import send_mail
-
-     #send_mail('Subject here', 'Here is the message.', 'morto091@umn.edu',
-     #    ['morto091@umn.edu'], fail_silently=False)
-    
-     return HttpResponseRedirect('/')
-
-def upload(request):
-    path = '/var/www/bluelist.us/src/bluelist/media/test2'
-    f = request.FILES['file']
-    destination = open(path, 'wb+')
-    for chunk in f.chunks():
-        destination.write(chunk)
-        destination.close()
-    return HttpResponse(simplejson.dumps({'status':'ok'}), content_type="application/json")
-        
-    
-
-from django.core.cache import cache
-
-
-def uploadTest(request):
-    return render(request, 'upload_test.html')
-
-
-    
+  
 

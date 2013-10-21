@@ -43,6 +43,7 @@
 	
 	{% if last4 %}
 	<h3 class="title"> Update card information </h3>
+	<p class="text">To use a different card, submit new information. </p>
 	{% else %}
 	<h3 class="title"> Bluelist Profile Registration </h3>
 	<h3 class="sub_title">$5/month</h3>
@@ -54,10 +55,12 @@
 	  </div>
 
 		
+
+
 		<table>
 			<tr><td><p class="label">Card Number</p></td>
 				{% if last4 %}
-				<td><input type="text" size="20" id="cardNumber" autocomplete="off" value="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;{{last4}}"/>
+				<td><input type="text" size="20" id="cardNumber" autocomplete="off" value="************{{last4}}"/>
 				{% else %}	
 				<td><input type="text" size="20" id="cardNumber" autocomplete="off" value="4242424242424242"/>
 				{% endif %}	
@@ -72,30 +75,17 @@
 			    <input type="text" size="4" id="expYear" autocomplete="off"   value="2015"/>
 				</td>	
 			</tr>
-			
-			
-			{% if last4 %}
-				
-			{% else %}
-				<tr><td>&nbsp;</td><td>&nbsp;</td>
-				</tr>
-				<tr><td><p class="label">Promotional Code</p></td>
-					<td><input type="text" size="20" name="promo_code" autocomplete="off" value=""/></td>
-				</tr>
-			{% endif %}
-			
-			
+			<tr><td>&nbsp;</td><td>&nbsp;</td>
+			</tr>
+			<tr><td><p class="label">Promotional Code</p></td>
+				<td><input type="text" size="20" id="promo_code" autocomplete="off" value=""/></td>
+			</tr>
 		</table>
 
-		{% if last4 %}
-		<div class="submit_button_div">
-	  		<button id="submitButton" type="submit"> Update Membership </button>
-		</div>
-		{% else %}
+
 		<div class="submit_button_div">
 	  		<button id="submitButton" type="submit"> Start Membership </button>
 		</div>
-		{% endif %}
 	</form>
 </div>
 </div>

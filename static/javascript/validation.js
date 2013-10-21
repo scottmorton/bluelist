@@ -25,7 +25,6 @@ function validateEmailField(email)
 function validatePasswordFields(password1, password2)
 {
     
-    
     if(password1=="" || password2=="")
     {
         return "Please enter a password and confirmation";

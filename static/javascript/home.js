@@ -25,19 +25,10 @@ $(document).ready(function() {
 	fillOptions('#category', categories, selCat );
 	fillSubOptions('#skills', skills, selCat, selSkill);
 	renderResults(selCity,selState,selSkill,selCat);
-	renderHeader(signed_in);
+	renderHeader(signed_in, registered);
 
 
-    //This block of code is for the nav bar
-	$('#nav li').hover(
-    function () {
-        //show submenu
-        $('ul', this).slideDown("fast");
-    }, function () {
-        //hide submenu
-        $('ul', this).slideUp("fast");
-    });
-    
+
 	
 	$(document).on('click','#more_profs', function(event) {
 	    pg_num=pg_num+1;
@@ -56,7 +47,7 @@ $(document).ready(function() {
          {
 
 
-             var selid = $(this).closest(".profile-index-expanded, .profile-index").attr("id");
+             var selid = $(this).closest(".profile-index, .profile-index").attr("id");
              var pnum=Number(selid.slice(4));
 
              expandProfile(selid);
@@ -82,102 +73,46 @@ $(document).ready(function() {
         });
    
     */
-	
-	
-	
-	$(document).on('click','#contact', function(event) {
-	   event.stopPropagation();
-	   
-	   if(signed_in!="false")
-	   {
-	   var selid = $(this).closest(".profile-index-expanded, .profile-index").attr("id");
-       var pnum=Number(selid.slice(4));
-       name= profiles[pnum].fields.name;
-       public_email= profiles[pnum].fields.public_email;
-       public_phone_num= profiles[pnum].fields.public_phone_num;
-
-       var contact_string="";
-       var contact_html="";
-
-       if(public_email=="" && public_phone_num=="")
-       {
-           contact_string='<p> We\'re sorry but '+name+' has not provided any public contact information';
-       }
-       else 
-       {
-           contact_string='<h4> Contact info provided by '+name+' </h4> \
-                                <table class="lbox-table" id="contact_info">';
-           
-           if(public_email!="")
-           {
-            contact_string=contact_string+'<tr><td><p class="contact-label"><b>Email:</b></p></td>\
-                                            <td> <p class="contact-text"> '+public_email+'</p></td></tr>';
-            }
-            
-            if(public_phone_num!="")
-            {
-            contact_string=contact_string+'<tr><td><p class="contact-label"><b>Phone number:</b> </p></td>\
-                                            <td> <p class="contact-text">'+public_phone_num+'</p></td></tr>';
-             }                           
-             
-             contact_string=contact_string+'</table>';
-
-         }
-
-       
-       contact_html='<div class="lbox-container">                                                           \
-                   <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">                 \
-                   <div class="lbox-info">                                                                      \
-                    '+contact_string+'                                                                          \
-                   </div>                                                                                       \
-             	   </div>';
-       
-
-	   }
-	   
-	   else
-	   {
-	        
-	        contact_html='<div class="lbox-container">                                                                          \
-                           <img class="lbox-close" id="lbox_close" src="/static/close.png" alt="close">                        \
-                           <div class="lbox-info">                                                                                  \
-                                <p> Please Login or Sign Up to view contact information</p> \
-                                <div class="button-div">\
-                                <a class= "contact-error-button" id="signin"><p class="navb">Login</p></a>\
-                                <a class= "contact-error-button" id="signup"><p class="navb" action="">Sign Up</p></a>\
-                                </div>\
-                           </div>                                                                                                   \
-                     	   </div>';
-           }
-           
-           
-           $(contact_html).lightbox_me({closeSelector:'#lbox_close',centered: true, 
-                   overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
-               }, onClose: function(){$('.lbox-container').remove();} });
-               e.preventDefault();
-    });
-	
-	
-	
+    
 	$(document).on('click','.profile-index', function() {
 	    var selid=$(this).attr("id");
 	    var pnum=Number(selid.slice(4));
-	    
-	   
-	    var profTemplate=expandProfile(pnum);
-	    
-	    $('#'+selid).html(profTemplate);
-        $('#'+selid).attr('class','profile-index-expanded');
+        contactResponse(pnum);
     });
-    
-    
-    $(document).on('click','#less', function() {
-        var selid = $(this).closest(".profile-index-expanded").attr("id");
+	
+
+	$(document).on('click','#contact', function(event) {
+	   event.stopPropagation();
+	   var selid = $(this).closest(".profile-index, .profile-index").attr("id");
+       var pnum=Number(selid.slice(4));
+       
+       contactResponse(pnum);
+       
+       
+    });
+	
+	
+    $(document).on('click','#more', function(event) {
+        event.stopPropagation();
+        var selid = $(this).closest(".profile-index").attr("id");
         var pnum=Number(selid.slice(4));
         
-        var profTemplate=minProfile(pnum);
-        $('#'+selid).html(profTemplate);
-        $('#'+selid).attr('class','profile-index');
+        $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
+        $(this).closest(".profile-index").find('.long-desc').show();
+        $(this).closest(".profile-index").find('.links').show();
+        $(this).closest(".profile-index").find('#more').hide();
+        
+      });
+    
+    $(document).on('click','#less', function(event) {
+        event.stopPropagation();
+        var selid = $(this).closest(".profile-index").attr("id");
+        var pnum=Number(selid.slice(4));
+        
+        $(this).closest(".profile-index").find('#less','.long-desc','.links').hide();
+        $(this).closest(".profile-index").find('.long-desc').hide();
+        $(this).closest(".profile-index").find('.links').hide();
+        $(this).closest(".profile-index").find('#more').show();
         
       });
     
@@ -186,8 +121,6 @@ $(document).ready(function() {
     $(document).on('click','#signup', function(e) {
                 signup();
     });
-    
-    
     
     
     $(document).on('click','#signup-submit', function() {
@@ -206,24 +139,23 @@ $(document).ready(function() {
          {
              $.post("/signup",{ 'email':ent_email,'password1': ent_pw1,'password2': ent_pw2 }, function(data,status){
          	                            
-         	      if(data=="success")
+         	      if(data.status=="success")
          	      {
          	          // return to state
          	          
          	          signed_in='true';
-           	          renderHeader(signed_in);
-                      
-         	          
+         	          registered='false';
+           	          renderHeader(signed_in,registered);
          	          $('.lbox-container').trigger('close');
          	      }
          	      else
-         	      {
+         	      { 
          	            var error_string='';
-         	            for (var key in data) 
+         	            for (var key in data.errors) 
          	            {
-                            if (data.hasOwnProperty(key)) 
+                            if (data.errors.hasOwnProperty(key)) 
                             {
-               	             var error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
+               	             var error_string=error_string+'<p class="error-msg">'+data.errors[key]+'</p>';
                             }
                         }
                         $("#error-msgs").html(error_string);
@@ -261,12 +193,17 @@ $(document).ready(function() {
 
          if(email_error=="" && password_error=="")
          {
+             
              $.post("/signin",{'email':ent_email,'password': ent_pw}, function(data,status){
-         	      if(data=="success")
+         	      
+         	      
+         	      if(data.status=="success")
          	      {
          	          // return to state
          	          signed_in='true';
-         	          renderHeader(signed_in);
+         	          
+         	          registered=data.registered;
+         	          renderHeader(signed_in, registered);
          	          
          	          $('.lbox-container').trigger('close');
          	          //Reload
@@ -274,17 +211,19 @@ $(document).ready(function() {
          	      }
          	      else
          	      {
+         	          
          	            var error_string='';
          	            
-         	            for (var key in data) 
+         	            for (var key in data.form.error) 
          	            {
-                            if (data.hasOwnProperty(key)) 
+                            if (data.form.error.hasOwnProperty(key)) 
                             {
-               	             var error_string=error_string+'<p class="error-msg">'+data[key]+'</p>';
+               	             var error_string=error_string+'<p class="error-msg">'+data.form.error[key]+'</p>';
                             }
                         }
                         $("#error-msgs").html(error_string);
      	             }
+     	             
               });
               
          }

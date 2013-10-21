@@ -7,8 +7,6 @@ from django.contrib.auth.models import (
 import sys, time
 
 
-
-
 import os
 def get_upload_path(instance, filename):
     return os.path.join("profile_data","user_%d" % instance.user.pk, filename)
@@ -54,7 +52,11 @@ class User(AbstractBaseUser):
                         'required': 'An Email address is required'},
     )
     
+    
     is_active = models.BooleanField(default=True)
+    is_registered = models.BooleanField(default=False)
+    stripe_id=models.CharField(max_length=100,blank=True)
+    
     is_admin = models.BooleanField(default=False)
     
     objects = UserManager()
@@ -90,8 +92,6 @@ class User(AbstractBaseUser):
         return self.is_admin
         
 
-
-# Create your models here.
 
 
 class CatManager(models.Manager):
@@ -154,20 +154,15 @@ class UserProfile(models.Model):
     name = models.CharField(max_length=30)
     shortdesc= models.CharField(max_length=200)
     longdesc = models.CharField(blank=True, max_length=600)
-    city = models.ForeignKey(City)
-    state = models.ForeignKey(State)
-    skillcategory = models.ForeignKey(SkillCategory)
-    skill = models.ForeignKey(Skill)
+    city = models.ForeignKey(City,null=True)
+    state = models.ForeignKey(State,null=True)
+    skillcategory = models.ForeignKey(SkillCategory,null=True)
+    skill = models.ForeignKey(Skill,null=True)
     
     public_email=models.EmailField(blank=True)
     public_phone_num=models.CharField(blank=True,max_length=30)
     
-    prof_pic = models.ImageField(upload_to=get_upload_path, blank=True)
-    
-    #prof_pic_original = models.FileField('original file upload', upload_to=filepath)
-    #prof_pic_thumbnail = models.CharField(max_length=255, blank=True)
-    #prof_pic_name = models.CharField(max_length=255)
-    #prof_pic_desc = models.TextField(blank=True)
+    prof_pic = models.ImageField(upload_to=get_upload_path,blank=True)
     
     link1 = models.URLField(blank=True)
     link1_title = models.CharField(blank=True, max_length=50)
@@ -200,8 +195,6 @@ class UserProfile(models.Model):
     link8 = models.URLField(blank=True)
     link8_title = models.CharField(blank=True, max_length=50)
     link8_desc = models.CharField(blank=True, max_length=100)
-
-
 
 
     file1 = models.FileField(upload_to=get_upload_path,blank=True)
