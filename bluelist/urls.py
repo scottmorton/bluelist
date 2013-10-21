@@ -21,8 +21,7 @@ urlpatterns = patterns('',
     url(r'^userDeleteFile$', userDeleteFile),
     url(r'^userFileUpload$',userFileUpload),
     url(r'^editaccount$',editAccount),
-    url(r'^cancelsubscription$',cancelSubscription),
-    
+    url(r'^cancelsubscription$',cancelSubscription),   
 )
 
 

@@ -17,6 +17,157 @@ import stripe
 stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
 stripe.api_version = '2013-08-13'
 
+
+def user_form(request):
+    return HttpResponseRedirect('/test')
+
+
+def userForm(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/test')
+
+    if not request.user.is_registered:
+        return HttpResponseRedirect('/registration')
+
+    if request.method == 'POST':
+        form = UserInfo(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+
+                #prodaf=UserProfile.objects.get(user=request.user)
+                #bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
+                #u=bam.save()
+
+                #This block makes sure that URL links fill the lower numbers before the last so they are displayed
+                # properly in the profileb
+
+            """
+            
+            link=[""]*8
+            link_desc=[""]*8
+            link_title=[""]*8
+            j=0
+
+            for i in range(1,9):
+                if(cd['link'+str(i)]!="" or cd['link'+str(i)+'_desc']!="" or cd['link'+str(i)+'_title']!=""):
+                    link[j]=cd['link'+str(i)]
+                    link_title[j]=cd['link'+str(i)+'_title']
+                    link_desc[j]=cd['link'+str(i)+'_desc']
+                    j=j+1
+           
+                """
+                
+            try: 
+                prof=UserProfile.objects.get(user=request.user)
+
+                bam=UserInfo(data=request.POST, instance=prof)
+                u=bam.save()  
+
+                return HttpResponseRedirect('/test1')
+
+            except UserProfile.DoesNotExist:
+
+                   #prof=UserProfile.objects.get(user=request.user)
+                   #u=form.save()
+
+               obj = form.save(commit=False)
+               obj.user= request.user
+               obj.save()
+
+            return HttpResponseRedirect('/test2')
+
+
+        else:
+                # This is case where form is not valid and method is post
+
+            try:
+
+                prof=UserProfile.objects.get(user=request.user)
+                
+                
+                
+                if prof.prof_pic!="":
+                    pic_dict={'pic_url': prof.prof_pic.url}
+                else:
+                    pic_dict={'pic_url':""}
+                    
+                    
+                    
+                    
+
+            ## Case when user does not exist, and form is invalid
+
+            except UserProfile.DoesNotExist:
+
+                 pic_dict={'pic_url':""}
+
+        ## This else statement is for GET        
+
+    else:
+
+            ## load in profile for signed in user, if none exists  catch and start with empty form
+
+        try:
+            prof=UserProfile.objects.get(user=request.user)
+            form = UserInfo(instance=prof)
+
+            if prof.prof_pic!="":
+                pic_dict={'pic_url': prof.prof_pic.url}
+
+            else:
+                pic_dict={'pic_url':""}
+
+        except UserProfile.DoesNotExist:
+            prof=UserProfile.objects.create(user=request.user)
+            form=UserInfo()
+            pic_dict={'pic_url':""}
+
+    menu_dict=getCategoryVars()
+    email=str(request.user.email)
+    
+    auth_dict={"user":email}
+    form_dict={'form':form}
+    header_dict={"registered":"true"}
+    
+    from django.forms.models import model_to_dict
+    json_prof_dict=model_to_dict(prof)
+    
+    links=[]
+    link_titles=[]
+    link_descs=[]
+    
+    files=[]
+    file_titles=[]
+    file_descs=[]
+    
+    for i in range(1,9):
+        links.append(json_prof_dict['link'+str(i)])
+        link_titles.append(json_prof_dict['link'+str(i)+'_title'])
+        link_descs.append(json_prof_dict['link'+str(i)+'_desc'])
+        
+        if getattr(prof,'file'+str(i)):
+            files.append(getattr(prof,'file'+str(i)).url)
+        else:
+            files.append("")
+            
+        file_titles.append(json_prof_dict['file'+str(i)+'_title'])
+        file_descs.append(json_prof_dict['file'+str(i)+'_desc'])
+        
+        
+    print file_titles
+  
+    #link_dict={'links':links,"link_title":link_titles,"link_descs":link_descs}
+    #file_dict={'files':files,"file_titles":file_titles,"file_descs":file_descs}
+
+    link_list=  [{'link': t[0], 'link_title': t[1], 'link_desc': t[2]} for t in zip(links, link_titles, link_descs)]
+    file_list= [{'file': t[0], 'file_title': t[1], 'file_desc': t[2]} for t in zip(files, file_titles, file_descs)]
+
+    upload_dict={"link_list":link_list,"file_list":file_list}
+
+    out_dict=dict(upload_dict.items()+auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items()+header_dict.items()+json_prof_dict.items())
+
+    return render(request, 'user_form.html',out_dict )
     
     
 def signup(request):
@@ -335,156 +486,6 @@ def cancelSubscription(request):
     
 
 
-def user_form(request):
-    return HttpResponseRedirect('/test')
-
-
-def userForm(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/test')
-
-    if not request.user.is_registered:
-        return HttpResponseRedirect('/registration')
-
-    if request.method == 'POST':
-        form = UserInfo(request.POST)
-
-        if form.is_valid():
-            cd = form.cleaned_data
-
-                #prodaf=UserProfile.objects.get(user=request.user)
-                #bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
-                #u=bam.save()
-
-                #This block makes sure that URL links fill the lower numbers before the last so they are displayed
-                # properly in the profileb
-
-            """
-            
-            link=[""]*8
-            link_desc=[""]*8
-            link_title=[""]*8
-            j=0
-
-            for i in range(1,9):
-                if(cd['link'+str(i)]!="" or cd['link'+str(i)+'_desc']!="" or cd['link'+str(i)+'_title']!=""):
-                    link[j]=cd['link'+str(i)]
-                    link_title[j]=cd['link'+str(i)+'_title']
-                    link_desc[j]=cd['link'+str(i)+'_desc']
-                    j=j+1
-           
-                """
-                
-            try: 
-                prof=UserProfile.objects.get(user=request.user)
-
-                bam=UserInfo(data=request.POST, instance=prof)
-                u=bam.save()  
-
-                return HttpResponseRedirect('/test1')
-
-            except UserProfile.DoesNotExist:
-
-                   #prof=UserProfile.objects.get(user=request.user)
-                   #u=form.save()
-
-               obj = form.save(commit=False)
-               obj.user= request.user
-               obj.save()
-
-            return HttpResponseRedirect('/test2')
-
-
-        else:
-                # This is case where form is not valid and method is post
-
-            try:
-
-                prof=UserProfile.objects.get(user=request.user)
-                
-                
-                
-                if prof.prof_pic!="":
-                    pic_dict={'pic_url': prof.prof_pic.url}
-                else:
-                    pic_dict={'pic_url':""}
-                    
-                    
-                    
-                    
-
-            ## Case when user does not exist, and form is invalid
-
-            except UserProfile.DoesNotExist:
-
-                 pic_dict={'pic_url':""}
-
-        ## This else statement is for GET        
-
-    else:
-
-            ## load in profile for signed in user, if none exists  catch and start with empty form
-
-        try:
-            prof=UserProfile.objects.get(user=request.user)
-            form = UserInfo(instance=prof)
-
-            if prof.prof_pic!="":
-                pic_dict={'pic_url': prof.prof_pic.url}
-
-            else:
-                pic_dict={'pic_url':""}
-
-        except UserProfile.DoesNotExist:
-            prof=UserProfile.objects.create(user=request.user)
-            form=UserInfo()
-            pic_dict={'pic_url':""}
-
-    menu_dict=getCategoryVars()
-    email=str(request.user.email)
-    
-    auth_dict={"user":email}
-    form_dict={'form':form}
-    header_dict={"registered":"true"}
-    
-    from django.forms.models import model_to_dict
-    json_prof_dict=model_to_dict(prof)
-    
-    links=[]
-    link_titles=[]
-    link_descs=[]
-    
-    files=[]
-    file_titles=[]
-    file_descs=[]
-    
-    for i in range(1,9):
-        links.append(json_prof_dict['link'+str(i)])
-        link_titles.append(json_prof_dict['link'+str(i)+'_title'])
-        link_descs.append(json_prof_dict['link'+str(i)+'_desc'])
-        
-        if getattr(prof,'file'+str(i)):
-            files.append(getattr(prof,'file'+str(i)).url)
-        else:
-            files.append("")
-            
-        file_titles.append(json_prof_dict['file'+str(i)+'_title'])
-        file_descs.append(json_prof_dict['file'+str(i)+'_desc'])
-        
-        
-    print file_titles
-  
-    #link_dict={'links':links,"link_title":link_titles,"link_descs":link_descs}
-    #file_dict={'files':files,"file_titles":file_titles,"file_descs":file_descs}
-
-    link_list=  [{'link': t[0], 'link_title': t[1], 'link_desc': t[2]} for t in zip(links, link_titles, link_descs)]
-    file_list= [{'file': t[0], 'file_title': t[1], 'file_desc': t[2]} for t in zip(files, file_titles, file_descs)]
-
-    upload_dict={"link_list":link_list,"file_list":file_list}
-
-    out_dict=dict(upload_dict.items()+auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items()+header_dict.items()+json_prof_dict.items())
-
-    return render(request, 'user_form.html',out_dict )
 
 
 def userDeleteFile(request):
