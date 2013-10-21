@@ -338,8 +338,8 @@ def cancelSubscription(request):
 def user_form(request):
     return HttpResponseRedirect('/test')
 
-"""
-def user_form(request):
+
+def userForm(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/test')
 
@@ -359,7 +359,7 @@ def user_form(request):
                 #This block makes sure that URL links fill the lower numbers before the last so they are displayed
                 # properly in the profileb
 
-            
+            """
             
             link=[""]*8
             link_desc=[""]*8
@@ -373,7 +373,8 @@ def user_form(request):
                     link_desc[j]=cd['link'+str(i)+'_desc']
                     j=j+1
            
-
+                """
+                
             try: 
                 prof=UserProfile.objects.get(user=request.user)
 
@@ -484,7 +485,6 @@ def user_form(request):
     out_dict=dict(upload_dict.items()+auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items()+header_dict.items()+json_prof_dict.items())
 
     return render(request, 'user_form.html',out_dict )
-"""
 
 
 def userDeleteFile(request):
