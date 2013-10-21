@@ -21,10 +21,10 @@ stripe.api_version = '2013-08-13'
 
 def userForm(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(settings.BASE_URL+'/')
 
     if not request.user.is_registered:
-        return HttpResponseRedirect('/registration')
+        return HttpResponseRedirect(settings.BASE_URL+'/registration')
 
     if request.method == 'POST':
         form = UserInfo(request.POST)
@@ -54,7 +54,7 @@ def userForm(request):
                 bam=UserInfo(data=request.POST, instance=prof)
                 u=bam.save()  
 
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(settings.BASE_URL+'/')
 
             except UserProfile.DoesNotExist:
 
@@ -62,7 +62,7 @@ def userForm(request):
                obj.user= request.user
                obj.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(settings.BASE_URL+'/')
 
 
         else:
@@ -236,14 +236,14 @@ def signin(request):
     
 def signout(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(settings.BASE_URL+'/')
 
 
 
 def registration(request):
     
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(settings.BASE_URL+'/')
 
     
 
@@ -409,7 +409,7 @@ def registration(request):
 
 def editAccount(request):
     if not request.user.is_authenticated() or not request.user.is_registered:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(settings.BASE_URL+'/')
 
     auth_dict={"user":'true'}
     header_dict={"registered":"true"}
@@ -424,7 +424,7 @@ def editAccount(request):
 
 def cancelSubscription(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(settings.BASE_URL+'/')
 
     try:
         
