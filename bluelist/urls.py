@@ -11,7 +11,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^$', homepage),	
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^userform$', userForm),
+	url(r'^userforms$', userForm),
 	url(r'^signup$', signup),
 	url(r'^signin$', signin),
 	url(r'^signout$', signout),
