@@ -13,10 +13,11 @@ from django.conf import settings
 from django.utils import simplejson
 import time
 
+"""
 import stripe
 stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
 stripe.api_version = '2013-08-13'
-
+"""
 
 def user_form(request):
     return HttpResponseRedirect('/test')
@@ -24,7 +25,7 @@ def user_form(request):
 
 def userForm(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/test')
+        return HttpResponseRedirect('/')
 
     if not request.user.is_registered:
         return HttpResponseRedirect('/registration')

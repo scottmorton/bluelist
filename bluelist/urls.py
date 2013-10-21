@@ -11,7 +11,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^$', homepage),	
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^userform$', user_form),
 	url(r'^signup$', signup),
 	url(r'^signin$', signin),
 	url(r'^signout$', signout),
@@ -21,7 +20,8 @@ urlpatterns = patterns('',
     url(r'^userDeleteFile$', userDeleteFile),
     url(r'^userFileUpload$',userFileUpload),
     url(r'^editaccount$',editAccount),
-    url(r'^cancelsubscription$',cancelSubscription),   
+    url(r'^cancelsubscription$',cancelSubscription),
+    url(r'^userform$', user_form),   
 )
 
 
