@@ -1,7 +1,7 @@
 $(document).ready(function() {
  
  
-    renderHeader(signed_in);
+    renderHeader(signed_in,registered);
     var cleared=false;
  
     $( "#cardNumber" ).focus(function() {
