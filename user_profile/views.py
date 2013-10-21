@@ -21,10 +21,10 @@ stripe.api_version = '2013-08-13'
 
 def userForm(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('https://www.bluelist.us/')
+        return HttpResponseRedirect('/')
 
     if not request.user.is_registered:
-        return HttpResponseRedirect('https://www.bluelist.us/registration')
+        return HttpResponseRedirect('/registration')
 
     if request.method == 'POST':
         form = UserInfo(request.POST)
@@ -54,7 +54,7 @@ def userForm(request):
                 bam=UserInfo(data=request.POST, instance=prof)
                 u=bam.save()  
 
-                return HttpResponseRedirect('/test1')
+                return HttpResponseRedirect('/')
 
             except UserProfile.DoesNotExist:
 
@@ -62,7 +62,7 @@ def userForm(request):
                obj.user= request.user
                obj.save()
 
-            return HttpResponseRedirect('/test2')
+            return HttpResponseRedirect('/')
 
 
         else:
