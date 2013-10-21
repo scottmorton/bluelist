@@ -21,7 +21,7 @@ stripe.api_version = '2013-08-13'
 def user_form(request):
     return HttpResponseRedirect('/test')
 
-
+"""
 def userForm(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/test')
@@ -35,14 +35,7 @@ def userForm(request):
         if form.is_valid():
             cd = form.cleaned_data
 
-                #prodaf=UserProfile.objects.get(user=request.user)
-                #bam=UserInfo(data=request.POST, files=request.FILES, instance=prof)
-                #u=bam.save()
-
-                #This block makes sure that URL links fill the lower numbers before the last so they are displayed
-                # properly in the profileb
-
-            """
+            
             
             link=[""]*8
             link_desc=[""]*8
@@ -56,7 +49,7 @@ def userForm(request):
                     link_desc[j]=cd['link'+str(i)+'_desc']
                     j=j+1
            
-                """
+                
                 
             try: 
                 prof=UserProfile.objects.get(user=request.user)
@@ -67,9 +60,6 @@ def userForm(request):
                 return HttpResponseRedirect('/test1')
 
             except UserProfile.DoesNotExist:
-
-                   #prof=UserProfile.objects.get(user=request.user)
-                   #u=form.save()
 
                obj = form.save(commit=False)
                obj.user= request.user
@@ -91,9 +81,7 @@ def userForm(request):
                     pic_dict={'pic_url': prof.prof_pic.url}
                 else:
                     pic_dict={'pic_url':""}
-                    
-                    
-                    
+                   
                     
 
             ## Case when user does not exist, and form is invalid
@@ -530,14 +518,6 @@ def userFileUpload(request):
     getattr(prof, name).save(filename,f)
 
     
-    """
-    #path =settings.MEDIA_ROOT+'profile_data/user_'+str(request.user.pk)+'/'+date_string
-    path =settings.MEDIA_ROOT+'profile_data/user_'+str(request.user.pk)+'/'+f.name
-    
-    destination = open(path, 'wb+')
-    for chunk in f.chunks():
-        destination.write(chunk)
-        destination.close()
-    """
-    
     return HttpResponse(simplejson.dumps({'status':'ok','file_url':str(getattr(prof, name).url)}), content_type="application/json")
+    
+    """
