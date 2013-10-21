@@ -20,15 +20,15 @@ stripe.api_version = '2013-08-13'
 """
 
 def user_form(request):
-    return HttpResponseRedirect('/test')
+    return HttpResponseRedirect('https://www.bluelist.us/test')
 
 
 def userForm(request):
-    return HttpResponseRedirect('/test2')
+    return HttpResponseRedirect('https://www.bluelist.us/test1')
     
     
 def signup(request):
-    return HttpResponseRedirect('/test2')
+    return HttpResponseRedirect('https://www.bluelist.us/test2')
 
 
 def signin(request): 
