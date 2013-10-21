@@ -77,10 +77,9 @@ $(document).ready(function() {
 	$(document).on('click','.profile-index', function() {
 	    var selid=$(this).attr("id");
 	    var pnum=Number(selid.slice(4));
-        $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
-        $(this).closest(".profile-index").find('.long-desc').show();
-        $(this).closest(".profile-index").find('.links').show();
-        $(this).closest(".profile-index").find('#more').hide();
+
+         contactResponse(pnum);
+
     });
 	
 
