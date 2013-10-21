@@ -77,7 +77,10 @@ $(document).ready(function() {
 	$(document).on('click','.profile-index', function() {
 	    var selid=$(this).attr("id");
 	    var pnum=Number(selid.slice(4));
-        contactResponse(pnum);
+        $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
+        $(this).closest(".profile-index").find('.long-desc').show();
+        $(this).closest(".profile-index").find('.links').show();
+        $(this).closest(".profile-index").find('#more').hide();
     });
 	
 
@@ -138,8 +141,7 @@ $(document).ready(function() {
          if(password_error=="" &&  email_error=="")
          {
              $.post("/signup",{ 'email':ent_email,'password1': ent_pw1,'password2': ent_pw2 }, function(data,status){
-         	                   
-         	                   alert(data.status)         
+         	                           
          	      if(data.status=="success")
          	      {
          	          // return to state
