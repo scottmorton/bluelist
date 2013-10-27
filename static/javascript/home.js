@@ -93,7 +93,12 @@ $(document).ready(function() {
 	    var selid=$(this).attr("id");
 	    var pnum=Number(selid.slice(4));
 
-         contactResponse(pnum);
+         //contactResponse(pnum);
+         
+         $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
+         $(this).closest(".profile-index").find('.long-desc').show();
+         $(this).closest(".profile-index").find('.links').show();
+         $(this).closest(".profile-index").find('#more').hide();
 
     });
 	
@@ -104,7 +109,7 @@ $(document).ready(function() {
        var pnum=Number(selid.slice(4));
        
        contactResponse(pnum);
-       
+        
        
     });
 	
