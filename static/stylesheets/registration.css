@@ -63,23 +63,60 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 table
 {
+    border: none;
     display:inline-block;
+    margin-top:10px;
     margin-bottom:20px;
+    padding:0px;
+    border-spacing:0;
+    border-collapse: collapse;
+    border-spacing:0px;
 }
+
+th, td, tr {
+    padding: 0;
+    border:none;
+}
+
 
 p.label
 {
     font-size:18px;
-    text-align:right;
+    text-align:left;
 }
 
 
 input[type="text"]
 {
-    font-size:16px;
+    display: inline-block;
+    font-size:20px;
     line-height: 25px;
-    font-weight:bold;
+    height:40px;
+    font-weight:normal;
+
+    
 }
+
+input.payment_field
+{
+    color:#B6B6B4;
+}
+
+input#cardnumber
+{
+    width:300px;
+}
+
+input#cvc
+{
+    margin-right:86px;
+}
+
+input#promoCode
+{
+    width:300px;
+}
+
 
 #submitButton
 {

@@ -89,7 +89,6 @@ $(document).ready(function(){
                                 
                               $('#file'+num+'_container1').hide();
                               $('#file'+num+'_container2').show();
-                                alert("in")
 
                           }
                       }
@@ -154,7 +153,10 @@ $(document).ready(function(){
 		
 		//create the id for the progress bar and add a progress bar under the input filed
 		var prog_id=this.id.concat('_progress');
-	    $(this).after( '<progress value="0" max="0" id="'+prog_id+'"></progress>' );
+		
+		$(this).closest(".file_div").after( '<div class="progress_container" ><progress value="0" max="0" id="'+prog_id+'"></progress></div>' );
+		$(this).closest(".file_div").hide();
+		 
 		 
 		var xhr = new XMLHttpRequest();
 		
@@ -169,7 +171,7 @@ $(document).ready(function(){
 		    
 		            console.log('upload complete');
 		            
-		            $('#'+prog_id).remove();
+		            $('#'+prog_id).closest(".progress_container").remove();
 		            //show picture
 		            //document.write(xhr.responseText);
 		            
@@ -200,9 +202,7 @@ $(document).ready(function(){
                             $('#view_file'+input_file_num).attr("href", String(jsonResponse.file_url));
                             
                             $('#file'+input_file_num+'_container2').hide();
-                            $('#file'+input_file_num+'_container1').show();
-                            
-                                                         
+                            $('#file'+input_file_num+'_container1').show();                            
                         }
                     }
                     

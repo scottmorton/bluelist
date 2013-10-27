@@ -15,11 +15,12 @@
 	</script>
 
 	{% load staticfiles %}
-	
-	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "userform.css" %}">
-	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+
+
 	
 	
 	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
@@ -52,9 +53,13 @@
 	<div class="form-container">
 		<table class="form-table">	
 
-		<tr><td><h4 class="form-label"> Name </h4></td></tr>
+		<tr><td><div class="label-div"><h4 class="form-label"> Name </h4> <p class="sub-label">(Required)</p></div></td></tr>
 		<tr><td>{{form.name.errors}}</td></tr>
 		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.name}}</div></div></td></tr>
+		<tr><td><div class="label-div"><h4 class="form-label"> Service </h4> <p class="sub-label"> (Required)</p></div></td></tr>
+		<tr><td>{{form.service.errors}}</td></tr>
+		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.service}}</div></div></td></tr>
+		
 		<tr><td>
 			<table>
 				<tr><td>	
@@ -65,7 +70,7 @@
 							<div class="form-outer-field-new">
 								<div class="form-field-container">					
 									
-									<div {% if pic_url == "" %} hidden {% endif %} id="prof_im_container1" class="form-field-container">
+									<div {% if pic_url == "" %} hidden {% endif %} id="prof_im_container1" class="form-field-container file_div">
 									
 										<div class="image_div">
 											<a target="_blank" href="{{ pic_url|safe }}"><img id="img_prof_pic" src="{{ pic_url|safe }}" /></a>
@@ -86,18 +91,21 @@
 											
 										</div>
 										
-										<div {% if pic_url != "" %} hidden {% endif %} id="prof_im_container2" class="form-field-container">
+										<div {% if pic_url != "" %} hidden {% endif %} id="prof_im_container2" class="form-field-container file_div">
 	                        				<input id="id_prof_pic" name="prof_pic" type="file" />
 	                    				</div>
-									
-									
 								</div>
 							</div>
 						</td></tr>
 					</table>
 				</td><td>
 					<table>
-						<tr><td> <h4 class="form-label"> Location and Profession</h4> </td></tr>
+						<tr><td> <div class="label-div">
+										<h4 class="form-label"> Location and Service Type</h4>
+										<p class="sub-label">(Required)</p>
+										
+									</div>
+						</td></tr>
 						<tr><td>
 							<div class="form-split-field-container">
 								<table>	
@@ -124,7 +132,7 @@
 			</table>
 		</td></tr>
 		
-		<tr><td><h4 class="form-label"> Listing Description </h4></td></tr>
+		<tr><td><div class="label-div"><h4 class="form-label"> Listing Description </h4> <p class="sub-label">(Required)</p></div></td></tr>
 		<tr><td>{{form.shortdesc.errors}}</td></tr>
 		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.shortdesc}}</div></div></td></tr>
 
@@ -140,6 +148,7 @@
 		<tr><td>
 			<div id="contact" class="contact-container">
 			<h4 id="contact_label" class="form-label"> Contact Information </h4>
+		
 		
 			<table>
 				<tr><td>{{form.public_email.errors}}</td></tr>
@@ -269,12 +278,13 @@
 				<tr><td>
 					
 					
-						<div {% if not num.file %} hidden {% endif %} id="file{{forloop.counter}}_container1" class="file_container">
+						<div {% if not num.file %} hidden {% endif %} id="file{{forloop.counter}}_container1" class="file_container file_div">
 							<input hidden id="id_file{{forloop.counter}}" name="file{{forloop.counter}}" type="file" />
 							
-							<object width="200" id="embed_file{{forloop.counter}}" data="{{num.file}}" >
+							<object class="upload_object" width="200" id="embed_file{{forloop.counter}}" data="{{num.file}}" >
 								<param name="autoplay" value="false">
 							</object>
+							
 							<ul class="file_upload_list">
 								<li class="file_upload_li"><a class="file file-view" id="view_file{{forloop.counter}}" href="{{num.file}}">Download</a></li>
 								<li class="file_upload_li"><a class="file file-replace" id="replace_file{{forloop.counter}}" href="#">Replace</a></li>
@@ -282,7 +292,7 @@
 							</ul>
 						</div>
 						
-						<div {% if num.file %} hidden {% endif %} id="file{{forloop.counter}}_container2">
+						<div {% if num.file %} hidden {% endif %} id="file{{forloop.counter}}_container2" class="file_div">
 							<input id="id_file{{forloop.counter}}" name="file{{forloop.counter}}" type="file" />
 						</div>
 					

@@ -1,16 +1,12 @@
 $(document).ready(function() {
  
- 
     renderHeader(signed_in,registered);
-    var cleared=false;
  
-    $( "#cardNumber" ).focus(function() {
-      if(cleared==false )
-      {
-          cleared=true;
-          $("#cardNumber").val("");
-          
-      };
+    $( ".payment_field" ).focus(function() {
+
+          $(this).val("");
+          $(this).css("color","black");
+
     });
  
  
@@ -23,10 +19,10 @@ $(document).ready(function() {
         // Clear error div
         $('#payment-errors').html("");
         // Get the values:
-        var ccNum = $('#cardNumber').val(),
-            cvcNum = $('#cvc').val(),
-            expMonth = $('#expMonth').val(),
-            expYear = $('#expYear').val();
+        var ccNum = 4242424242424242;//$('#cardNumber').val(),
+            cvcNum = 779;//$('#cvc').val(),
+            expMonth = 10;  //$('#expMonth').val(),
+            expYear = 2015;//$('#expYear').val();
 
         // Validate the number:
         if (!Stripe.validateCardNumber(ccNum)) {     

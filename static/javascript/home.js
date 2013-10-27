@@ -18,10 +18,25 @@ var profiles=[["this","awesome"],["fun","times"]];
 
 $(document).ready(function() {
     
+    
     // Initialize menu and navbar states
+
+	
+	var lochash    = location.hash.substr(1);
+	if(lochash)
+	{
+        selState = lochash.substr(lochash.indexOf('selState=')).split('&')[0].split('=')[1];
+        selCity = lochash.substr(lochash.indexOf('selCity=')).split('&')[0].split('=')[1];
+        selCat= lochash.substr(lochash.indexOf('selCat=')).split('&')[0].split('=')[1];
+        selSkill= lochash.substr(lochash.indexOf('selSkill=')).split('&')[0].split('=')[1];
+    }
+    else
+    {
+         window.history.pushState(null,'hi','#selState=0&selCity=0&selCat=0&selSkill=0')
+    }
+
 	fillOptions('#state', states, selState);
 	fillSubOptions('#city', cities, selState, selCity);
-
 	fillOptions('#category', categories, selCat );
 	fillSubOptions('#skills', skills, selCat, selSkill);
 	renderResults(selCity,selState,selSkill,selCat);
@@ -149,6 +164,9 @@ $(document).ready(function() {
          	          registered='false';
            	          renderHeader(signed_in,registered);
          	          $('.lbox-container').trigger('close');
+         	          signup_success_menu();
+         	       
+         	          
          	      }
          	      else
          	      { 
@@ -172,6 +190,9 @@ $(document).ready(function() {
          }
          
      });
+    
+
+    
     
     
     
@@ -198,7 +219,6 @@ $(document).ready(function() {
              
              $.post("/signin",{'email':ent_email,'password': ent_pw}, function(data,status){
          	      
-         	      
          	      if(data.status=="success")
          	      {
          	          // return to state
@@ -213,14 +233,13 @@ $(document).ready(function() {
          	      }
          	      else
          	      {
-         	          
          	            var error_string='';
          	            
-         	            for (var key in data.form.error) 
+         	            for (var key in data.errors) 
          	            {
-                            if (data.form.error.hasOwnProperty(key)) 
+                            if (data.errors.hasOwnProperty(key)) 
                             {
-               	             var error_string=error_string+'<p class="error-msg">'+data.form.error[key]+'</p>';
+               	             var error_string=error_string+'<p class="error-msg">'+data.errors[key]+'</p>';
                             }
                         }
                         $("#error-msgs").html(error_string);
@@ -309,7 +328,7 @@ $(document).ready(function() {
 		
 		fillOptions('#category', categories, selCat );
 		fillSubOptions('#skills', skills, selCat, selSkill)
-		
+		window.history.pushState(null,'hi','#selState='+selState+'&selCity='+selCity+'&selCat='+selCat+'&selSkill='+selSkill)
 		renderResults(selCity,selState,selSkill,selCat);
 
 	});

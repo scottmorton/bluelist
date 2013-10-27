@@ -23,11 +23,11 @@
 	  Stripe.setPublishableKey('pk_test_OJ4HXQ3SBShYjtgqA6hq7Ynr');
 	  // ...
 	</script>
-	
+	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "registration.css" %}">
-	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
+
 	
 </head>
 <body>
@@ -42,7 +42,7 @@
 	
 	
 	{% if last4 %}
-	<h3 class="title"> Update card information </h3>
+	<h3 class="title"> Update Payment Information </h3>
 	{% else %}
 	<h3 class="title"> Bluelist Profile Registration </h3>
 	<h3 class="sub_title">$5/month</h3>
@@ -53,7 +53,7 @@
 	  <div id="payment-errors">
 	  </div>
 
-		
+		<!--
 		<table>
 			<tr><td><p class="label">Card Number</p></td>
 				{% if last4 %}
@@ -73,7 +73,7 @@
 				</td>	
 			</tr>
 			
-			
+		
 			{% if last4 %}
 				
 			{% else %}
@@ -84,8 +84,36 @@
 				</tr>
 			{% endif %}
 			
+		</table>
+		-->
+		
+		<table >
+			<tr><td><p class="label">Card Number</p></td>
+			{% if last4 %}
+			<tr><td><input class="payment_field" type="text" size="20" id="cardNumber" autocomplete="off" value="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;{{last4}}"/></td></tr>
+			{% else %}	
+			<tr><td><input class="payment_field" type="text" size="20" id="cardNumber" autocomplete="off"/></td></tr>
+			{% endif %}
+			<tr><td>
+				<table >
+					<tr><td><p class="label">CVC</p></td><td><p class="label">Expiration</p></td></tr>
+					<tr><td><input class="payment_field" type="text" size="4" id="cvc" autocomplete="off" /></td>
+						<td><input class="payment_field" type="text" size="2" id="expMonth" autocomplete="off"  value="MM"/><span> / </span><input class="payment_field" type="text" size="4" id="expYear" autocomplete="off"   value="YYYY"/></td></tr>
+				</table>
+			</td></tr>
+			{% if last4 %}
+				
+			{% else %}
+				<tr><td>&nbsp;</td><td>&nbsp;</td>
+				</tr>
+				<tr><td><p class="label">Promotional Code</p></td></tr>
+				<tr><td><input type="text" size="20" id="promoCode" name="promo_code" autocomplete="off" value=""/></td></tr>
+			{% endif %}
 			
 		</table>
+		
+		
+		
 
 		{% if last4 %}
 		<div class="submit_button_div">

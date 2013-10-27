@@ -91,6 +91,7 @@ function expandProfile(pnum){
     
     
 	var name= profiles[pnum].fields.name;
+	var service= profiles[pnum].fields.service;
 	var city= profiles[pnum].fields.city;
     var state=profiles[pnum].fields.state;
     var skill=profiles[pnum].fields.skill;
@@ -222,7 +223,7 @@ function expandProfile(pnum){
     
     if(prof_pic!="")
     {
-        image_string='<img src="/media/'+prof_pic+'" height="100">';
+        image_string='<a href="/media/'+prof_pic+'" ><img class="index_image" src="/media/'+prof_pic+'" ></a>';
     }
 
     var sample_work_title="";
@@ -263,7 +264,7 @@ function expandProfile(pnum){
 								    <p class="index-name">'+name+'</p>                          \
 								</div>                                                          \
 								<div class="profile-tag">                                       \
-								    <p class="tag">'+skill+' in '+city+', '+state+'</p>         \
+								    <p class="tag">'+service+' in '+city+', '+state+'</p>         \
 								</div>                                                          \
 								<div class="short-desc">                                        \
 								    <p class="index-desc">'+ shortdesc+'</p> 	                \

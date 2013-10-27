@@ -71,6 +71,12 @@
 }
 
 
+ul
+{
+    margin:0px;
+    padding-left:0;
+}
+
 #nav li {
   float: left;
   display: block;
@@ -80,6 +86,8 @@
   margin: 0px 0px;
   padding-right:20px;
   padding-left:20px;
+
+  
 }
 
 
@@ -93,7 +101,7 @@
   text-align: center;
   font-size:25px;
     width: 100%;
- 
+
 }
 
 #nav li:hover {
@@ -109,6 +117,7 @@
   display: none;
   margin: 0 0 0 0;
   list-style: none;
+
 }
 
 #nav ul li {
@@ -118,6 +127,7 @@
   -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.3);
   	   -moz-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.3);
   	        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.3);
+
   }
 
 #nav ul li.last{

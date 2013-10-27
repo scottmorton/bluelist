@@ -218,12 +218,12 @@ def signin(request):
                     return HttpResponse(simplejson.dumps({'status':'success','registered':registered}), content_type="application/json")
                 else:
                     status_dict={'status':'errors'}
-                    form_dict={'error':'Unsuccessful Login'}
+                    form_dict={'errors':{'key':'Unsuccessful Login'}}
                     out_dict=dict(status_dict.items()+form_dict.items())
                     return HttpResponse(simplejson.dumps(out_dict), content_type="application/json")
         else:
             
-            form_dict={'form':form.errors}
+            form_dict={'errors':form.errors}
             status_dict={'status':'errors'}
             out_dict=dict(status_dict.items()+form_dict.items())
             

@@ -1,0 +1,79 @@
+[
+  {
+    "model": "user_profile.skillcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Web Development"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Live Performance"
+	}
+  },
+  {
+    "model": "user_profile.skillcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Engineering"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Writing"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 5,
+    "fields": {
+      "name": "Legal"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 6,
+    "fields": {
+      "name": "Repair"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 7,
+    "fields": {
+      "name": "Health Care"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 8,
+    "fields": {
+      "name": "Advertising"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 9,
+    "fields": {
+      "name": "Home Services"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 10,
+    "fields": {
+      "name": "Design"
+	}
+  },
+{
+    "model": "user_profile.skillcategory",
+    "pk": 11,
+    "fields": {
+      "name": "Video"
+	}
+  }
+]

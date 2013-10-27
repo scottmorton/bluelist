@@ -152,6 +152,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     
     name = models.CharField(max_length=30)
+    service = models.CharField(max_length=50)
     shortdesc= models.CharField(max_length=200)
     longdesc = models.CharField(blank=True, max_length=600)
     city = models.ForeignKey(City,null=True)

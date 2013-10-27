@@ -73,9 +73,16 @@
     overflow: hidden;
 
 
+
 }
 
-
+.index_image
+{
+    height:auto;
+    width:auto;
+    max-height:100px;
+    max-width:100px;
+}
 
 
 .index-text
@@ -96,7 +103,7 @@
        /*border: 1px solid blue;*/
        float:left;
        width:210px;
-       Height: 20px;
+       height: 20px;
        
        
 }
@@ -212,7 +219,6 @@ p.Results
 	padding-top:150px;
 	margin-bottom:5px;
 	margin-left:5px;
-	
 }
 
 p.index-name

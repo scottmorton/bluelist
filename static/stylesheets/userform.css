@@ -74,19 +74,25 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 {
     margin-top:20px;
     margin-bottom:0px;
-    text-align:left;
     margin-left:1px;
+    display:inline-block;
+    float:left;
+}
 
+.sub-label
+{
+    margin-top:20px;
+    margin-bottom:0px;
+    margin-left:2px;
+    display:inline-block;
+    float:left;
 }
 
 .form-sub-label
 {
-
     text-align:left;
     width:80px;
 }
-
-
 
 .form-contact-label
 {
@@ -418,7 +424,6 @@ li.file_upload_li {
     }
 
 
-
 .file_container
 {
     width:500px;
@@ -427,5 +432,21 @@ li.file_upload_li {
     overflow:hidden;
 }
 
+.upload_object
+{
+    margin:10px;
+}
+
+
+.progress_container{
+    display:inline-block;
+    background-color:white;
+     border:solid 1px rgb(150, 150, 150);
+     overflow:hidden;
+     width:100%;
+     padding-top:20px;
+     padding-bottom:20px;
+     margin:0px;
+}
 
 
