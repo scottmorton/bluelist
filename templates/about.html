@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title> BlueList </title>
+
+<script type="text/javascript"> 
+	var signed_in = "{{user|safe}}";
+	var registered = "{{registered|safe}}";
+</script>
+
+
+
+{% load staticfiles %}
+
+<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
+<script type="text/javascript" src="{% static "header.js" %}" > </script>
+<script>  $(document).ready(function(){
+  
+renderHeader(signed_in, registered); });</script>
+
+<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "termsandconditions.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "about.css"%}">
+
+</head>
+<body>
+
+	<div class= "body-container"></div>
+
+
+	<div class= "body-scroll">
+		<div class="base-container">
+			
+			<h3 class="title">About Bluelist</h4>
+			
+			<div class="text-div">
+			
+			<p class="about-text">Bluelist was created to make talented local freelancers accessible to everyone.</p>
+			
+			<h4 class="header">Freelancers</h3>
+			
+			<p class="about-text">Freelancers can create a profile that explains the service they offer and provide references or examples of their work through links and uploaded files.</p>
+			
+			
+			<h4 class="header">Looking for a Freelancer?</h3>
+
+			<p class="about-text">On Bluelist you can easily find freelancers that are available in your city and then decide which ones to contact based on examples of their work. </p>
+			
+			
+			</div>
+			
+			
+		</div>
+		
+		
+	</div>
+	
+{% include 'header.html' %}
+
+</body>
+</html>

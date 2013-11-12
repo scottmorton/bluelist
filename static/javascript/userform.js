@@ -2,26 +2,24 @@ $(document).ready(function(){
   
   
     renderHeader(signed_in, registered);
-    
-    //Header
 
   
-   $(document).on('click',function(e) {
-       
-       if($(e.target).closest('#edit').length)
-        {
-            $('ul',"#edit").show();
-        }
-        else
-        {
-            $('ul',"#edit").hide();
-        }
-    });
+    $( "#id_shortdesc" ).bind('input propertychange', function () {
+            shortdesc_char_left();
+            
+        });
+  
+        $( "#id_longdesc" ).bind('input propertychange', function () {
+            longdesc_char_left();
+            });
+  
+    $( ".media-desc" ).bind('input propertychange', function () {
+                  media_char_left($(this));
+        });
+            
     
     
  /*
-  
-  
   $('#edit li').hover(
   function () {
       //show submenu
@@ -105,7 +103,6 @@ $(document).ready(function(){
   $(document).on('click','#prof_pic_delete', function() {
       var name = this.name;
       
-      
       var data = new FormData();
       data.append('name',name)
       var xhr = new XMLHttpRequest();
@@ -138,15 +135,26 @@ $(document).ready(function(){
   	$( "input:file" ).each(function() {
   	    
   	    this.addEventListener('change', function(e) {
-
+        $(this).parent().siblings(".file-error").html("");
   	    //Disable submit button so that form is not submitted during upload
   	    $('#submitButton').attr('disabled', 'disabled');
   	    
 		var data = new FormData();
 		var sel_file=$(this).get(0).files[0];
+		
 		var name = this.name;
-		var input_id=this.id;
-    	
+    	var input_id=this.id;
+		var file_size=sel_file.size;
+		
+		
+		if(file_size>parseInt(max_upload_size))
+		{
+		    $(this).parent().siblings(".file-error").html("File not uploaded: the selected file was greater than the maximum of 20MB");
+		    return;
+		    
+		}
+		
+	
     	//give the name of the file for the server to know what type of upload it is
     	data.append('name',name)
 		data.append(name,sel_file);
@@ -156,7 +164,8 @@ $(document).ready(function(){
 		
 		$(this).closest(".file_div").after( '<div class="progress_container" ><progress value="0" max="0" id="'+prog_id+'"></progress></div>' );
 		$(this).closest(".file_div").hide();
-		 
+		
+		var obj=$(this);
 		 
 		var xhr = new XMLHttpRequest();
 		
@@ -168,29 +177,34 @@ $(document).ready(function(){
 	        };
 	        
 		xhr.onload = function(){
-		    
-		            console.log('upload complete');
 		            
 		            $('#'+prog_id).closest(".progress_container").remove();
 		            //show picture
 		            //document.write(xhr.responseText);
 		            
-		            
 		            var jsonResponse = JSON.parse(xhr.responseText);
+                    
 
 		            $('#submitButton').prop('disabled', false);
 		            
 		            //set up conditionls for each failure possibility
 		            //confirm file successfully uploaded
 		            
+		            
+		            if(jsonResponse.status != "ok")
+		            {
+		               obj.parent().siblings(".file-error").html(jsonResponse.message);
+		               obj.closest(".file_div").show();
+		               
+		            }
+		            
                     if(input_id=="id_prof_pic" && jsonResponse.status=="ok")
                     {
                         $('#img_prof_pic').attr("src", String(jsonResponse.file_url));
-                        
                         $('#prof_im_container2').hide();
                         $('#prof_im_container1').show();                              
                     }
-                    else
+                    else if(jsonResponse.status=="ok")
                     {
                         var input_file_slice=input_id.slice(0,7);
                         var input_file_num=input_id.slice(-1);
@@ -260,7 +274,6 @@ $(document).ready(function(){
         {
             document.getElementById("links_label").style.display = "block";
         }
-        
     });
   
   
@@ -352,8 +365,6 @@ $(document).ready(function(){
       });
   
   
-  
-  
   // This block is the dynamic drop down for states and cities
     var value = $("#id_state").val();
     var elid=$("#id_city");
@@ -400,7 +411,72 @@ for(var i=0; i<array.length; i++)
 				listString+="<option value='"+String(array[i][1]) + "' selected='selected'>" + array[i][0] +"</option>";
 			}
 	};
-
 	$(elemId).html(listString);
-	
 };
+
+
+
+function longdesc_char_left()
+{
+    var val= $( "#id_longdesc" ).val();
+    var num_left=600-parseInt(val.length);
+
+    var count_string="";
+    if(num_left<0)
+    {
+        count_string=String(600-parseInt(val.length));
+        $('#long_desc_num').css('color','red');
+    }
+    else
+    {
+        count_string=String(600-parseInt(val.length));
+        $('#long_desc_num').css('color','');
+
+    }
+
+    $('#long_desc_num').html(count_string);
+}
+
+function shortdesc_char_left()
+{     
+          var val= $( "#id_shortdesc" ).val();
+          var num_left=200-parseInt(val.length);
+          
+          var count_string="";
+          if(num_left<0)
+          {
+              count_string=String(200-parseInt(val.length));
+              $('#short_desc_num').css('color','red');
+          }
+          else
+          {
+              count_string=String(200-parseInt(val.length));
+              $('#short_desc_num').css('color','');
+              
+          }
+          
+          $('#short_desc_num').html(count_string);
+}
+
+
+function media_char_left(obj)
+{
+    var max_num=200;
+      
+      var val= obj.val();
+      var num_left=max_num-parseInt(val.length);
+      var count_string="";
+      if(num_left<0)
+      {
+          count_string=String(max_num-parseInt(val.length));
+         obj.siblings().children('.char-count').css('color','red');
+      }
+      else
+      {
+          count_string=String(max_num-parseInt(val.length));
+          obj.siblings().children('.char-count').css('color','');
+      }
+
+     obj.siblings().children('.char-count').html(count_string);
+    
+}

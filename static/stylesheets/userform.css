@@ -19,14 +19,12 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 }
 
-
-
 .form-container
 {
 
     margin-top:40px;
     overflow:visible;
-    width:510px;
+    width:500px;
     height:100%;
     margin-left:auto;
     margin-right:auto;
@@ -44,9 +42,8 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 .form-outer-field
 {
-    overflow:hidden;
     text-align:center;
-    width:510px;
+    width:500px;
 }
 
 .form-outer-field-new
@@ -76,66 +73,31 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 .form-label
 {
-    margin-top:15px;
+    margin-top:0px;
     margin-bottom:0px;
-    margin-left:1px;
     display:inline-block;
     float:left;
 }
 
 .sub-label
 {
-    margin-top:15px;
     margin-bottom:0px;
+    margin-top:1px;
     margin-left:2px;
     display:inline-block;
     float:left;
+    font-size:12px;
 }
+
 
 .form-sub-label
 {
-    text-align:left;
-    width:80px;
-    margin-left:5px;
-}
-
-.form-contact-label
-{
-    width:200px;
-    text-align:left;
+    margin-top:0px;
     margin-bottom:0px;
-    margin-top:5px;
+    display:inline-block;
+    float:left;
+    
 }
-
-.form-link-label
-{
-    width:200px;
-    text-align:left;
-    margin-bottom:0px;
-    margin-top:5px;
-}
-
-.form-file-label
-{
-    width:200px;
-    text-align:left;
-    margin-bottom:0px;
-    margin-top:5px;
-}
-
-
-.errorlist
-{
-    color:red;
-}
-
-table
-{
-    margin-left:-3px;
-    margin-right:-3px;
-
-}
-
 
 
 
@@ -145,8 +107,6 @@ input[type="text"]
     height:30px;
     width:500px;
     margin-bottom:0px;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 
@@ -171,6 +131,7 @@ input[type="file"]
 
 textarea
 {
+    margin:0px;
     font-size:16px;
     width:500px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -194,17 +155,8 @@ textarea
     margin-bottom:70px;
     margin-left:auto;
     margin-right:auto;
-    
 }
 
-
-
-table.form_button_table
-{
-    margin-left:-3px;
-    margin-right:-3px;
-    margin-bottom:-3px;
-}
 
 .form_button_div
 {
@@ -212,18 +164,18 @@ table.form_button_table
     margin-right:auto;
     margin-bottom:-2px;
     display:inline-block;
-    
 }
 
 
 img
 {
     height:165px;
-    margin-bottom:20px;
+    margin-bottom:25px;
     
 }
 
 .image_div {
+    width:236px;
     display:inline-block;
     position: relative;
     background-repeat: no-repeat;
@@ -240,71 +192,39 @@ img
 
 
 
-#edit{
-  padding: 0;
-  list-style: none;
-  overflow:visible;
-}
 
-
-#edit li {
-  display: block;
-  background: white;
-  position: relative;
-  z-index: 500;
-  margin: 0px 0px;
-  padding-right:0px;
-  padding-left:0px;
-}
-
-
-#edit li a {
+.prof_pic_btn {
   display: block;
   font-family: "HelveticaNeue", "Helvetica Neue light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  line-height:20px;
-  height: 20px;
+  line-height:25px;
+  height: 25px;
   width:40px;
   text-decoration: none;
   color: #808080;
   text-align: center;
   font-size:15px;
-  width: 100%;
- 
+  width:100px;
+  background:white;
+  width:117.5px;
+  border-top:solid 1px rgb(215, 215, 215);
 }
 
-
-
-#edit li:hover {
-    
+.prof_pic_btn:hover 
+{
     background:#F0F0F0;
 }
 
-
-#edit ul {
-  display: none;
-  margin: 0 0 0 0;
-  list-style: none;
+.pic_replace
+{
+    float:left;
+    border-right:solid 1px rgb(215, 215, 215);
+    
 }
 
-
-#edit ul li {
-  width: 100%;
-  float: left;
-  padding:0px;
-
-  }
-
-
-#edit ul a {
-  display: block;
-  color: #808080;
-  text-align: center;
-  height:25px;
-  line-height:25px;
-  font-size:15px;
+.pic_delete
+{
+    float:right;
 }
-
-
 
 
 td
@@ -341,7 +261,7 @@ td:empty
     color:white;
     float:left;
     text-align:center;
-      line-height:50px;
+     line-height:50px;
 }
 
 .add_ref:hover {
@@ -384,45 +304,38 @@ input[type="submit"]:hover
 
 ul.file_upload_list
 {
-width:100%;
+width:505px;
 padding:0;
 margin:0;
 list-style-type:none;
-border-top:solid 1px rgb(150, 150, 150);
 
 }
 
 
 a.file
 {
-    height:20px;
     display:inline-block;
-    width:6em;
     text-decoration:none;
-    color:#808080;;
+    color:#808080;
     background-color:white;
     padding:0.2em 0.6em;
-    border-right:1px solid white;
+    padding-top:10px;
+    padding-bottom:10px;
+    border:solid 1px rgb(200, 200, 200);
+    width:140px;
 }
 
 
 a.file-view
 {
-
-
-    width:100px;
+    float:left;
 }
 
-a.file-replace
-{
-
-    width:120px;
-}
 
 a.file-delete
 {
 
-    width:100px;
+    float:right;
 }
 
 
@@ -438,9 +351,9 @@ li.file_upload_li {
 .file_container
 {
     width:500px;
-    background-color:white;
-    border:solid 1px rgb(150, 150, 150);
-    overflow:hidden;
+    /*background-color:white;*/
+    /*border:solid 1px rgb(150, 150, 150);*/
+    overflow:visible;
 }
 
 .upload_object
@@ -460,4 +373,121 @@ li.file_upload_li {
      margin:0px;
 }
 
+
+/*Error list */
+
+.error-indicator
+{
+    color:red;
+    font-size:21px;
+}
+.errorlist
+{
+    color:red;
+    float:left;
+}
+
+
+
+
+
+/* Formatting divs */
+
+.split-form-container
+{
+    width:100%;
+    overflow:hidden;
+}
+
+.split-form-div
+{
+    width:50%;
+    float:left;
+    
+}
+
+.cat-label-div
+{
+
+    width:100%;
+    overflow:hidden;
+    margin-bottom:2px;
+    margin-top:20px;
+    height:20px;
+    line-height:20px;
+}
+
+.cat-container
+{
+    margin-top:5px;
+    overflow:hidden;
+    width:100%;
+    height:25px;
+}
+
+.cat-label
+{
+    float:left;
+    width:80px;
+    text-align:left;
+    height:25px;
+    line-height:25px;
+    margin-left:4px;
+    
+}
+
+
+.label-div
+{
+    width:100%;
+    overflow:hidden;
+    margin-bottom:2px;
+    margin-top:20px;
+    height:20px;
+    line-height:20px;
+}
+
+.sub-label-div
+{
+    width:100%;
+    overflow:hidden;
+    margin-bottom:0px;
+    margin-top:5px;
+    height:20px;
+    line-height:20px;
+}
+
+.contact-message
+{
+    font-size:12px;
+    float:left;
+    margin-left:5px;
+    margin-top:1px;
+}
+
+
+.char-count
+{
+    float:right;
+}
+
+.file-error
+{
+    margin-top:5px;
+    margin-bottom:5px;
+    color:red;
+    font-size:15px;
+}
+
+.cat-div-container
+{
+    width:100%;
+    margin-top:15px;
+}
+
+.contact-container
+{
+    margin-bottom:20px;
+    
+}
 

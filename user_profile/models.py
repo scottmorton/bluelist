@@ -151,8 +151,8 @@ class UserProfile(models.Model):
     
     user = models.OneToOneField(User)
     
-    name = models.CharField(max_length=30)
-    service = models.CharField(max_length=50)
+    name = models.CharField(max_length=20)
+    service = models.CharField(max_length=20)
     shortdesc= models.CharField(max_length=200)
     longdesc = models.CharField(blank=True, max_length=600)
     city = models.ForeignKey(City,null=True)
@@ -166,69 +166,77 @@ class UserProfile(models.Model):
     prof_pic = models.ImageField(upload_to=get_upload_path,blank=True)
     
     link1 = models.URLField(blank=True)
+    link1_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link1_title = models.CharField(blank=True, max_length=50)
-    link1_desc = models.CharField(blank=True, max_length=100)
+    link1_desc = models.CharField(blank=True, max_length=200)
     
     link2 = models.URLField(blank=True)
+    link2_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link2_title = models.CharField(blank=True, max_length=50)
-    link2_desc = models.CharField(blank=True, max_length=100)
+    link2_desc = models.CharField(blank=True, max_length=200)
     
     link3 = models.URLField(blank=True)
+    link3_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link3_title = models.CharField(blank=True, max_length=50)
-    link3_desc = models.CharField(blank=True, max_length=100)
+    link3_desc = models.CharField(blank=True, max_length=200)
     
     link4 = models.URLField(blank=True)
+    link4_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link4_title = models.CharField(blank=True, max_length=50)
-    link4_desc = models.CharField(blank=True, max_length=100)
+    link4_desc = models.CharField(blank=True, max_length=200)
     
     link5 = models.URLField(blank=True)
+    link5_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link5_title = models.CharField(blank=True, max_length=50)
-    link5_desc = models.CharField(blank=True, max_length=100)
+    link5_desc = models.CharField(blank=True, max_length=200)
     
     link6 = models.URLField(blank=True)
+    link6_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link6_title = models.CharField(blank=True, max_length=50)
-    link6_desc = models.CharField(blank=True, max_length=100)
+    link6_desc = models.CharField(blank=True, max_length=200)
     
     link7 = models.URLField(blank=True)
+    link7_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link7_title = models.CharField(blank=True, max_length=50)
-    link7_desc = models.CharField(blank=True, max_length=100)
+    link7_desc = models.CharField(blank=True, max_length=200)
     
     link8 = models.URLField(blank=True)
+    link8_pic=models.ImageField(upload_to=get_upload_path,blank=True)
     link8_title = models.CharField(blank=True, max_length=50)
-    link8_desc = models.CharField(blank=True, max_length=100)
+    link8_desc = models.CharField(blank=True, max_length=200)
 
 
     file1 = models.FileField(upload_to=get_upload_path,blank=True)
     file1_title = models.CharField(blank=True, max_length=50)
-    file1_desc = models.CharField(blank=True, max_length=100)
+    file1_desc = models.CharField(blank=True, max_length=200)
     
     file2 = models.FileField(upload_to=get_upload_path,blank=True)
     file2_title = models.CharField(blank=True, max_length=50)
-    file2_desc = models.CharField(blank=True, max_length=100)
+    file2_desc = models.CharField(blank=True, max_length=200)
     
     file3 = models.FileField(upload_to=get_upload_path,blank=True)
     file3_title = models.CharField(blank=True, max_length=50)
-    file3_desc = models.CharField(blank=True, max_length=100)
+    file3_desc = models.CharField(blank=True, max_length=200)
     
     file4 = models.FileField(upload_to=get_upload_path,blank=True)
     file4_title = models.CharField(blank=True, max_length=50)
-    file4_desc = models.CharField(blank=True, max_length=100)
+    file4_desc = models.CharField(blank=True, max_length=200)
     
     file5 = models.FileField(upload_to=get_upload_path,blank=True)
     file5_title = models.CharField(blank=True, max_length=50)
-    file5_desc = models.CharField(blank=True, max_length=100)
+    file5_desc = models.CharField(blank=True, max_length=200)
     
     file6 = models.FileField(upload_to=get_upload_path,blank=True)
     file6_title = models.CharField(blank=True, max_length=50)
-    file6_desc = models.CharField(blank=True, max_length=100)
+    file6_desc = models.CharField(blank=True, max_length=200)
     
     file7 = models.FileField(upload_to=get_upload_path,blank=True)
     file7_title = models.CharField(blank=True, max_length=50)
-    file7_desc = models.CharField(blank=True, max_length=100)
+    file7_desc = models.CharField(blank=True, max_length=200)
     
     file8 = models.FileField(upload_to=get_upload_path,blank=True)
     file8_title = models.CharField(blank=True, max_length=50)
-    file8_desc = models.CharField(blank=True, max_length=100)
+    file8_desc = models.CharField(blank=True, max_length=200)
 
 
 

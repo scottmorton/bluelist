@@ -1,0 +1,71 @@
+ <html>
+<head>
+    <title>Bluelist</title>
+
+
+	
+	<script type="text/javascript"> 
+		var signed_in = "{{user|safe}}";
+		var registered = "{{registered|safe}}";
+	</script>
+
+	
+	{% load staticfiles %}
+
+	<script type="text/javascript" src="{% static "jquery.js" %}" > </script>
+		<script type="text/javascript" src="{% static "header.js" %}" > </script>
+		<script type="text/javascript" src="{% static "profile_preview.js" %}" > </script>		
+	
+	
+	<script type="text/javascript">
+	  // This identifies your website in the createToken call below
+	  Stripe.setPublishableKey('pk_test_OJ4HXQ3SBShYjtgqA6hq7Ynr');
+	  // ...
+	</script>
+	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "header.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "body.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "profile_preview.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "menu.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "results.css" %}">
+	
+</head>
+<body>
+
+	
+ 
+<div class= "body-container">
+<div class="body-scroll">
+<div class="base-container-menu">
+	<div class="results-container">
+		
+		<h3 class="title"> Profile Preview</h3>
+		
+			<div class="results" id="searchResults">
+				<h4 class="profile-header"> Profile Listing </h4>
+
+				<div class="min-profile">
+					{% include 'profile_list.html' %}
+				</div>
+				
+				<h4 class="profile-header"> Full Profile </h4>
+				<div class="full-profile">
+					{% include 'profile_list.html' %}
+				</div>
+			</div>
+			
+			<div class="submit_button_div">
+		  		<a class="button_tag" href="/userform"> Edit Profile </a>
+			</div>
+	</div>
+
+
+</div>
+</div>
+</div>
+
+
+{% include 'header.html' %}
+
+</body>
+</html>

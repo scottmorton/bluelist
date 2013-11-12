@@ -59,8 +59,8 @@ function signin()
 
             lbox_string='<div class="lbox-container">'+indiv+'</div>';
 
-                 $(lbox_string).lightbox_me({ closeSelector:'#lbox_close', centered: true, 
-                      overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
+                 $(lbox_string).lightbox_me({ appearEffect:"fadeIn", overlaySpeed:100, closeSelector:'#lbox_close', centered: true, 
+                      overlayCSS:{background: 'black', opacity: .3},  onLoad: function() {
                           $("#id_email").focus();
                           },onClose: function(){$('.lbox-container').remove();}});
                   e.preventDefault();
@@ -91,7 +91,7 @@ function signup()
          		
          	  lbox_string='<div class="lbox-container">'+indiv+'</div>';
          	
-              $(lbox_string).lightbox_me({ closeSelector:'#lbox_close', centered: true, 
+              $(lbox_string).lightbox_me({ appearEffect:"fadeIn", overlaySpeed:100, closeSelector:'#lbox_close', centered: true, 
                    overlayCSS:{background: 'black', opacity: .5},  onLoad: function() {
                        $("#id_email").focus();
                        }, onClose: function(){$('.lbox-container').remove();}

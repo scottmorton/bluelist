@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
-from bluelist.views import homepage, prof_list_get, prof_request
-from user_profile.views import userForm, signup, signin, signout, registration, userFileUpload, userDeleteFile, editAccount, cancelSubscription
+from bluelist.views import homepage, prof_list_get, prof_request, terms, contactRequest, about
+from user_profile.views import userForm, signup, signin, signout, registration, userFileUpload, userDeleteFile, editAccount, cancelSubscription, stripeWebHook, profilePreview
 from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -21,7 +21,12 @@ urlpatterns = patterns('',
     url(r'^userFileUpload$',userFileUpload),
     url(r'^editaccount$',editAccount),
     url(r'^cancelsubscription$',cancelSubscription),
-    url(r'^userform$', userForm),   
+    url(r'^userform$', userForm),
+    url(r'^termsandconditions$', terms),  
+    url(r'^stripeWebHook$', stripeWebHook),
+    url(r'^contactrequest$', contactRequest),
+    url(r'^profilepreview$', profilePreview),
+    url(r'^about$', about)
 )
 
 

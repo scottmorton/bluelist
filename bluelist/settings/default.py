@@ -7,6 +7,9 @@ import os
 import django
 
 
+
+
+
 DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
@@ -72,7 +75,10 @@ MEDIA_ROOT = BASE_PATH+'/bluelist/media/'
 MEDIA_URL = '/media/'
 
 
-MAX_UPLOAD_SIZE = "5242880"
+
+MAX_UPLOAD_SIZE = "20971520"
+#This also sets client side file size check
+
 # 2.5MB - 2621440
 # 5MB - 5242880
 # 10MB - 10485760
@@ -108,6 +114,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_PATH+"/bluelist/static/javascript",
     BASE_PATH+"/bluelist/static/javascript/libraries",
+    BASE_PATH+"/bluelist/static/javascript/javascript_templates",
     BASE_PATH+"/bluelist/static/stylesheets",
     BASE_PATH+"/bluelist/static/graphics",
     BASE_PATH+"/bluelist/static/graphics/background_pics"
@@ -176,7 +183,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-	'user_profile',
+	'user_profile'
 )
 
 AUTH_USER_MODEL = 'user_profile.User'

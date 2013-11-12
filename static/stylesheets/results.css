@@ -32,12 +32,12 @@
 }
 
 
-
-.profile-index:hover
+.profile-min:hover
 {
     background: rgb(245, 245, 250);
     cursor: pointer;
 }
+
 
 #more_profs{
     display: block;
@@ -100,9 +100,8 @@
 
 .profile-name
 {
-       /*border: 1px solid blue;*/
        float:left;
-       width:210px;
+       width:180px;
        height: 20px;
        
        
@@ -112,9 +111,8 @@
 {
     float:right;
     margin-top:0px;
-    /*border: 1px solid green;*/
     overflow:hidden;
-    width:300px;
+    width:320px;
     height: 20px;
 
 }
@@ -126,9 +124,13 @@
         width:520px;
         height:65px;
         overflow:hidden;
-        font-size: 15px;
+      
 }
 
+.description
+{
+      font-size: 16px;
+}
 
 
 .index-options
@@ -152,35 +154,37 @@
 }
 
 
-link-container
+.link-container
 {
-    margin-top:10px;
+    margin-top:20px;
+    margin-bottom:20px;
+    overflow:hidden;
+    width:100%;
 }
 
-link-desc-container
+.link-desc-container
 {
-    float:left;
+
 }
-link-title-container
+.link-title-container
 {
-    float:left;
-}
-
-
-
-
-file-container
-{
-    margin-top:10px;
 }
 
-file-desc-container
+
+.file-container
 {
-    float:left;
+    margin-top:20px;
+    margin-bottom:20px;
+    overflow:hidden;
+    width:100%;
 }
-file-title-container
+
+.file-desc-container
 {
-    float:left;
+
+}
+.file-title-container
+{
 }
 
 

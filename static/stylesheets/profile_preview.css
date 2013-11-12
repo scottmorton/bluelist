@@ -1,0 +1,40 @@
+
+.profile-header
+{
+    margin-bottom:5px;
+}
+
+.title
+{
+    color: #808080;
+    font-weight:normal;
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.button_tag
+{
+    display:inline-block;
+    overflow:hidden;
+    height:50px;
+    width:180px;
+    padding-right:10px;
+    padding-left:10px;
+    margin-right:20px;
+    margin-left:20px;
+    border-radius:3px;
+    background:#0077E0;
+    font-size: 16px;
+    color:white;
+    text-align:center;
+     line-height:50px;
+     text-decoration:none;
+     margin-top:30px;
+}
+
+
+
+.button_tag:hover {
+    background:  rgb(0,100,200);
+    cursor:pointer;
+}

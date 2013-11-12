@@ -1,18 +1,18 @@
-
 function renderResults(selCity, selState, selSkill, selCat) {
-    var pg_num=1;
-    l_prof=0;
+    //l_prof=0;
+
     $.get("/proflist",{ 'selstate' : String(selState),
 	                        'selcity': String(selCity),
 	                        'selcat':String(selCat),
 	                        'selskill':String(selSkill),
 	                        'pg_num':String(pg_num)}, function(data,status){
-      
-        
                                	   
-       profiles=jQuery.parseJSON(data.profiles);
-       var num_profs=data.num_profiles;
        
+            
+       //profiles=jQuery.parseJSON(data.profiles);
+       var prof_html=data.prof_string;
+       
+       var num_profs=data.num_profiles;
        var more_profs=String(data.more_profs);
        
        if(more_profs=="false")
@@ -23,21 +23,22 @@ function renderResults(selCity, selState, selSkill, selCat) {
          {
              $('#more_profs').show();
          }
+    
           
-       var listString=profString();
+       var listString=prof_html;
        
-       listString='<p id="num_profs" class="Results">'+num_profs+' Results</p>'+listString;
+       
+       listString='<p id="num_profs" class="Results">'+num_profs+' Result(s)</p>'+listString;
+       
        $('#searchResults').html(listString);
        
-       l_prof=profiles.length;
-       
-       
-     });
-     
-};
+       //l_prof=profiles.length;
+         });
+
+    };
 
 
-function addResults(selCity, selState, selSkill, selCat, pg_num) {
+function addResults(selCity, selState, selSkill, selCat) {
     
     $.get("/proflist",{ 'selstate' : String(selState),
 	                        'selcity': String(selCity),
@@ -45,9 +46,7 @@ function addResults(selCity, selState, selSkill, selCat, pg_num) {
 	                        'selskill':String(selSkill),
 	                        'pg_num':String(pg_num)}, function(data,status){
 
-       var new_profiles=jQuery.parseJSON(data.profiles);
-       
-       profiles=profiles.concat(new_profiles);
+       var new_profile_string=data.profiles;
        
        var more_profs=String(data.more_profs);
        
@@ -56,36 +55,32 @@ function addResults(selCity, selState, selSkill, selCat, pg_num) {
   	        $('#more_profs').hide();
         }
        
+       $('#searchResults').append(new_profile_string);
        
-       var listString=profString();
-       $('#searchResults').append(listString);
-       l_prof=profiles.length;
+       //l_prof=profiles.length;
 
      });
-     
 };
 
+
+/*
 function profString(){
 
     var listString="";
 
 	for(var i=l_prof; i < profiles.length; i++)  //Iterate through profiles variables
 		{
-		    
 		    var profTemplate=expandProfile(i);
-			listString+= '<div class="profile-index" id="prof'+String(i)+'">'+profTemplate+'</div>';	//Combine string list
-			
-			
+			listString+= '<div class="profile-index profile-min" id="prof'+String(i)+'">'+profTemplate+'</div>';	//Combine string list
 			}
-
             return listString;
 }
 
 
 
+*/
 
-
-
+/*
 
 function expandProfile(pnum){
     
@@ -103,7 +98,6 @@ function expandProfile(pnum){
     var longdesc = profiles[pnum].fields.longdesc;
     
     var links=[[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "]];
-    
     
     links[0][0]=profiles[pnum].fields.link1;
     links[0][1]=profiles[pnum].fields.link1_title;
@@ -139,6 +133,7 @@ function expandProfile(pnum){
 
     var linklist="";
     var link_present=false;
+
     
     
     for(var i=0; i<8; i++)
@@ -147,19 +142,17 @@ function expandProfile(pnum){
         {
             link_present=true;
             
-            linklist=linklist+'<div class="link-container">                                     \
-                                    <div class="link-title-container">                          \
-                                        <a href="'+links[i][0]+'">'+links[i][1]+'</a>           \
-                                    </div>                                                      \
-                                    <div class="link-desc-container"                            \
-                                        <p class="link-desc">'+links[i][2]+'</p>                \
-                                    </div>                                                      \
+            linklist=linklist+'<div class="link-container">\
+                                    <div class="link-title-container">\
+                                        <a href="'+links[i][0]+'">'+links[i][1]+'</a>\
+                                    </div>\
+                                    <div class="link-desc-container">\
+                                        <p class="link-desc">'+links[i][2]+'</p>\
+                                    </div>\
                                 </div>';
             
         }
-        
     }
-
     
     var files =[[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "],[" "," "]];
     
@@ -208,7 +201,7 @@ function expandProfile(pnum){
             
             filelist=filelist+'<div class="file-container">                                     \
                                     <div class="file-title-container">                          \
-                                        <a href="/media/'+files[i][0]+'">'+files[i][1]+'</a>           \
+                                        <a href="/media/'+files[i][0]+'">'+files[i][1]+'</a>    \
                                     </div>                                                      \
                                     <div class="file-desc-container"                            \
                                         <p class="file-desc">'+files[i][2]+'</p>                \
@@ -230,7 +223,7 @@ function expandProfile(pnum){
     
     if(link_present || file_present)
     {
-        sample_work_title="	<h4> References and Links </h4>"
+        sample_work_title="<h4> References and Links </h4>"
     }
     
     /*
@@ -240,13 +233,11 @@ function expandProfile(pnum){
     }
     */
     
+    /*
     var optionslist="";
     if(link_present || file_present || longdesc!="")
     {
-        optionslist='\
-        <a class="index-option" id="contact">Contact</a>        \
-        <a hidden class="index-option" id="less">Less</a>       \
-        <a class="index-option" id="more">More</a>';
+        optionslist='<a class="index-option" id="contact">Contact</a><a hidden class="index-option" id="less">Less</a><a class="index-option" id="more">More</a>';
     }
     else
     {
@@ -254,35 +245,51 @@ function expandProfile(pnum){
         <a class="index-option" id="contact">Contact</a>';
     }
     
+    var hash={
+        image_string:image_string,
+        name:name,
+        service:service,
+        city:city,
+        state:state,
+        shortdesc:shortdesc,
+        longdesc:longdesc,
+        sample_work_title:sample_work_title,
+        linklist:linklist,
+        filelist:filelist,
+        optionslist:optionslist 
+    };
 
-
-	var profTemplate='<div class="index-pic"> 				                                    \
-		                    '+image_string+'                                                    \
-	                    </div> 									                                \
-				 		<div class="index-text">                                                \
-				 			    <div class="profile-name">                                      \
-								    <p class="index-name">'+name+'</p>                          \
-								</div>                                                          \
-								<div class="profile-tag">                                       \
-								    <p class="tag">'+service+' in '+city+', '+state+'</p>         \
-								</div>                                                          \
-								<div class="short-desc">                                        \
-								    <p class="index-desc">'+ shortdesc+'</p> 	                \
-								</div>                                                          \
-								<div hidden class="long-desc">                                         \
-								    <p class="long-desc">'+ longdesc+'</p> 	                    \
-								</div>                                                          \
-								<div hidden class="links">                                             \
-								'+sample_work_title+'                                           \
-								'+linklist+filelist+'                                           \
-								</div>                                                          \
-								<div class="index-options">                                     \
-								    <div class="option">                                        \
-					 			        '+optionslist+'                                         \
-					 			    </div>                                                      \
-					 			</div>                                                          \
+	var profTemplate='<div class="index-pic">\
+		                    {{& image_string}}\
+	                    </div>\
+				 		<div class="index-text">\
+				 			    <div class="profile-name">\
+								    <p class="index-name">{{& name}}</p>\
+								</div>\
+								<div class="profile-tag">\
+								    <p class="tag">{{& service}} in {{& city}}, {{& state}}</p>\
+								</div>\
+								<div class="short-desc">\
+								    <p class="index-desc">{{& shortdesc}}</p>\
+								</div>\
+								<div hidden class="exp_section">\
+								    <div class="long-desc">\
+								        <p class="long-desc">{{& longdesc}}</p>\
+								    </div>\
+								    <div class="links">\
+								        {{& sample_work_title}}\
+								        {{& linklist}} {{& filelist}}\
+								    </div>\
+								</div>\
+								<div class="index-options">\
+								    <div class="option">\
+					 			        {{& optionslist}}\
+					 			    </div>\
+					 			</div>\
 					 	</div>';
     
-    return profTemplate;
+    var template=Mustache.to_html(profTemplate, hash);
+    return template;
+    
 }
-
+*/

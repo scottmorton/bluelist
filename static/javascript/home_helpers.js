@@ -1,18 +1,20 @@
 function contactResponse(pnum){
+    //make ajax query for contact information
     
     
-	   if(signed_in!="false")
+    $.get("/contactrequest",{'selprof': String(pnum)}, function(data,status){
+    var status=data.status;
+    var number=data.number;
+    var email=data.email;
+    var name=data.name;
+
+     
+	   if(status=="success")
 	   {
-
-       
-           name= profiles[pnum].fields.name;
-           public_email= profiles[pnum].fields.public_email;
-           public_phone_num= profiles[pnum].fields.public_phone_num;
-
            var contact_string="";
            var contact_html="";
 
-           if(public_email=="" && public_phone_num=="")
+           if(email=="" && number=="")
            {
                contact_string='<p> We\'re sorry but '+name+' has not provided any public contact information';
            }
@@ -21,16 +23,16 @@ function contactResponse(pnum){
                contact_string='<h4> Contact info provided by '+name+' </h4> \
                                 <table class="lbox-table" id="contact_info">';
            
-                if(public_email!="")
+                if(email!="")
                 {
                     contact_string=contact_string+'<tr><td><p class="contact-label"><b>Email:</b></p></td>\
-                                            <td> <p class="contact-text"> '+public_email+'</p></td></tr>';
+                                            <td> <p class="contact-text"> '+email+'</p></td></tr>';
                     }
             
-                if(public_phone_num!="")
+                if(number!="")
                 {
                     contact_string=contact_string+'<tr><td><p class="contact-label"><b>Phone number:</b> </p></td>\
-                                            <td> <p class="contact-text">'+public_phone_num+'</p></td></tr>';
+                                            <td> <p class="contact-text">'+number+'</p></td></tr>';
                 }                           
              
                 contact_string=contact_string+'</table>';
@@ -69,5 +71,5 @@ function contactResponse(pnum){
                }, onClose: function(){$('.lbox-container').remove();} });
                e.preventDefault();
     
-    
+        });
 }

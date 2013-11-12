@@ -1,0 +1,29 @@
+
+.base-container
+{
+width: 676px;
+overflow:hidden;
+margin-left:auto;
+margin-right:auto;
+background-color: white;
+padding-top: 10px;
+padding-bottom: 30px;
+border-radius:3px;
+padding-left:15px;
+padding-right:15px;
+background:rgba(255, 255, 255, 0.95);
+text-align: center;
+-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.content-container
+{
+    width:550px;
+    text-align:left;
+    margin-right:auto;
+    margin-left:auto;
+    
+}

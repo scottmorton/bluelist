@@ -20,16 +20,144 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 
+#payment-errors
+{
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+    background:white;
+    width:400px;
+    color:red;
+    overflow:hidden;
+    border:solid 1px #D1D0CE;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+#payment_error_messages
+{
+    text-align:left;
+    width:80%;
+    margin-right:auto;
+    margin-left:auto;
+}
 
 .form-container
 {
     margin-top:0px;
     overflow:hidden;
-    width:600px;
     margin-left:auto;
     margin-right:auto;
-    display:inline-block;
+
 }
+
+
+
+.infoWrapper
+{
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+    width:300px; 
+    margin-bottom:20px;
+}
+
+.payment-details-div
+{
+    margin-left:auto;
+    margin-right:auto;
+    width:400px;
+    background:white;
+    border:solid 1px #D1D0CE;
+    overflow:hidden;
+    display:inline-block;
+    
+}
+
+.payment-title-div
+{
+    width:100%;
+
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:20px;
+    background:white;
+    
+}
+
+
+.membership-details-div
+{
+    padding-top:20px;
+    padding-bottom:20px;
+    
+}
+
+.payment-details-div
+{
+    padding-bottom:10px;
+    padding-top:10px;
+}
+
+
+
+
+h4.payment-title
+{
+    font-size:22px;
+    font-weight:normal;
+    color:#463E3F;
+    text-align:left;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+
+.membership-details-div
+{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    width:400px;
+    background:white;
+    border:solid 1px #D1D0CE;
+    overflow:hidden;
+        display:inline-block;
+    
+}
+
+.membership-title-div
+{
+    width:100%;
+
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:20px;
+    background:white;
+    
+}
+
+
+h4.membership-title
+{
+    font-size:22px;
+    font-weight:normal;
+    color:#463E3F;
+    text-align:left;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+
+.terms-div
+{
+    
+    overflow:hidden;
+    margin-top:30px;
+    
+}
+
 
 .submit_button_div
 {
@@ -40,9 +168,9 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 .title
 {
-    color: #808080;
+    color: #463E3F;
     font-weight:normal;
-    font-size:30px;
+    font-size:35px;
     margin-bottom:30px;
 }
 
@@ -59,13 +187,17 @@ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
     line-height:120%;
 }
 
+p.terms-text
+{
+ display:inline;   
+ font-size:15px;
+}
 
 
 table
 {
     border: none;
     display:inline-block;
-    margin-top:10px;
     margin-bottom:20px;
     padding:0px;
     border-spacing:0;
@@ -83,23 +215,40 @@ p.label
 {
     font-size:18px;
     text-align:left;
+    margin-top:20px;
+    margin-bottom:5px;
+}
+
+.cvc-div
+{
+    float:left;
+}
+
+.exp-div
+{
+    float:right;
 }
 
 
 input[type="text"]
 {
     display: inline-block;
-    font-size:20px;
-    line-height: 25px;
-    height:40px;
-    font-weight:normal;
-
-    
+    font-size:18px;
+    line-height: 35px;
+    height:35px;
+    font-weight:200;
 }
 
 input.payment_field
 {
-    color:#B6B6B4;
+    color:#808080;
+    margin:0px;
+    font-style:italic;
+}
+
+input#name
+{
+    width:300px;
 }
 
 input#cardnumber
@@ -109,8 +258,18 @@ input#cardnumber
 
 input#cvc
 {
-    margin-right:86px;
+    margin-left:0px;
 }
+
+input#expMonth
+{
+    width:45px;
+}
+input#expYear
+{
+    width:60px;
+}
+
 
 input#promoCode
 {
@@ -121,7 +280,7 @@ input#promoCode
 #submitButton
 {
     height:50px;
-    width:252px;
+    width:300px;
     border-radius:3px;
     margin-right:auto;
     margin-left:auto;
@@ -141,3 +300,25 @@ input#promoCode
     background:  rgb(13, 170, 50);
     cursor:pointer;
 }
+
+
+
+.terms-checkbox
+{
+    float:left;
+}
+
+
+.error_header
+{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.error_message
+{
+    margin-top:10px;
+    margin-bottom:10px;   
+}
+
+
+

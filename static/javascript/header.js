@@ -2,25 +2,25 @@
 $(document).ready(function() {
 
 
-  $(document).on('click',function(e) {
-      
+    
+	 $("*").on('click',function(e) {
+	
       if($(e.target).closest('#account_li').length)
        {
+           
            $('ul',"#account_li").show();
        }
        else
        {
            $('ul',"#account_li").hide();
        }
-   });
-   
+    });
 });
-
-
 
 
 function renderHeader(signed_in,registered)
 {
+    
     if(String(signed_in)!="false")
     {
        $('#signin_li').hide();
@@ -44,8 +44,9 @@ function renderHeader(signed_in,registered)
     {
         $('#account_li').hide();
         $('#signin_li').show();
-        $('#signup_li').show();
-        
+        $('#signup_li').show(); 
     }
+    
+    
 }
 

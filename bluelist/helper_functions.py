@@ -1,4 +1,5 @@
 from user_profile.models import State, City, SkillCategory, Skill
+import webkit2png
 
 
 def getCategoryVars():
@@ -63,7 +64,64 @@ def profile_serializer(profile_obj):
     return simplejson.dumps(json_str)
     
     
+
+
+def profile_dictionary(userobs_out):
+    num_profs=len(userobs_out)
+    prof_container={}
+    for i in range(0,num_profs):
+        key_str="prof"+str(i+1)
+        
+        prof=userobs_out[i]
     
+        link_list=[]
+        file_list=[]
+
+        for i in range(1,9):
+                       
+            link_url=getattr(prof,'link'+str(i))
+            link_title=getattr(prof,'link'+str(i)+'_title')
+            link_desc=getattr(prof,'link'+str(i)+'_desc')
+            
+            if link_url!="":
+                if link_title=="":
+                    link_title="Link"
+                link_list.append({'url': link_url, 'title': link_title, 'desc': link_desc})
+
+            file_title=""
+            file_desc=""
+            file_url=""
+            if getattr(prof,'file'+str(i)):
+                file_=getattr(prof,'file'+str(i))
+                file_url=file_.url
+                file_title=getattr(prof,'file'+str(i)+'_title')
+                file_desc=getattr(prof,'file'+str(i)+'_desc')
+                if file_title == "":
+                    file_title="Uploaded File"
+                file_list.append({'url': file_url, 'title': file_title, 'desc': file_desc})    
+    
+    
+        if prof.prof_pic:
+            prof_pic_url=prof.prof_pic.url
+        else:
+            prof_pic_url=""
+    
+        prof_dict={     'name':prof.name,
+                        'pk':prof.pk,
+                        'service':prof.service,
+                        'shortdesc':prof.shortdesc,
+                        'longdesc':prof.longdesc,
+                        'city':prof.city.name,
+                        'state':prof.state.name,
+                        'skillcategory':prof.skillcategory.name,
+                        'skill':prof.skill.name,
+                        'prof_pic':prof_pic_url,
+                        'link_list':link_list,
+                        'file_list':file_list}
+    
+        prof_container[key_str]=prof_dict
+    
+    return prof_container
     
     
     

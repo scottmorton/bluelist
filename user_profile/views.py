@@ -8,16 +8,15 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.forms.models import model_to_dict
 import json
-from bluelist.helper_functions import getCategoryVars
+from bluelist.helper_functions import getCategoryVars, profile_dictionary
 from django.conf import settings
 from django.utils import simplejson
 import time
 
-
 import stripe
-stripe.api_key = "sk_test_3kALpjgXsmcXo1Aynw5VZRdO"
-stripe.api_version = '2013-08-13'
 
+stripe.api_key = settings.STRIPE_KEY
+stripe.api_version = '2013-08-13'
 
 def userForm(request):
     if not request.user.is_authenticated():
@@ -32,8 +31,7 @@ def userForm(request):
         if form.is_valid():
             cd = form.cleaned_data
 
-            
-            
+            """
             link=[""]*8
             link_desc=[""]*8
             link_title=[""]*8
@@ -45,42 +43,30 @@ def userForm(request):
                     link_title[j]=cd['link'+str(i)+'_title']
                     link_desc[j]=cd['link'+str(i)+'_desc']
                     j=j+1
-           
-                
-                
-            try: 
-                prof=UserProfile.objects.get(user=request.user)
+           """
+                 
+            prof=UserProfile.objects.get(user=request.user)
 
-                bam=UserInfo(data=request.POST, instance=prof)
-                u=bam.save()  
+            bam=UserInfo(data=request.POST, instance=prof)
+            u=bam.save()  
 
-                return HttpResponseRedirect(settings.BASE_URL+'/')
-
-            except UserProfile.DoesNotExist:
-
-               obj = form.save(commit=False)
-               obj.user= request.user
-               obj.save()
-
-            return HttpResponseRedirect(settings.BASE_URL+'/')
+            return HttpResponseRedirect('/profilepreview')
 
 
         else:
                 # This is case where form is not valid and method is post
 
             try:
-
                 prof=UserProfile.objects.get(user=request.user)
-                
-                
-                
                 if prof.prof_pic!="":
                     pic_dict={'pic_url': prof.prof_pic.url}
                 else:
                     pic_dict={'pic_url':""}
-                   
+                
+                #use the request data as the profile dictionary so it can be sent back
+                prof_dict=request.POST
+          
                     
-
             ## Case when user does not exist, and form is invalid
 
             except UserProfile.DoesNotExist:
@@ -91,11 +77,12 @@ def userForm(request):
 
     else:
 
-            ## load in profile for signed in user, if none exists  catch and start with empty form
+            ## load in profile for signed in user, if none exists  catch and create a blank one
 
         try:
             prof=UserProfile.objects.get(user=request.user)
             form = UserInfo(instance=prof)
+            prof_dict=model_to_dict(prof)
 
             if prof.prof_pic!="":
                 pic_dict={'pic_url': prof.prof_pic.url}
@@ -107,52 +94,65 @@ def userForm(request):
             prof=UserProfile.objects.create(user=request.user)
             form=UserInfo()
             pic_dict={'pic_url':""}
+            prof_dict=model_to_dict(prof)
+
+
+    #For all possibilities
 
     menu_dict=getCategoryVars()
     email=str(request.user.email)
     
     auth_dict={"user":email}
     form_dict={'form':form}
+    
     header_dict={"registered":"true"}
     
-    from django.forms.models import model_to_dict
-    json_prof_dict=model_to_dict(prof)
     
     links=[]
     link_titles=[]
     link_descs=[]
+    link_error=[]
+    link_title_error=[]
+    link_desc_error=[]
     
     files=[]
     file_titles=[]
     file_descs=[]
-    
+    file_title_error=[]
+    file_desc_error=[]
+
     for i in range(1,9):
-        links.append(json_prof_dict['link'+str(i)])
-        link_titles.append(json_prof_dict['link'+str(i)+'_title'])
-        link_descs.append(json_prof_dict['link'+str(i)+'_desc'])
+        links.append(prof_dict['link'+str(i)])
+        link_titles.append(prof_dict['link'+str(i)+'_title'])
+        link_descs.append(prof_dict['link'+str(i)+'_desc'])
+        link_error.append(form['link'+str(i)].errors)
+        link_title_error.append(form['link'+str(i)+'_title'].errors)
+        link_desc_error.append(form['link'+str(i)+'_desc'].errors)
+        
         
         if getattr(prof,'file'+str(i)):
             files.append(getattr(prof,'file'+str(i)).url)
         else:
             files.append("")
             
-        file_titles.append(json_prof_dict['file'+str(i)+'_title'])
-        file_descs.append(json_prof_dict['file'+str(i)+'_desc'])
-        
-        
-    print file_titles
+        file_titles.append(prof_dict['file'+str(i)+'_title'])
+        file_descs.append(prof_dict['file'+str(i)+'_desc'])
+        file_title_error.append(form['file'+str(i)+'_title'].errors)
+        file_desc_error.append(form['file'+str(i)+'_desc'].errors)
   
     #link_dict={'links':links,"link_title":link_titles,"link_descs":link_descs}
     #file_dict={'files':files,"file_titles":file_titles,"file_descs":file_descs}
 
-    link_list=  [{'link': t[0], 'link_title': t[1], 'link_desc': t[2]} for t in zip(links, link_titles, link_descs)]
-    file_list= [{'file': t[0], 'file_title': t[1], 'file_desc': t[2]} for t in zip(files, file_titles, file_descs)]
+    link_list=  [{'link': t[0], 'link_title': t[1], 'link_desc': t[2], 'link_error':t[3], 'link_title_error':t[4],'link_desc_error':t[5]} for t in zip(links, link_titles, link_descs, link_error, link_title_error, link_desc_error)]
+    file_list= [{'file': t[0], 'file_title': t[1], 'file_desc': t[2], 'file_title_error':t[3], 'file_desc_error':t[4]} for t in zip(files, file_titles, file_descs, file_title_error, file_desc_error)]
 
     upload_dict={"link_list":link_list,"file_list":file_list}
 
-    out_dict=dict(upload_dict.items()+auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items()+header_dict.items()+json_prof_dict.items())
+    max_upload_size={'max_upload_size':settings.MAX_UPLOAD_SIZE}
 
-    return render(request, 'user_form.html',out_dict )
+    out_dict=dict(upload_dict.items()+auth_dict.items() + menu_dict.items()+form_dict.items()+pic_dict.items()+header_dict.items()+prof_dict.items()+max_upload_size.items())
+
+    return render(request, 'user_form.html',out_dict)
     
     
 def signup(request):
@@ -258,6 +258,7 @@ def registration(request):
             return render(request, 'registration.html',out_dict)
         else:
             #Case where user is updating card info
+  
             customer=stripe.Customer.retrieve(request.user.stripe_id)
             
             last4=customer.cards.data[0].last4
@@ -335,9 +336,17 @@ def registration(request):
             token = request.POST['stripeToken']
             promo_code=request.POST['promo_code']
             
+            if not "terms" in request.POST.keys():
+                status_dict={"status":'error'}
+                message_dict={"message":"In order to become a member the terms and conditions must be accepted"}
+                out_dict=dict(status_dict.items()+message_dict.items())
+
+                return HttpResponse(simplejson.dumps(out_dict), content_type="application/json")
+            
+            
             try:
                 
-                if promo_code=="":
+                if promo_code=="" or promo_code=="Optional":
                     customer = stripe.Customer.create(
                         card=token,
                         plan="standard",
@@ -404,7 +413,35 @@ def registration(request):
             out_dict=dict(status_dict.items()+message_dict.items())
 
             return HttpResponse(simplejson.dumps(out_dict), content_type="application/json")
-            
+
+def profilePreview(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(settings.BASE_URL+'/')
+
+    if not request.user.is_registered:
+        return HttpResponseRedirect(settings.BASE_URL+'/registration')
+    
+    if not UserProfile.objects.filter(user=request.user).exclude(name=""):
+        return HttpResponseRedirect(settings.BASE_URL+'/userform')
+    
+    
+    email=str(request.user.email)
+    auth_dict={"user":email}
+    header_dict={'registered':'true'}
+    
+    
+    userobs=UserProfile.objects.filter(user=request.user)
+
+    prof_container={}
+
+    prof_container=profile_dictionary(userobs)
+
+    prof_dict_out={'profiles':prof_container}
+
+    out_dict=dict(auth_dict.items()+header_dict.items()+prof_dict_out.items())
+    
+    return render(request, 'profile_preview.html',out_dict)
+                
 
 
 def editAccount(request):
@@ -498,21 +535,29 @@ def userFileUpload(request):
     exten=f.name.split('.')[1]
     
     if f.size > int(settings.MAX_UPLOAD_SIZE):
-         return HttpResponse(simplejson.dumps({'status':'file too large'}), content_type="application/json")
+        print 'too large'
+        return HttpResponse(simplejson.dumps({'status':'fail','message':'File not uploaded: File larger than maximum of 20MB'}), content_type="application/json")
     
+    try:
     #use date string to ensure no over writing
-    date_string = time.strftime("%Y%m%d%H%M%S")
-
-    filename=date_string+'.'+exten
-
-    prof=UserProfile.objects.get(user=request.user)
-    
+        date_string = time.strftime("%Y%m%d%H%M%S")
+        filename=date_string+'.'+exten
+        prof=UserProfile.objects.get(user=request.user)
     
     #the name in the input field corresponds to the model name, getattr executes it as prof.name
-    if(getattr(prof, name).name ):
-        getattr(prof, name).delete(False)
-        
-    getattr(prof, name).save(filename,f)
-
     
-    return HttpResponse(simplejson.dumps({'status':'ok','file_url':str(getattr(prof, name).url)}), content_type="application/json")
+    #if file exists delete it
+        if(getattr(prof, name).name ):
+            getattr(prof, name).delete(False)
+        
+        getattr(prof, name).save(filename,f)
+
+        return HttpResponse(simplejson.dumps({'status':'ok','file_url':str(getattr(prof, name).url)}), content_type="application/json")
+    
+    except:
+        return HttpResponse(simplejson.dumps({'status':'fail','message':'File not uploaded: There was an issue with the uploaded file'}), content_type="application/json")
+    
+    
+    
+def stripeWebHook(request):
+    return

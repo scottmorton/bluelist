@@ -6,6 +6,7 @@ $(document).ready(function() {
 
           $(this).val("");
           $(this).css("color","black");
+          $(this).css("font-style","normal");
 
     });
  
@@ -17,13 +18,21 @@ $(document).ready(function() {
        
         var error = false;
         // Clear error div
-        $('#payment-errors').html("");
+        $('#payment-errors').hide();
+        $('#payment_error_messages').html("");
         // Get the values:
-        var ccNum = 4242424242424242;//$('#cardNumber').val(),
-            cvcNum = 779;//$('#cvc').val(),
-            expMonth = 10;  //$('#expMonth').val(),
-            expYear = 2015;//$('#expYear').val();
+        var  name =$('#name').val(),
+            ccNum = $('#cardNumber').val(),
+            cvcNum = $('#cvc').val(),
+            expMonth = $('#expMonth').val(),
+            expYear = $('#expYear').val();
 
+        
+        if (name=="") {     
+                error = true;
+                reportError('Please include the cardholders name as it appears on the card');            
+            }
+            
         // Validate the number:
         if (!Stripe.validateCardNumber(ccNum)) {     
             error = true;
@@ -41,10 +50,16 @@ $(document).ready(function() {
             error = true;
             reportError('The expiration date appears to be invalid.');
         }
+        if (!$('#terms').is(':checked')) {
+            error = true;
+            reportError('Please mark the checkbox if you have read and agree to the Terms and Conditions');
+        }
+        
         
         if (!error) {
             // Get the Stripe token:
             Stripe.createToken({
+                name:name,
                 number: ccNum,
                 cvc: cvcNum,
                 exp_month: expMonth,
@@ -95,9 +110,10 @@ function stripeResponseHandler(status, response) {
 
 
 function reportError(msg) {
- 
+    $('#payment-errors').show();
+    
     // Show the error in the form:
-    $('#payment-errors').append( "<p>"+msg+"</p>" );
+    $('#payment_error_messages').append( "<p class='error_message'>"+msg+"</p>" );
     
     // Re-enable the submit button:
     $('#submitButton').prop('disabled', false);

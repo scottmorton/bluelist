@@ -17,11 +17,11 @@ var profiles=[["this","awesome"],["fun","times"]];
 
 
 $(document).ready(function() {
-    
-    
-    // Initialize menu and navbar states
 
+    // Initialize menu and navbar states
 	
+	
+
 	var lochash    = location.hash.substr(1);
 	if(lochash)
 	{
@@ -32,85 +32,48 @@ $(document).ready(function() {
     }
     else
     {
-         window.history.pushState(null,'hi','#selState=0&selCity=0&selCat=0&selSkill=0')
+        window.history.pushState(null,'hi','#selState=0&selCity=0&selCat=0&selSkill=0')
     }
 
-	fillOptions('#state', states, selState);
-	fillSubOptions('#city', cities, selState, selCity);
-	fillOptions('#category', categories, selCat );
-	fillSubOptions('#skills', skills, selCat, selSkill);
-	renderResults(selCity,selState,selSkill,selCat);
-	renderHeader(signed_in, registered);
-
-
-
+	    fillOptions('#state', states, selState);
+	    fillSubOptions('#city', cities, selState, selCity);
+	    fillOptions('#category', categories, selCat );
+	    fillSubOptions('#skills', skills, selCat, selSkill);
+	    renderHeader(signed_in, registered);
+        
 	
+	if(more_profs=='false')
+	{
+	    $('#more_profs').hide();
+	}
+	
+
 	$(document).on('click','#more_profs', function(event) {
 	    pg_num=pg_num+1;
 	    addResults(selCity, selState, selSkill, selCat, pg_num);
-
 	});
-	
-	
-	/* Message system removed for MVP 1.0
-	
-	
-	$(document).on('click','#msg', function(event) {
-         event.stopPropagation();
 
-         if(auth="true")
-         {
-
-
-             var selid = $(this).closest(".profile-index, .profile-index").attr("id");
-             var pnum=Number(selid.slice(4));
-
-             expandProfile(selid);
-         
-             var messagefield='<div class="sendmessage"> <textarea cols="80" id="message" name="message" rows="6"></textarea></div>';
-             var sendmsgopts='<div class="index-options">                                   \
-          			            <div class="option">                                        \
-          			                <a class="index-option" id="send">Send</a>              \
-          			                <a class="index-option" id="less">Less</a>              \
-          			            </div>                                                      \
-          			        </div>';
-     
-                $('#'+selid).find(".index-options").remove();
-                $('#'+selid).append( messagefield+sendmsgopts);
-        
-        }
-        
-        else
-        {
-            
-        }
-        
-        });
-   
-    */
+    
+    
     
 	$(document).on('click','.profile-index', function() {
 	    var selid=$(this).attr("id");
 	    var pnum=Number(selid.slice(4));
-
-         //contactResponse(pnum);
-         
-         $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
-         $(this).closest(".profile-index").find('.long-desc').show();
-         $(this).closest(".profile-index").find('.links').show();
-         $(this).closest(".profile-index").find('#more').hide();
-
+	    var obj=$(this);
+        obj.closest(".profile-index").find('#less').show();
+        obj.closest(".profile-index").find('.exp_section').show();
+        obj.closest(".profile-index").find('#more').hide();
+        obj.closest(".profile-index").removeClass( "profile-min");
     });
 	
 
 	$(document).on('click','#contact', function(event) {
 	   event.stopPropagation();
+	   
 	   var selid = $(this).closest(".profile-index, .profile-index").attr("id");
        var pnum=Number(selid.slice(4));
-       
        contactResponse(pnum);
-        
-       
+
     });
 	
 	
@@ -119,23 +82,25 @@ $(document).ready(function() {
         var selid = $(this).closest(".profile-index").attr("id");
         var pnum=Number(selid.slice(4));
         
-        $(this).closest(".profile-index").find('#less','.long-desc','.links').show();
-        $(this).closest(".profile-index").find('.long-desc').show();
-        $(this).closest(".profile-index").find('.links').show();
-        $(this).closest(".profile-index").find('#more').hide();
-        
+        var obj=$(this);
+        obj.closest(".profile-index").find('#less').show();
+        obj.closest(".profile-index").find('.exp_section').show();
+        obj.closest(".profile-index").find('#more').hide();
+        obj.closest(".profile-index").removeClass( "profile-min");  
       });
+    
+    
     
     $(document).on('click','#less', function(event) {
         event.stopPropagation();
         var selid = $(this).closest(".profile-index").attr("id");
         var pnum=Number(selid.slice(4));
-        
-        $(this).closest(".profile-index").find('#less','.long-desc','.links').hide();
-        $(this).closest(".profile-index").find('.long-desc').hide();
-        $(this).closest(".profile-index").find('.links').hide();
+
+        $(this).closest(".profile-index").find('#less').hide();
+        $(this).closest(".profile-index").find('.exp_section').hide();
         $(this).closest(".profile-index").find('#more').show();
-        
+        $(this).closest(".profile-index").addClass( "profile-min");
+
       });
     
     
@@ -330,12 +295,11 @@ $(document).ready(function() {
 
 		fillOptions('#state', states, selState);
 		fillSubOptions('#city', cities, selState, selCity);
-		
 		fillOptions('#category', categories, selCat );
-		fillSubOptions('#skills', skills, selCat, selSkill)
-		window.history.pushState(null,'hi','#selState='+selState+'&selCity='+selCity+'&selCat='+selCat+'&selSkill='+selSkill)
+		fillSubOptions('#skills', skills, selCat, selSkill);
+	
+		window.history.pushState(null,'hi','#selState='+selState+'&selCity='+selCity+'&selCat='+selCat+'&selSkill='+selSkill);
 		renderResults(selCity,selState,selSkill,selCat);
-
 	});
 
 });

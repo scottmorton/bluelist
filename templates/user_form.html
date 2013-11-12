@@ -12,6 +12,7 @@
 		var skills = {{skilllist|safe}};
 		var signed_in = "{{user|safe}}";
 		var registered = "{{registered|safe}}";
+		var max_upload_size = {{max_upload_size|safe}};
 	</script>
 
 	{% load staticfiles %}
@@ -30,8 +31,6 @@
 	
 
 
-
-
 </head>
 <body>
 	
@@ -41,53 +40,50 @@
 
 <div class="base-container-userform">
 
-    {% if form.errors %}
-        <p style="color: red;">
-            Please correct the error{{ form.errors|pluralize }} below.
-        </p>
-    {% endif %}
+    
 
 	<form action="" method="post" enctype="multipart/form-data">
 		{{ form.non_field_errors }}
 		
 	<div class="form-container">
-		<table class="form-table">	
+			
 
-		<tr><td><div class="label-div"><h4 class="form-label"> Name </h4> <p class="sub-label">(Required)</p></div></td></tr>
-		<tr><td>{{form.name.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.name}}</div></div></td></tr>
-		<tr><td><div class="label-div"><h4 class="form-label"> Service </h4> <p class="sub-label"> (Required)</p></div></td></tr>
-		<tr><td>{{form.service.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.service}}</div></div></td></tr>
+			{% if form.errors %}
+		        <p class="error-indicator">
+		            Please correct the error{{ form.errors|pluralize }} below
+		        </p>
+		    {% endif %}
+	
+
+		<div class="label-div"><h4 class="form-label"> Name </h4> <p class="sub-label">(Required)</p></div>
+		{{form.name.errors}}
+		<div class="form-outer-field"><div class="form-field-container">{{form.name}}</div></div>
 		
-		<tr><td>
-			<table>
-				<tr><td>	
-					<table>
-						<tr><td> <h4 class="form-label"> Profile Picture </h4></td></tr>
-						<tr><td>{{form.prof_pic.errors}}</td></tr>
-						<tr><td>
+			<div class="split-form-container">
+					<div class="split-form-div">
+					
+						 <div class="label-div"><h4 class="form-label"> Profile Picture </h4></div>
+						{{form.prof_pic.errors}}
+							
+						
 							<div class="form-outer-field-new">
 								<div class="form-field-container">					
+									
+									<div class='file-error' id="prof_pic_file_error">
+									</div>
+									
 									
 									<div {% if pic_url == "" %} hidden {% endif %} id="prof_im_container1" class="form-field-container file_div">
 									
 										<div class="image_div">
 											<a target="_blank" href="{{ pic_url|safe }}"><img id="img_prof_pic" src="{{ pic_url|safe }}" /></a>
-											<div class="footerBar">
-												<ul id="edit"> 
-													<li id="edit_prof_pic_li">
-														<a id="edit_prof_pic" href="#">Edit &#x25BE</a>
-								                        <ul>
-								                             <li><a id="prof_pic_delete" name="prof_pic" href="#">Delete </a></li>
-								                             <li><a id="prof_pic_replace" href="#">Replace </a></li>
-								                        </ul>
-													</ul>
-                        						</div>
-											</div>
+											<div class="footerBar">	
+												<a class="prof_pic_btn pic_replace" id="prof_pic_replace" href="#">Replace </a>
+												<a class="prof_pic_btn pic_delete" id="prof_pic_delete" name="prof_pic" href="#">Delete </a>
+                        					</div>
+										</div>
 											
 											<input hidden id="id_prof_pic" name="prof_pic" type="file" />
-											
 											
 										</div>
 										
@@ -96,201 +92,161 @@
 	                    				</div>
 								</div>
 							</div>
-						</td></tr>
-					</table>
-				</td><td>
-					<table>
-						<tr><td> <div class="label-div">
-										<h4 class="form-label"> Location</h4>
-										<p class="sub-label">(Required)</p>	
-									</div>
-						</td></tr>
-						<tr><td>
-							<div class="form-split-field-container">
-								<table>	
-									<tr><td><p class="form-sub-label">State</p></td>
-										<td>{{form.state}} </td><td>{{form.state.errors}}</td></tr>
-									<tr><td><p class="form-sub-label">City</p></td>
-										<td>{{form.city}} </td><td> {{form.city.errors}}</td></tr>
-								</table>
-							</div>
-						</td></tr>
 						
-						<tr><td>
-							<div class="label-div">
-							<h4 class="form-label">Service Type</h4><p class="sub-label">(Required)</p>
+					</div>
+				
+					<div class="split-form-div">
+						 <div class="cat-label-div">
+										<h4 class="form-label"> Location</h4><p class="sub-label">(Required)</p>	
 							</div>
-							</td></tr>
-							<tr><td>
-							<div class="form-split-field-container">
-								<table>
-									<tr><td><p class="form-sub-label">Category </p></td>
-										<td>{{form.skillcategory}}</td><td>{{form.skillcategory.errors}}</td></tr>
-									<tr><td><p class="form-sub-label">Specialty <p> </td>
-										<td>{{form.skill}}</td><td>{{form.skill.errors}}</td></tr>
-								</table>
+						
+						<div class="cat-div-container">		
+									{{form.state.errors}}
+								<div class="cat-container">
+									<p class="cat-label">State</p>
+										{{form.state}} 
+								</div>
+								
+								
+								{{form.city.errors}}
+								<div class="cat-container">	
+									<p class="cat-label">City</p>
+										{{form.city}}  
+								</div>
+						 </div>
+						
+						
+							<div class="cat-label-div">
+								<h4 class="form-label">Service Type</h4><p class="sub-label">(Required)</p>
 							</div>
-						</td></tr>
-					</table>
-				</td></tr>
-			</table>
-		</td></tr>
-		
-		<tr><td><div class="label-div"><h4 class="form-label"> Listing Description </h4> <p class="sub-label">(Required)</p></div></td></tr>
-		<tr><td>{{form.shortdesc.errors}}</td></tr>
-		<tr><td><div class="form-outer-field"><div class="form-field-container">{{form.shortdesc}}</div></div></td></tr>
+								
+							<div class="cat-div-container">		
+								{{form.skillcategory.errors}}
+									<div class="cat-container">
+										<p class="cat-label">Category </p>
+										{{form.skillcategory}}
+									</div>
+								{{form.skill.errors}}
+									<div class="cat-container">		
+									<p class="cat-label">Specialty <p> 
+										{{form.skill}}
+									</div>
+							</div>
 
-		<tr><td>
+					</div>
+				</div>
+			
+		
+		
+		<div class="label-div"><h4 class="form-label"> Service </h4> <p class="sub-label"> (Required)</p></div>
+		{{form.service.errors}}
+		<div class="form-outer-field"><div class="form-field-container">{{form.service}}</div></div>
+		
+		
+		<div class="label-div">
+			<h4 class="form-label"> Listing Description </h4> 
+			<p class="sub-label">(Required)</p>  
+			<p class="char-count" id='short_desc_num'></p>
+			
+			</div>
+		{{form.shortdesc.errors}}
+		<div class="form-outer-field"><div class="form-field-container">{{form.shortdesc}}</div></div>
+
+		
 			<div id="additional_info">
-				<h4 id="add_info_label" class="form-label"> Additional Information </h4>
+				<div class="label-div">
+					<h4 id="add_info_label" class="form-label"> Additional Information </h4>
+					<p class="char-count" id='long_desc_num'></p>	
+				</div>
 				{{form.longdesc.errors}}
 				<div class="form-outer-field"><div class="form-field-container">{{form.longdesc}}</div></div>
 			</div>
-		</td></tr>
+		
 
 
-		<tr><td>
-			<div id="contact" class="contact-container">
-			<h4 id="contact_label" class="form-label"> Contact Information </h4>
-		
-		
-			<table>
-				<tr><td>{{form.public_email.errors}}</td></tr>
-				<tr><td>
-					<div class="form-outer-field"><div class="form-field-container">	
-						<table>	
-							<tr><td><p class="form-contact-label">Contact Email Address</p></td></tr>
-							<tr><td>{{form.public_email}}</td></tr>
-						</table>
-					</div></div>
-				</tr></td>
+			<div class="label-div"><h4 id="contact_label" class="form-label"> Contact Information </h4>
 			
-				<tr><td>{{form.public_phone_num.errors}}</td></tr>
-				<tr><td>
-					<div class="form-outer-field"><div class="form-field-container">	
-						<table>		
-							<tr><td><p class="form-contact-label">Contact Phone Number</p></td></tr>
-							<tr><td>{{form.public_phone_num}}</td></tr>
-						</table>
-					</div></div>
-			</table>
-	
+			<p class="contact-message"> (Contact information will be available to signed in users only) </p>
 			</div>
 		
-	</td></tr>
+			
+			<div id="contact" class="contact-container">
+				{{form.public_email.errors}}
+				
+					<div class="form-outer-field"><div class="form-field-container">	
+							
+						<div class="sub-label-div"><p class="form-sub-label">Contact Email Address</p></div>
+							{{form.public_email}}
+						
+					</div></div>
+				
+			
+				{{form.public_phone_num.errors}}
+				
+					<div class="form-outer-field"><div class="form-field-container">	
+								
+							<div class="sub-label-div"><p class="form-sub-label">Contact Phone Number</p></div>
+							{{form.public_phone_num}}
+					</div></div>
+			</div>
 		
 		
+	<div class="label-div" id="links_label"><h4  class="form-label"> Profile Links </h4></div>
 		
-		
-	<tr><td><h4 id="links_label" class="form-label"> Profile Links </h4></td></tr>	
-		
-	<tr><td>
 		
 		{% for num in link_list %}
 		<div id="link{{forloop.counter}}" class="link-container">
-		
-		<table class="form-table">
-			<tr><td>
+			
 				<div class="form-outer-field"><div class="form-field-container">	
-				<table>
-					<tr><td><p class="form-link-label">Link URL:</p></td></tr>
-					<tr><td><input id="id_link{{forloop.counter}}" maxlength="200" name="link{{forloop.counter}}" type="text" value="{{ num.link }}"/></td></tr>
-				</table>
+					{{num.link_error}}
+					<div class="sub-label-div"><p class="form-sub-label">Link URL</p></div>
+					
+					<input id="id_link{{forloop.counter}}" maxlength="200" name="link{{forloop.counter}}" type="text" value="{{ num.link }}"/>
+				
 				</div></div>
-			</tr></td>
-			<tr><td>
+			
+			
 				<div class="form-outer-field"><div class="form-field-container">	
-					<table>
-						<tr><td><p class="form-link-label">Link Title:</p></td></tr>
-						<tr><td><input id="id_link{{forloop.counter}}_title" maxlength="50" name="link{{forloop.counter}}_title" type="text" value="{{num.link_title}}" /></td></tr>
-					</table>
+						{{num.link_title_error}}
+						<div class="sub-label-div"><p class="form-sub-label">Link Title</p></div>
+						
+						<input id="id_link{{forloop.counter}}_title" maxlength="50" name="link{{forloop.counter}}_title" type="text" value="{{num.link_title}}" />
+					
 				</div></div>
-			</tr></td>
-			<tr><td>
+			
 				<div class="form-outer-field"><div class="form-field-container">	
-					<table>
-						<tr><td><p class="form-link-label">Link Description:</p></td></tr>
-						<tr><td><textarea cols="40" id="id_link{{forloop.counter}}_desc" name="link{{forloop.counter}}_desc" rows="2">{{num.link_desc}}</textarea></td></tr>
-					</table>
+						{{num.link_desc_error}}
+				<div class="sub-label-div"><p class="form-sub-label">Link Description</p><p class="char-count link-desc-char-num" id='link_desc_num{{forloop.counter}}'></p></div>
+						
+				<textarea cols="40" class="media-desc" id="id_link{{forloop.counter}}_desc" name="link{{forloop.counter}}_desc" rows="2">{{num.link_desc}}</textarea>
+					
 				</div></div>
-			</tr></td>
-		</table>
+			
 		</div>
 		{% endfor %}
-
-
-
-		<!--
-
-
-		<div id="link1" class="link-container">
-		
-		<table class="form-table">
-			<tr><td>{{form.link1.errors}}</td></tr>
-			<tr><td>
-				<div class="form-outer-field"><div class="form-field-container">	
-				<table>
-					<tr><td><p class="form-link-label">Link URL:</p></td></tr>
-					<tr><td>{{form.link1}}</td></tr>
-				</table>
-				</div></div>
-			</tr></td>
-			<tr><td>{{form.link1_title.errors}}</td></tr>
-			<tr><td>
-				<div class="form-outer-field"><div class="form-field-container">	
-					<table>
-						<tr><td><p class="form-link-label">Link Title:</p></td></tr>
-						<tr><td>{{form.link1_title}}</td></tr>
-					</table>
-				</div></div>
-			</tr></td>
-
-			<tr><td>{{form.link1_desc.errors}}</td></tr>
-			<tr><td>
-				<div class="form-outer-field"><div class="form-field-container">	
-					<table>
-						<tr><td><p class="form-link-label">Link Description:</p></td></tr>
-						<tr><td>{{form.link1_desc}}</td></tr>
-					</table>
-				</div></div>
-			</tr></td>
-		</table>
-		
-		</div>	
-		
-		-->
 		
 		
-		</td></tr>
-	
-	
-	
-		<tr><td><h4 id="uploads_label" class="form-label"> Uploaded Files </h4></td></tr>
 		
-		<tr><td>	
+		<div class="label-div" id="uploads_label"><h4 class="form-label"> Uploaded Files </h4></div>
 		
 		
 		{% for num in file_list %}
 		
 		<div id="file{{forloop.counter}}" class="file-container">
 		
-		<table class="form-table">
-			<tr><td></td></tr>
-			<tr><td>
+		
+			
+			
 				<div class="form-outer-field"><div class="form-field-container">	
-				<table>
-				<tr><td>
+				<div class="file-error" id="file{{forloop.counter}}_error">
+				</div>
 					
 					
 						<div {% if not num.file %} hidden {% endif %} id="file{{forloop.counter}}_container1" class="file_container file_div">
 							<input hidden id="id_file{{forloop.counter}}" name="file{{forloop.counter}}" type="file" />
-							
-							<object class="upload_object" width="200" id="embed_file{{forloop.counter}}" data="{{num.file}}" >
-								<param name="autoplay" value="false">
-							</object>
-							
+
 							<ul class="file_upload_list">
-								<li class="file_upload_li"><a class="file file-view" id="view_file{{forloop.counter}}" href="{{num.file}}">Download</a></li>
+								<li class="file_upload_li"><a class="file file-view" id="view_file{{forloop.counter}}" href="{{num.file}}">View Current File</a></li>
 								<li class="file_upload_li"><a class="file file-replace" id="replace_file{{forloop.counter}}" href="#">Replace</a></li>
 								<li class="file_upload_li"><a class="file file-delete" name="file{{forloop.counter}}" id="delete_file{{forloop.counter}}" href="#">Delete</a></li>
 							</ul>
@@ -300,75 +256,33 @@
 							<input id="id_file{{forloop.counter}}" name="file{{forloop.counter}}" type="file" />
 						</div>
 					
-					</td></tr>
-				</table>
+					
+				
 				</div></div>
-			</tr></td>
-		<tr><td>
+			
+		
 			<div class="form-outer-field"><div class="form-field-container">	
-				<table>
-					<tr><td><p class="form-file-label">File Title:</p></td></tr>
-					<tr><td><input id="id_file{{forloop.counter}}_title" maxlength="50" name="file{{forloop.counter}}_title" type="text" value="{{num.file_title}}" /></td></tr>
-				</table>
+				
+					<div class="sub-label-div"><p class="form-sub-label">File Title</p></div>
+					{{num.file_title_error}}</p>
+					<input id="id_file{{forloop.counter}}_title" maxlength="50" name="file{{forloop.counter}}_title" type="text" value="{{num.file_title}}" />
+				
 			</div></div>
-		</tr></td>
+		
 
-		<tr><td>
+		
 			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-file-label">File Description:</p></td></tr>
-			<tr><td><textarea cols="40" id="id_file{{forloop.counter}}_desc" name="file{{forloop.counter}}_desc" rows="2">{{num.file_desc}}</textarea></td></tr>
-			</table>
+			{{num.file_desc_error}}
+			<div class="sub-label-div"><p class="form-sub-label">File Description</p><p class="char-count link-desc-char-num" id='link_desc_num{{forloop.counter}}'></p></div>
+			<textarea cols="40" class="media-desc" id="id_file{{forloop.counter}}_desc" name="file{{forloop.counter}}_desc" rows="2">{{num.file_desc}}</textarea>
+			
 			</div></div>
-		</tr></td>
-		</table>
+		
+		
 		</div>
 	
 		{% endfor %}
-		
-		
-		<!--
-		<div id="file2" class="file-container">
-		
-			<table class="form-table">
-		
-				<tr><td></td></tr>
-				<tr><td>
-					<div class="form-outer-field"><div class="form-field-container">	
-					<table>
-					<tr><td><input id="id_file2" name="file2" type="file" /></td></tr>
-					</table>
-					</div></div>
-				</tr></td>		
-			
-		<tr><td>{{form.file2_title.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-				<table>
-					<tr><td><p class="form-file-label">File Title:</p></td></tr>
-					<tr><td>{{form.file2_title}}</td></tr>
-				</table>
-			</div></div>
-		</tr></td>
-
-		<tr><td>{{form.file2_desc.errors}}</td></tr>
-		<tr><td>
-			<div class="form-outer-field"><div class="form-field-container">	
-			<table>
-			<tr><td><p class="form-file-label">File Description:</p></td></tr>
-			<tr><td>{{form.file2_desc}}</td></tr>
-			</table>
-			</div></div>
-		</tr></td>
-		</table>
-		
-		</div>
-		
-		-->
-		
-		</td></tr>
-		
-		</table>
+	
 		
 		
 		<div class='form_button_container'>
@@ -390,7 +304,7 @@
 			</div>
 			
 			<div class="submit_button_div">
-	        	<input id="submitButton" type="submit" value="Submit">
+	        	<input id="submitButton" type="submit" value="Save Profile">
 			</div>
 	
 		</div>
@@ -400,7 +314,6 @@
 </div>
 </div>
 </div>
-
 </div>
 
 {% include 'header.html' %}

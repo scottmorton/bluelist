@@ -1,0 +1,66 @@
+
+
+{% for key, value in profiles.items %}
+
+	<div class="profile-index profile-min" id="prof{{value.pk}}">
+						<div class="index-pic">
+							<a href="{{value.prof_pic}}" ><img class="index_image" src="{{value.prof_pic}}" ></a>
+	    				</div>
+				 		<div class="index-text">
+				 			    <div class="profile-name">
+								    <p class="index-name">{{value.name}}</p>
+								</div>
+								<div class="profile-tag">
+								    <p class="tag">{{value.service}} in {{value.city}}, {{value.state}}</p>
+								</div>
+								<div class="short-desc description" >
+								    <p class="index-desc">{{value.shortdesc}}</p>
+								</div>
+								<div hidden class="exp_section">
+								    <div class="long-desc description">
+								        <p class="long-desc description">{{value.longdesc}}</p>
+								    </div>
+								    <div class="links">
+								       
+										{% for link in value.link_list %}
+								
+												<div class="link-container">
+							                                    <div class="link-title-container">
+							                                        <a href="{{link.url}}">{{link.title}}</a>
+							                                    </div>
+							                                    <div class="link-desc-container">
+							                                        <p class="link-desc">{{link.desc}}</p>
+							                                    </div>
+							                     </div>
+								
+										{% endfor %}
+										
+										{% for file in value.file_list %}
+								
+												<div class="file-container">
+							                                    <div class="file-title-container">
+							                                        <a href="{{file.url}}">{{file.title}}</a>
+							                                    </div>
+							                                    <div class="file-desc-container">
+							                                        <p class="file-desc">{{file.desc}}</p>
+							                                    </div>
+								    			</div>
+								
+										{% endfor %}
+								
+								</div>
+								<div class="index-options">
+								    <div class="option">
+										<a class="index-option" id="contact">Contact</a>
+										<a hidden class="index-option" id="less">Less</a>
+										<a class="index-option" id="more">More</a>
+					 			    </div>
+					 			</div>
+					 	</div>
+					</div>
+
+	</div>
+{% endfor %}	
+	
+	
+	

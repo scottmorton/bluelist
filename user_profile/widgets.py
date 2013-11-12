@@ -13,7 +13,7 @@ class ImageWidget(forms.FileInput):
         output = []
         if value and hasattr(value, "url"):
             output.append(('<a target="_blank" href="%s">'
-                           '<img src="%s"  /></a> '
+                           '<img src="%s" /></a> '
                            % (value.url, value.url)))
         output.append(super(ImageWidget, self).render(name, value, attrs))
         return mark_safe(u''.join(output))

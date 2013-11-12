@@ -12,7 +12,9 @@
 	var skills = {{skilllist|safe}};
 	var signed_in = "{{user|safe}}";
 	var registered = "{{registered|safe}}";
+	var more_profs= "{{more_profs|safe}}";
 </script>
+
 
 {% load staticfiles %}
 
@@ -37,7 +39,7 @@
 </head>
 <body>
 
-
+	
 <div class= "body-container"></div>
 
 
@@ -50,7 +52,7 @@
 
 <div class="base-container-menu" id="options">
 
-	<div class="menu-container">
+<div class="menu-container">
 	<div class="box" id="states container">
 		<p class="title"> State </p>
 		<div class="category" id="box0div">
@@ -88,27 +90,26 @@
 			<ul id="skills">
 			</ul>
 			</div>
-		</div>
-		
+		</div>	
 	</div>
-	</div>
+</div>	
 	
-	
-	<div class="results container">
+	<div class="results-container">
 			<div class="results" id="searchResults">
-			
+				<p id="num_profs" class="Results">{{num_profs}} Result(s)</p>
+
+				{% include 'profile_list.html' %}
 				
 			</div>
-			<a hidden id="more_profs" href="#">More</a>
-</div>
-
+			
+			<a id="more_profs" href="#">More</a>
+	</div>
 	
 </div>
 
-
 </div>
 
-	{% include 'header.html' %}
+{% include 'header.html' %}
 
 
 </body>
