@@ -1,3 +1,29 @@
+categories=(('Website and Mobile Development',
+                        [ 'Front End Developer', 'Back End Developer','IOS Developer', 'Android Developer', 'Mobile Website']),
+            ('Engineering',
+                        ['Mechanical','Software','Electrical']),
+            ('Live Performance',
+                        [ 'Bands','Live Entertainment']),
+            ('Writing',
+                        [ 'Copy Writing','Editing','Article Writing','Blog Writing','Technical Writing','Translation']),
+            ('Marketing and Advertising',
+                        [ 'Internet Advertising','Search Engine Optimization','Marketing Communications']),
+            ('Design',
+                        ['Graphic Design','Website Design','Print Design','Animation']),
+            ('Broadcast',
+                        [ 'Television Production','Music and Audio','Acting','Modeling']),
+            ('Photography',
+                        [ 'Photography','Photo Editing']),
+            ('Videography',
+                        ['Video Production','Video Editing']),
+            ('Household Services',
+                        [ 'Interior design','Housecleaning','Remodeling','Lawn Care','Plumbing','Carpet Cleaning','Painting','Electrical','Roofing','Windows','Heating & A/C']),
+            ('Other',
+                        ['Other',])      
+                        )
+liststring="["
+
+"""
 categories=(('Web Development',
                         [ 'Front End Developer', 'Back End Developer']),
             ('Mobile Development',
@@ -19,8 +45,8 @@ categories=(('Web Development',
             ('Other',
                         ['Other',])                 
                         )
-liststring="["
 
+"""
 k=1
 
 for i in range(0,len(categories)):

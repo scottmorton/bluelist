@@ -30,10 +30,6 @@ $(document).ready(function() {
         selCat= lochash.substr(lochash.indexOf('selCat=')).split('&')[0].split('=')[1];
         selSkill= lochash.substr(lochash.indexOf('selSkill=')).split('&')[0].split('=')[1];
     }
-    else
-    {
-        window.history.pushState(null,'hi','#selState=0&selCity=0&selCat=0&selSkill=0')
-    }
 
 	    fillOptions('#state', states, selState);
 	    fillSubOptions('#city', cities, selState, selCity);
@@ -53,7 +49,6 @@ $(document).ready(function() {
 	    addResults(selCity, selState, selSkill, selCat, pg_num);
 	});
 
-    
     
     
 	$(document).on('click','.profile-index', function() {

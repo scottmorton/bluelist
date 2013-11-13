@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
     renderHeader(signed_in, registered);
     
@@ -8,4 +6,6 @@ $(document).ready(function() {
     $('.full-profile').find('#contact').hide();
     $(".profile-index").removeClass( "profile-min");
      $(".min-profile").find('.profile-index').css('border-bottom','solid 1px rgba(0, 0, 0, 0.3)');
+      $(".index-options").hide();
+     
 });
