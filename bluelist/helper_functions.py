@@ -1,5 +1,4 @@
 from user_profile.models import State, City, SkillCategory, Skill
-import webkit2png
 
 
 def getCategoryVars():
