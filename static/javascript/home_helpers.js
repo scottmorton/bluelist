@@ -1,5 +1,5 @@
 function contactResponse(pnum){
-    //make ajax dsafasd query for contact information
+    //make ajax  query for contact information
     
     
     $.get("/contactrequest",{'selprof': String(pnum)}, function(data,status){
