@@ -20,7 +20,7 @@
 	
 	<script type="text/javascript">
 	  // This identifies your website in the createToken call below
-	  Stripe.setPublishableKey('pk_test_OJ4HXQ3SBShYjtgqA6hq7Ynr');
+	  Stripe.setPublishableKey('{{stripe_pub_key|safe}}');
 	  // ...
 	</script>
 	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
@@ -97,7 +97,7 @@
 			<input class="payment_field" type="text" size="20" id="promoCode" name="promo_code" autocomplete="off" value="Optional"/>
 			<div class="terms-div">
 			<input class="terms-checkbox" type="checkbox" id='terms' name="terms" />
-					<p class="terms-text" >I have read and agree to the Terms and Conditions described <a href="/termsandconditions"> Here</a> </p>
+					<p class="terms-text" >I have read and agree to the User Agreement described <a href="/termsandconditions"> Here</a> </p>
 			</div>
 			</div>
 		

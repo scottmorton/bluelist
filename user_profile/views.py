@@ -245,15 +245,15 @@ def registration(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(settings.BASE_URL+'/')
 
+    stripe_dict={'stripe_pub_key':settings.STRIPE_PUB_KEY}
     
-
     if request.method == 'GET':
         
         if not request.user.is_registered:
             auth_dict={"user":'true'}
             header_dict={"registered":"false"}
             
-            out_dict=dict(auth_dict.items()+header_dict.items())
+            out_dict=dict(auth_dict.items()+header_dict.items()+stripe_dict.items())
             
             return render(request, 'registration.html',out_dict)
         else:
@@ -264,7 +264,8 @@ def registration(request):
             last4=customer.cards.data[0].last4
             header_dict={"registered":"true"}
             card_det={'last4':last4}
-            out_dict=dict(card_det.items()+header_dict.items())
+
+            out_dict=dict(card_det.items()+header_dict.items()+stripe_dict.items())
         
         return render(request, 'registration.html',out_dict)
 
