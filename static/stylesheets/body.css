@@ -17,8 +17,6 @@ body {
     /* Mozilla Firefox */ 
     background-image: -moz-radial-gradient(center, circle farthest-corner, #FFFFFF 0%, #0099E0 100%);
     
-    background-image:url('bridge_2.jpg');
-
 background-position: center top;
 background-size: 100% auto;
 background-repeat:no-repeat;
