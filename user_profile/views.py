@@ -251,9 +251,9 @@ def registration(request):
         request.user.is_registered = True
         request.user.save()
         
-        return HttpResponseRedirect('/userform')
+        return HttpResponseRedirect(settings.BASE_URL+'/userform')
     else:
-        return HttpResponseRedirect('/userform')
+        return HttpResponseRedirect(settings.BASE_URL+'/userform')
     """   
     
     if request.method == 'GET':
