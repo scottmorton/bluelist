@@ -247,6 +247,15 @@ def registration(request):
 
     stripe_dict={'stripe_pub_key':settings.STRIPE_PUB_KEY}
     
+    if not request.user.is_registered:
+        request.user.is_registered = True
+        request.user.save()
+        
+        return HttpResponseRedirect('/userform')
+    else:
+        return HttpResponseRedirect('/userform')
+    """   
+    
     if request.method == 'GET':
         
         if not request.user.is_registered:
@@ -269,7 +278,7 @@ def registration(request):
         
         return render(request, 'registration.html',out_dict)
 
-
+      
     if request.method == 'POST':
         
         #If already registered then this is an update of current info
@@ -415,6 +424,8 @@ def registration(request):
 
             return HttpResponse(simplejson.dumps(out_dict), content_type="application/json")
 
+            """
+
 def profilePreview(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(settings.BASE_URL+'/')
@@ -467,8 +478,9 @@ def cancelSubscription(request):
     try:
         
         
-        customer=stripe.Customer.retrieve(request.user.stripe_id)
-        customer.delete()
+        #customer=stripe.Customer.retrieve(request.user.stripe_id)
+        #customer.delete()
+        
         request.user.is_registered=False
         request.user.save()
     
