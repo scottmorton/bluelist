@@ -245,7 +245,7 @@ def registration(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(settings.BASE_URL+'/')
 
-    stripe_dict={'stripe_pub_key':settings.STRIPE_PUB_KEY}
+    #stripe_dict={'stripe_pub_key':settings.STRIPE_PUB_KEY}
     
     if not request.user.is_registered:
         request.user.is_registered = True
