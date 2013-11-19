@@ -2,10 +2,10 @@
 
 {% for key, value in profiles.items %}
 
-	{% if value.more %}
-	<div class="profile-index profile-min" id="prof{{value.pk}}">
+	{% if value.more == "true"%}
+		<div class="profile-index profile-min" id="prof{{value.pk}}">
 	{% else %}
-	<div class="profile-index profile-exp" id="prof{{value.pk}}">
+		<div class="profile-index profile-exp" id="prof{{value.pk}}">
 	{% endif %}	
 						<div class="index-pic">
 							<a href="{{value.prof_pic}}" ><img class="index_image" src="{{value.prof_pic}}" ></a>
@@ -60,7 +60,7 @@
 								    <div class="option">
 										<a class="index-option" id="contact">Contact</a>
 										
-										{% if value.more %}
+										{% if value.more == "true"%}
 										<a class="index-option" id="more">More</a>
 										<a hidden class="index-option" id="less">Less</a>
 										{% endif %}
