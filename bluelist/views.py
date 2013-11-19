@@ -103,7 +103,7 @@ def homepage(request):
     
     out_dict=dict(menu_dict.items()+auth_dict.items()+header_dict.items()+prof_dict_out.items())
         
-    t = loader.get_template('homepage2.html')
+    t = loader.get_template('homepage.html')
     c = Context(out_dict)
         
     return HttpResponse(t.render(c))

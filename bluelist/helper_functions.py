@@ -76,6 +76,8 @@ def profile_dictionary(userobs_out):
         link_list=[]
         file_list=[]
 
+        more=""
+
         for i in range(1,9):
                        
             link_url=getattr(prof,'link'+str(i))
@@ -83,14 +85,17 @@ def profile_dictionary(userobs_out):
             link_desc=getattr(prof,'link'+str(i)+'_desc')
             
             if link_url!="":
+                more="true"
                 if link_title=="":
                     link_title="Link"
                 link_list.append({'url': link_url, 'title': link_title, 'desc': link_desc})
+                
 
             file_title=""
             file_desc=""
             file_url=""
             if getattr(prof,'file'+str(i)):
+                more="true"
                 file_=getattr(prof,'file'+str(i))
                 file_url=file_.url
                 file_title=getattr(prof,'file'+str(i)+'_title')
@@ -99,6 +104,9 @@ def profile_dictionary(userobs_out):
                     file_title="Uploaded File"
                 file_list.append({'url': file_url, 'title': file_title, 'desc': file_desc})    
     
+    
+        if not prof.longdesc =="":
+            more='true'
     
         if prof.prof_pic:
             prof_pic_url=prof.prof_pic.url
@@ -116,7 +124,8 @@ def profile_dictionary(userobs_out):
                         'skill':prof.skill.name,
                         'prof_pic':prof_pic_url,
                         'link_list':link_list,
-                        'file_list':file_list}
+                        'file_list':file_list,
+                        'more':more}
     
         prof_container[key_str]=prof_dict
     

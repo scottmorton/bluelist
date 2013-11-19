@@ -2,7 +2,23 @@
 <html>
 <head>
 
+<meta name="google-site-verification" content="LVok7-UTONO9Vsy2T-m_kOcC78nW59nbwoyZWf0CJfk" />
+
 <title> BlueList </title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45738608-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
 
 
 <script type="text/javascript"> 
@@ -12,7 +28,9 @@
 	var skills = {{skilllist|safe}};
 	var signed_in = "{{user|safe}}";
 	var registered = "{{registered|safe}}";
+	var more_profs= "{{more_profs|safe}}";
 </script>
+
 
 {% load staticfiles %}
 
@@ -37,20 +55,20 @@
 </head>
 <body>
 
-
+	
 <div class= "body-container"></div>
 
 
 <div class= "body-scroll">
 
 <div class="greeting-container">
-	<p class="greeting">Find the best freelancers and contractors in your city</p>
+	<p class="greeting">Discover and hire the best local professionals</p>
 </div>
 
 
 <div class="base-container-menu" id="options">
 
-	<div class="menu-container">
+<div class="menu-container">
 	<div class="box" id="states container">
 		<p class="title"> State </p>
 		<div class="category" id="box0div">
@@ -88,27 +106,26 @@
 			<ul id="skills">
 			</ul>
 			</div>
-		</div>
-		
+		</div>	
 	</div>
-	</div>
+</div>	
 	
-	
-	<div class="results container">
+	<div class="results-container">
 			<div class="results" id="searchResults">
-			
+				<p id="num_profs" class="Results">{{num_profs}} Result(s)</p>
+
+				{% include 'profile_list.html' %}
 				
 			</div>
-			<a hidden id="more_profs" href="#">More</a>
-</div>
-
+			
+			<a id="more_profs" href="#">More</a>
+	</div>
 	
 </div>
 
-
 </div>
 
-	{% include 'header.html' %}
+{% include 'header.html' %}
 
 
 </body>
