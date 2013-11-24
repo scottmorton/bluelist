@@ -1,8 +1,6 @@
 
 $(document).ready(function() {
 
-
-    
 	 $("*").on('click',function(e) {
 	
       if($(e.target).closest('#account_li').length)
@@ -14,6 +12,43 @@ $(document).ready(function() {
        {
            $('ul',"#account_li").hide();
        }
+       
+       if($(e.target).closest('#state_li').length)
+       {
+              $('#state_li').find(".subcat").slideDown();
+          }
+        else
+        {
+              $('#state_li').find(".subcat").slideUp();
+          }
+          
+        if($(e.target).closest('#city_li').length)
+        {
+            $('#city_li').find(".subcat").slideDown();
+                }
+        else
+        {
+            $('#city_li').find(".subcat").slideUp();
+            }
+
+        if($(e.target).closest('#category_li').length)
+            {
+                $('#category_li').find(".subcat").slideDown();
+                    }
+            else
+            {
+                $('#category_li').find(".subcat").slideUp();
+                }
+        if($(e.target).closest('#skill_li').length)
+            {
+                $('#skill_li').find(".subcat").slideDown();
+                }
+            else
+            {
+                $('#skill_li').find(".subcat").slideUp();
+                }        
+         
+       
     });
 });
 
@@ -37,7 +72,6 @@ function renderHeader(signed_in,registered)
            $( "#prof_btn" ).html( "Create Profile" );
            $( "#subs_btn" ).hide();
        }
-       
        
     }
     else

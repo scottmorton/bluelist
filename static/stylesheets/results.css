@@ -1,3 +1,23 @@
+
+.base-container-menu
+{
+width: 650px;
+overflow:hidden;
+margin-left:auto;
+margin-right:auto;
+background-color: white;
+padding-top: 10px;
+padding-bottom: 30px;
+border-radius:5px;
+text-align: center;
+margin-top:0px;
+display:inline-block;
+vertical-align:top;
+
+}
+
+
+
 .results container
 {
 	float: left;
@@ -11,8 +31,8 @@
 {
 	margin-top: 5px;
 	text-align:left;
-	margin-left:15px;
-	margin-right:15px;
+	margin-left:0px;
+	margin-right:0px;
 	border-bottom: solid 1px rgba(0, 0, 0, 0.3);
 	/*border: solid 1px blue;*/
 }
@@ -24,8 +44,6 @@
     margin-top: 0px;
     margin-bottom: 0px;
     border-top: solid 1px rgba(0, 0, 0, 0.3);
-    border-right: solid 1px rgba(0, 0, 0, 0.3);
-    border-left: solid 1px rgba(0, 0, 0, 0.3);
     background-color: white;
     overflow: hidden;
     height: auto;
@@ -207,9 +225,6 @@ a.index-option:hover
 }
 
 
-
-
-
 p.tag
 {
     float:right;
@@ -217,12 +232,13 @@ p.tag
     margin-bottom:0px;
 }
 
-p.Results
+h4.Results
 {
-	text-align:left;
-	padding-top:150px;
 	margin-bottom:5px;
-	margin-left:5px;
+	margin-left:10px;
+	margin-top:0px;
+	font-size:20px;
+	text-align:left;
 }
 
 p.index-name

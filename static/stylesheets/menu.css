@@ -1,34 +1,19 @@
 
-.base-container-menu
-{
-width: 676px;
-overflow:hidden;
-margin-left:auto;
-margin-right:auto;
-
-background-color: white;
-padding-top: 10px;
-padding-bottom: 30px;
-border-radius:3px;
-padding-left:15px;
-padding-right:15px;
-background:rgba(255, 255, 255, 0.95);
-text-align: center;
--moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
--webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-margin-top:0px;
-}
-
 
 
 
 .menu-container
 {
-	padding-left:2%;
-	padding-right:2%;
-	
+	overflow:hidden;
+	margin-bottom:30px;
+	border-radius:5px;
+    width:300px;
+    background:white;
+    display:inline-block;
+    vertical-align:top;
+    margin-right:20px;
 }
+
 
 
 /* Profile List */
@@ -36,29 +21,24 @@ margin-top:0px;
 
 .box
 {
-	height:150px; 
-	width:161px; 
+    float:left;
+	width:200px; 
 	text-align:center; 
-	float:left; 
 	vertical-align:top;
 	margin-top: 5px;
-	margin-bottom: 0px;
-	
-	
+	margin-bottom:10px;
+	overflow:hidden;
 	
 }
 
 
 .category
 {
-	height:120px;
-	width:160px; 
-	border-left: 1px solid rgba(0,0,0,0.3) ;
-	border: 1px solid rgba(0,0,0,0.3);
-	border-bottom: 1px solid rgba(0,0,0,0.3);
-	background:#FFFFFF;
+	background:white;
 	text-align:left; 
 	margin:0px auto;
+	    border: solid 1px rgba(0, 0, 0, 0.3);
+	
 	/*box-shadow: 0 0 4px white;*/
 }
 
@@ -66,45 +46,91 @@ margin-top:0px;
 .subcat{
 	margin-top: 0px;
 	margin-bottom:0px;
-	height:120px;
-	overflow-y:scroll;
+	height:160px;
+	width:100%;
+    overflow-y:scroll; 
+    overflow-x:hidden;
+    background:white;
+    display:none;
 }
 
-
-
-p.title
+.title
 {
-	height: 20px;
-	width: 160px;
-	margin:0px 4px 6px 4px;
-	font-family: "HelveticaNeue-light", "Helvetica Neue light", Helvetica, Arial, "Lucida Grande", sans-serif; 
-	font-size:19px;
-    color:#808080;
-}
-
-
-p.label
-{
-color:#FFFFFF;
-}
-
-
-
-ul
-{
+    text-align:left;
+	height: 40px;
+	line-height:40px;
 	margin:0px;
-	padding-left:0;
-	list-style-position: inside;
-	list-style: none;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-	font-size: 17px;
+	margin-left:10px;
+	width: 200px;
+	font-family: "HelveticaNeue-light", "Helvetica Neue light", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-size:20px;
+	font-weight:bold;
 }
+
+
+ul{
+    list-style:none;
+}
+
+#menu li {
+  float: left;
+  display: block;
+  position: relative;
+  z-index: 500;
+  margin-right:auto;
+  margin-left:auto;
+  margin-top:0px;
+  width:100%;
+  border-top:solid 1px rgba(0, 0, 0, 0.3);
+}
+
+
+#menu li a {
+  display: inline-block;
+  font-family: "HelveticaNeue", "Helvetica Neue light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  line-height:40px;
+  height: 40px;
+  text-decoration: none;
+  color: #463E3F;
+  font-size:18px;
+  float:left;
+  text-align:left;
+  margin-left:10px;
+
+}
+
+#menu li.menu_cat:hover {
+    
+    background:#F0F0F0;
+    cursor:pointer;
+}
+
+
+#menu ul {
+
+  margin: 0 0 0 0;
+  list-style: none;
+
+}
+
+#menu ul li {
+    width:270px;
+  float: left;
+  padding:0px;
+  border:none;
+  text-align:left;
+  font-size:17px;
+  padding-left:5px;
+  margin-left:5px;
+
+  }
+
 
 
 li
 {
     margin-top: 0px;
-    margin-bottom: 1px;
+    margin-bottom: 0px;
     margin-left:0px;
     margin-right:0px;
 }
@@ -114,15 +140,12 @@ li.a
 { 
 	color: white;
 	padding-left: 5px;
-	/*background: #474747;*/
-	background:#0099E0;
-	/*background: -moz-linear-gradient(top center, rgb(0,144,243), rgb(33,109,236)); 
-	background: -webkit-gradient(linear, left top,left bottom, from(rgb(0,164,253)), to(rgb(33,109,236))); 
-	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#00a4fd, 
-	endColorStr=#216dec);*/
+    background:#0099E0;
 	cursor:pointer;
 	
 }
+
+
 
 
 li.b
@@ -139,3 +162,28 @@ li.b:hover
 	background-color:#F0F0F0;
 	cursor:pointer;
 }
+
+
+
+
+p.menu_caret
+{
+    display:inline-block;
+    height:40px;
+    line-height:40px;
+    float:right;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-right:10px;
+    
+}
+
+p.label
+{
+color:#FFFFFF;
+text-align:right;
+}
+
+
+
+

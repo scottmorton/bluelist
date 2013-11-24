@@ -37,6 +37,7 @@ $(document).ready(function() {
 	    fillSubOptions('#skills', skills, selCat, selSkill);
 	    renderHeader(signed_in, registered);
         
+
 	
 	if(more_profs=='false')
 	{
@@ -228,7 +229,6 @@ $(document).ready(function() {
 		
 				if	($(this).parent().attr("id") == "state")
 					{	
-						
 						var selStateNew= "-1";
 						
 						//-1 if not found

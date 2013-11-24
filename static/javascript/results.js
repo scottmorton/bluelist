@@ -27,10 +27,10 @@ function renderResults(selCity, selState, selSkill, selCat) {
           
        var listString=prof_html;
        
-       
-       listString='<p id="num_profs" class="Results">'+num_profs+' Result(s)</p>'+listString;
-       
        $('#searchResults').html(listString);
+       $('#num_profs').html(num_profs+' Results' );
+       
+       
        
        //l_prof=profiles.length;
          });

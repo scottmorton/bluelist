@@ -12,15 +12,11 @@ body {
 .body-container
 {
     
-    background-image: -webkit-gradient(radial, center center, 0, center center, 447, color-stop(0, #FFFFFF), color-stop(1, #0099E0));
 
-    /* Mozilla Firefox */ 
-    background-image: -moz-radial-gradient(center, circle farthest-corner, #FFFFFF 0%, #0099E0 100%);
-    
 background-position: center top;
 background-size: 100% auto;
 background-repeat:no-repeat;
-background-color:black;
+background-color:#0099E0;
 overflow-x:hidden;
 overflow-y:hidden;
 margin-bottom:auto;

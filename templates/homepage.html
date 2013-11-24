@@ -66,53 +66,60 @@
 </div>
 
 
-<div class="base-container-menu" id="options">
+<div class="content-container">
 
 <div class="menu-container">
-	<div class="box" id="states container">
-		<p class="title"> State </p>
-		<div class="category" id="box0div">
-		<div class="subcat">
-			<ul id="state" class="list">
-				
-			
-			</ul>
-		</div>		
-		</div>
-	</div>
-	<div class="box" id="cities container">
-		<p class="title"> City </p>
-		<div class="category" id="box1div">
-			<div class="subcat">
-			<ul id="city">
-			</ul>
-			</div>
-		</div>
-	</div>
 	
-	<div class="box" id="Category Container">
-		<p class="title"> Category </p>
-		<div class="category" id="box3div">
-			<div class="subcat">
-			<ul id="category">
+	<ul class="menu-options">
+		<li>
+			<p class="title"> Profile Filters</p>
+			<ul id="menu" >
+				<li id="state_li" class="menu_cat">
+					<a id="state_button" href="#"> States</a>  <p class="menu_caret">&#x25BE </p>
+							<div class="subcat">
+								<ul id="state">
+
+								</ul>
+							</div>
+				</li>
+				<li id="city_li" class="menu_cat">
+					<a id="city_button" href="#">Cities</a> <p class="menu_caret">&#x25BE </p>
+						<div class="subcat">
+							<ul id="city">
+					
+							</ul>
+						</div>
+				</li>
+				<li id="category_li" class="menu_cat">
+					<a id="category_button" href="#">Service Categories</a> <p class="menu_caret">&#x25BE </p>
+					<div class="subcat">
+						<ul id="category">
+						</ul>
+					</div>
+				</li>
+				<li id="skill_li" class="menu_cat">
+					<a id="skills_button" href="#"> Services </a> <p class="menu_caret">&#x25BE </p>
+					<div class="subcat">
+						<ul id="skills">
+						</ul>
+					</div>
+				</li>
 			</ul>
-			</div>
-		</div>
-	</div>
-	<div class="box" id="Skills Container">
-		<p class="title"> Service</p>
-		<div class="category" id="box4div">
-			<div class="subcat">
-			<ul id="skills">
-			</ul>
-			</div>
-		</div>	
-	</div>
-</div>	
+		</li>
+	</ul>
 	
+
+	
+</div>
+
+
+<div class="base-container-menu" id="options">
+	
+	<h4 id="num_profs" class="Results"> {{num_profs}} Results</h4>	
+
 	<div class="results-container">
+		
 			<div class="results" id="searchResults">
-				<p id="num_profs" class="Results">{{num_profs}} Result(s)</p>
 
 				{% include 'profile_list.html' %}
 				
@@ -123,6 +130,7 @@
 	
 </div>
 
+</div>
 </div>
 
 {% include 'header.html' %}
