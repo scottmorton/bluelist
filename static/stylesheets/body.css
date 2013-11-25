@@ -12,14 +12,13 @@ body {
 .body-container
 {
     text-align: center;
-    background-color:#F0F0F0;
+    background-color:rgb(240,240,240);
     width: 100%;
     margin-bottom:0px;
     position: absolute;
     top:0;
     bottom:0;
      overflow-y:scroll;
-     
      padding-bottom:40px;
      padding-top:40px;
 }
