@@ -4,8 +4,7 @@
 {
 	overflow:hidden;
 	margin-bottom:30px;
-
-    width:1000px;
+    width:900px;
     background:white;
     display:block;
     margin-left:auto;
@@ -45,8 +44,8 @@
 .subcat{
 	margin-top: 0px;
 	margin-bottom:0px;
-	height:160px;
-	width:250px;
+	height:140px;
+	width:225px;
     overflow-y:scroll; 
     overflow-x:hidden;
     background:white;
@@ -99,9 +98,9 @@ ul{
 
 #menu li.menu_cat {
     
-    background:white0;
+    background:white;
     cursor:pointer;
-    width:250px;
+    width:225px;
 }
 
 
@@ -120,7 +119,7 @@ ul{
 }
 
 #menu ul li {
-    width:250px;
+    width:220px;
   float: left;
   padding:0px;
   border:none;
