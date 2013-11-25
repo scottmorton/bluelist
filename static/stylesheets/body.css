@@ -11,33 +11,24 @@ body {
 
 .body-container
 {
-    
-
-background-position: center top;
-background-size: 100% auto;
-background-repeat:no-repeat;
-background-color:#F0F0F0;
-overflow-x:hidden;
-overflow-y:hidden;
-margin-bottom:auto;
-margin-top:auto;
-width: 100%;
-position: absolute;
-top:60px;
-bottom:0;
-
-
+    text-align: center;
+    background-color:#F0F0F0;
+    width: 100%;
+    margin-bottom:0px;
+    position: absolute;
+    top:0;
+    bottom:0;
+     overflow-y:scroll;
 }
 
 
 .body-scroll
 {
-    text-align: center;
-    overflow-y:scroll;
+
+   
     width:100%;
-    position: absolute;
-    top:0;
-    bottom:0;
+
+
     padding-bottom:40px;
     padding-top:40px;
 }
