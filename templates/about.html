@@ -44,10 +44,11 @@ renderHeader(signed_in, registered); });</script>
 </head>
 <body>
 
-	<div class= "body-container"></div>
+	<div class= "body-container">
+	
+	{% include 'header.html' %}
 
 
-	<div class= "body-scroll">
 		<div class="base-container">
 			
 			<h3 class="title">About Bluelist</h4>
@@ -70,11 +71,7 @@ renderHeader(signed_in, registered); });</script>
 			
 			
 		</div>
-		
-		
-	</div>
 	
-{% include 'header.html' %}
-
+	
 </body>
 </html>
